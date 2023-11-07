@@ -1,8 +1,15 @@
-import logo from "./logo.svg";
 import "./App.scss";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import WarehouseList from "./components/WarehouseList/WarehouseList";
 
 function App() {
-  return <div className="App"></div>;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/warehouses" element={<WarehouseList />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
