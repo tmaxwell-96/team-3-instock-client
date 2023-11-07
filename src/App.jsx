@@ -14,13 +14,10 @@ function App() {
       </div>
 
       <Routes>
-        {/* <Route path="/" element={<HomePage />} /> */}
-        {/* <Route path="/:id" element={<HomePage />} /> */}
-        {/* <Route path="/warehouse" element={<WareHouse />} /> */}
-        {/* <Route path="/warehouse/:id" element={<WareHouse />} /> */}
-        {/* This route will lead to "Edit Warehouse/Add New WareHouse Page" */}
-        {/* <Route path="/inventory" element={<Inventory />} /> */}
-        {/* <Route path="/inventory/:id" element={<Inventory />} /> */}
+        <Route path="/" element={<WareHouse />} />
+        <Route path="/:id" element={<WareHouse />} />
+        <Route path="/inventory" element={<Inventory />} />
+        <Route path="/inventory/:id" element={<Inventory />} />
       </Routes>
     </BrowserRouter>
   );
