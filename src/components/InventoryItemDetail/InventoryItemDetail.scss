@@ -1,0 +1,14 @@
+.item-detail {
+  &__edit {
+    color: white;
+  }
+  &__edit-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    background-color: #2e66e5;
+    border-radius: 1.25rem;
+  }
+}
