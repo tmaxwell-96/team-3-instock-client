@@ -1,8 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Warehouse from "./Pages/Warehouse/Warehouse";
-import Inventory from "./Pages/Inventry/Inventry";
+
+import WareHouse from "./pages/WareHouse/WareHouse";
+import Inventory from "./pages/Inventory/Inventory";
 import "./App.scss";
-import WarehouseDetail from "./Components/WarehouseDetail/WarehouseDetail";
+import WarehouseDetail from "./component/WarehouseDetail/WarehouseDetail";
+
 
 function App() {
   return (
