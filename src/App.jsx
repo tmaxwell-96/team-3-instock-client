@@ -1,10 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomePage from "../../team-3-instock-client/src/pages/HomePage/HomePage";
-import WareHouse from "../../team-3-instock-client/src/pages/WareHouse/WareHouse";
-import Inventory from "../../team-3-instock-client/src/pages/Inventry/Inventory";
+import WareHouse from "./pages/WareHouse/WareHouse";
+import Inventory from "./pages/Inventry/Inventry";
 import "./App.scss";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import WarehouseList from "./components/WarehouseList/WarehouseList";
 
 function App() {
   return (
