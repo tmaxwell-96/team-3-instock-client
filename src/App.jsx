@@ -1,10 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomePage from "../../team-3-instock-client/src/pages/HomePage/HomePage";
-import WareHouse from "../../team-3-instock-client/src/pages/WareHouse/WareHouse";
-import Inventory from "../../team-3-instock-client/src/pages/Inventry/Inventory";
+import WareHouse from "./pages/WareHouse/WareHouse";
+import Inventory from "./pages/Inventory/Inventory";
 import "./App.scss";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import WarehouseList from "./components/WarehouseList/WarehouseList";
+import WarehouseDetail from "./component/WarehouseDetail/WarehouseDetail";
 
 function App() {
   return (
@@ -12,7 +10,7 @@ function App() {
       <div className="App">
         <p>test</p>
       </div>
-
+      <WarehouseDetail />
       <Routes>
         <Route path="/" element={<WareHouse />} />
         <Route path="/:id" element={<WareHouse />} />
