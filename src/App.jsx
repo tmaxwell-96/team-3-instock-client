@@ -1,23 +1,28 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import WareHouse from "./pages/WareHouse/WareHouse";
-import Inventory from "./pages/Inventory/Inventory";
+
 import "./App.scss";
+import WarehousePage from "./Pages/WarehousePage/WarehousePage";
+import InventoryPage from "./Pages/InventoryPage/InventoryPage";
 import WarehouseDetail from "./component/WarehouseDetail/WarehouseDetail";
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="App">
-        <p>test</p>
-      </div>
-      <WarehouseDetail />
-      <Routes>
-        <Route path="/" element={<WareHouse />} />
-        <Route path="/:id" element={<WareHouse />} />
-        <Route path="/inventory" element={<Inventory />} />
-        <Route path="/inventory/:id" element={<Inventory />} />
-      </Routes>
-    </BrowserRouter>
+    <div>
+      <h1>HEADER PLACEHOLDER</h1>
+      <section className="app__container">
+        <BrowserRouter>
+          <p>MAIN INFO PLACEHOLDER</p>
+
+          <Routes>
+            <Route path="/" element={<WarehousePage />} />
+            <Route path="/:id" element={<WarehousePage />} />
+            <Route path="/inventory" element={<InventoryPage />} />
+            <Route path="/inventory/:id" element={<InventoryPage />} />
+          </Routes>
+        </BrowserRouter>
+      </section>
+      <h2>FOOTER PLACEHOLDER</h2>
+    </div>
   );
 }
 
