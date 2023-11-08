@@ -1,25 +1,28 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import HomePage from "../../team-3-instock-client/src/pages/HomePage/HomePage";
-// import WareHouse from "../../team-3-instock-client/src/pages/WareHouse/WareHouse";
-// import Inventory from "../../team-3-instock-client/src/pages/Inventry/Inventory";
+
 import "./App.scss";
-import WarehouseList from "./components/WarehouseList/WarehouseList";
+import WarehousePage from "./Pages/WarehousePage/WarehousePage";
+import InventoryPage from "./Pages/InventoryPage/InventoryPage";
+import WarehouseDetail from "./component/WarehouseDetail/WarehouseDetail";
 
 function App() {
   return (
-    <BrowserRouter>
-      <WarehouseList />
-      <div className="App">
-        <p>test</p>
-      </div>
+    <div>
+      <h1>HEADER PLACEHOLDER</h1>
+      <section className="app__container">
+        <BrowserRouter>
+          <p>MAIN INFO PLACEHOLDER</p>
 
-      <Routes>
-        <Route path="/" element={<WareHouse />} />
-        <Route path="/:id" element={<WareHouse />} />
-        <Route path="/inventory" element={<Inventory />} />
-        <Route path="/inventory/:id" element={<Inventory />} />
-      </Routes>
-    </BrowserRouter>
+          <Routes>
+            <Route path="/" element={<WarehousePage />} />
+            <Route path="/:id" element={<WarehousePage />} />
+            <Route path="/inventory" element={<InventoryPage />} />
+            <Route path="/inventory/:id" element={<InventoryPage />} />
+          </Routes>
+        </BrowserRouter>
+      </section>
+      <h2>FOOTER PLACEHOLDER</h2>
+    </div>
   );
 }
 
