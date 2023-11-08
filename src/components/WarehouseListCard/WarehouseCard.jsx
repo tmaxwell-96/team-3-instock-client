@@ -1,4 +1,5 @@
 import "./WarehouseCard.scss";
+import { Link } from "react-router-dom";
 import deleteIcon from "../../assets/Icons/delete_outline-24px.svg";
 import editIcon from "../../assets/Icons/edit-24px.svg";
 
@@ -9,9 +10,11 @@ const WarehouseCard = ({ warehouse }) => {
         <div className="warehouse-card__left">
           <div className="warehouse-card__left-top">
             <p className="warehouse-card__text">WAREHOUSE</p>
-            <p className="warehouse-card__text warehouse-card__text-bold">
-              {`${warehouse.warehouse_name}   >`}
-            </p>
+            <Link to={`/${warehouse.id}`}>
+              <p className="warehouse-card__text warehouse-card__text--link">
+                {`${warehouse.warehouse_name}   >`}
+              </p>
+            </Link>
           </div>
           <div className="warehouse-card__left-bottom">
             <p className="warehouse-card__text">ADDRESS</p>
@@ -25,9 +28,7 @@ const WarehouseCard = ({ warehouse }) => {
         <div className="warehouse-card__right">
           <div className="warehouse-card__right-top">
             <p className="warehouse-card__text">CONTACT NAME</p>
-            <p className="warehouse-card__text warehouse-card__text-bold">
-              {warehouse.contact_name}
-            </p>
+            <p className="warehouse-card__text ">{warehouse.contact_name}</p>
           </div>
           <div className="warehouse-card__right-bottom">
             <p className="warehouse-card__text">CONTACT INFORMATION</p>

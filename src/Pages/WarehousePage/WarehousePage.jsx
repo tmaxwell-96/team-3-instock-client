@@ -1,9 +1,10 @@
 import "./WarehousePage.scss";
+import WarehouseList from "../../components/WarehouseList/WarehouseList";
 
 const WarehousePage = () => {
   return (
     <div>
-      <p>WAREHOUSE INFO</p>
+      <WarehouseList />
     </div>
   );
 };
