@@ -1,16 +1,13 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
 import "./App.scss";
 import WarehousePage from "./Pages/WarehousePage/WarehousePage";
 import InventoryPage from "./Pages/InventoryPage/InventoryPage";
-import WarehouseDetail from "./component/WarehouseDetail/WarehouseDetail";
 import MainNav from "./components/MainNav/MainNav";
 
 function App() {
   return (
     <div>
-      <MainNav/>
-      <h1>HEADER PLACEHOLDER</h1>
+      <MainNav />
       <section className="app__container">
         <BrowserRouter>
           <p>MAIN INFO PLACEHOLDER</p>
