@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import WareHouse from "./pages/WareHouse/WareHouse";
-import Inventory from "./pages/Inventry/Inventory";
+import Inventory from "./pages/Inventory/Inventory";
 import "./App.scss";
 import WarehouseDetail from "./component/WarehouseDetail/WarehouseDetail";
 
