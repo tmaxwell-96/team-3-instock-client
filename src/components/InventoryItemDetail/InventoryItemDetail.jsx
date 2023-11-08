@@ -9,7 +9,9 @@ const InventoryItemDetail = () => {
         <img src={backArrow} alt="back arrow" />
         <h2 className="item-detail__item">INVENTORY ITEM PLACEHOLDER</h2>
         <div className="item-detail__edit-wrapper">
-          <img className="item-detail__edit" src={edit} alt="edit" />
+          <svg className="item-detail__edit">
+            <img src={edit} alt="edit" />
+          </svg>
         </div>
       </div>
     </div>
