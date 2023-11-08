@@ -1,0 +1,12 @@
+.input {
+  &__field {
+    height: 2.25rem;
+    width: 18rem;
+    border-radius: 50px;
+    border: 1px solid #bdc5d5;
+  }
+  &__field--active:active {
+    border: 10px solid #2e66e5;
+    // need to set active color on the input field
+  }
+}

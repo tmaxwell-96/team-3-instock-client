@@ -1,0 +1,48 @@
+@use "../styles/partials/mixins" as *;
+@use "../styles/partials/variables" as *;
+
+.detail {
+  &__header-container {
+    display: flex;
+    align-items: center;
+    padding: 0 2rem;
+  }
+  &__heading {
+    padding-left: 1rem;
+  }
+  padding: 1rem;
+  &__warehouse-container {
+    padding: 2rem;
+    border-top: 1px solid #bdc5d5;
+    border-bottom: 1px solid #bdc5d5;
+  }
+  &__contact-container {
+    padding: 2rem;
+    border-top: 1px solid #bdc5d5;
+    border-bottom: 1px solid #bdc5d5;
+  }
+  &__text {
+    margin: 0;
+    padding: 1rem 0 0;
+  }
+  &__btn-container {
+    display: flex;
+    justify-content: space-around;
+  }
+}
+@include tablet {
+  .detail {
+    &__wrapper {
+      display: flex;
+    }
+    &__warehouse-container,
+    &__contact-container {
+      padding: 0 2rem 2rem;
+    }
+    &__btn-container {
+      // display: flex;
+      justify-content: flex-end;
+      padding: 2rem;
+    }
+  }
+}

@@ -1,7 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import WareHouse from "./pages/WareHouse/WareHouse";
-import Inventory from "./pages/Inventry/Inventry";
+import Warehouse from "./Pages/Warehouse/Warehouse";
+import Inventory from "./Pages/Inventry/Inventry";
 import "./App.scss";
+import WarehouseDetail from "./Components/WarehouseDetail/WarehouseDetail";
 
 function App() {
   return (
@@ -10,9 +11,10 @@ function App() {
         <p>test</p>
       </div>
 
+      <WarehouseDetail />
       <Routes>
-        <Route path="/" element={<WareHouse />} />
-        <Route path="/:id" element={<WareHouse />} />
+        <Route path="/" element={<Warehouse />} />
+        <Route path="/:id" element={<Warehouse />} />
         <Route path="/inventory" element={<Inventory />} />
         <Route path="/inventory/:id" element={<Inventory />} />
       </Routes>
