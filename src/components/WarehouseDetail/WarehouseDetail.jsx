@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "./WarehouseDetail.scss";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import WarehouseInventoryList from "../WarehouseInventoryList/WarehouseInventoryList";
 
 const WarehouseDetail = () => {
   const [warehouseDetail, setWarehouseDetail] = useState([]);
@@ -46,6 +47,7 @@ const WarehouseDetail = () => {
           </p>
         </div>
       </div>
+      <WarehouseInventoryList />
     </div>
   );
 };
