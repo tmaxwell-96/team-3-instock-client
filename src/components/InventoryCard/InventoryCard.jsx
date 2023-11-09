@@ -14,9 +14,12 @@ const InventoryCard = ({ item }) => {
                 <div className="component__subheader component__subheader--column">
                   <span className="component__detail">INVENTORY ITEM</span>
                 </div>
-                <div className="component__txt">
-                  <span className="component__detail">{item.item_name}</span>
-                </div>
+
+                <Link to={`/inventory/${item.id}`}>
+                  <div className="component__txt">
+                    <span className="component__detail">{item.item_name}</span>
+                  </div>
+                </Link>
               </div>
 
               <div className="component__item">
