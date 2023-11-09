@@ -121,6 +121,7 @@ h2 {
     &__detail {
         @include tablet {
             align-items: center;
+            margin-left: 2rem;
         }
     }
 
@@ -134,6 +135,10 @@ h2 {
 
     &__icon--edit {
         margin-left: 5rem;
+
+        @include tablet {
+            margin: 0
+        }
     }
 
     &__icon--delete1 {
@@ -146,5 +151,10 @@ h2 {
 
     &__icon--delete2 {
         display: none;
+
+        @include tablet {
+            display: inline-flex;
+
+        }
     }
 }

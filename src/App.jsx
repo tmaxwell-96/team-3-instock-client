@@ -4,7 +4,7 @@ import WarehousePage from "./Pages/WarehousePage/WarehousePage";
 import InventoryPage from "./Pages/InventoryPage/InventoryPage";
 import InventoryItemDetail from "./components/InventoryItemDetail/InventoryItemDetail";
 import MainNav from "./components/MainNav/MainNav";
-
+import Footer from "./components/Footer/Footer";
 function App() {
   return (
     <div>
@@ -21,7 +21,7 @@ function App() {
           </Routes>
         </BrowserRouter>
       </section>
-      <h2>FOOTER PLACEHOLDER</h2>
+      <Footer />
     </div>
   );
 }
