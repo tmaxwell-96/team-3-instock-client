@@ -1,6 +1,7 @@
 import "./InventoryCard.scss";
 import deleteIcon from "../../assets/Icons/delete_outline-24px.svg";
 import editIcon from "../../assets/Icons/edit-24px.svg";
+import { Link } from "react-router-dom";
 const InventoryCard = ({ item }) => {
   return (
     <li className="inventory-card">
@@ -8,9 +9,12 @@ const InventoryCard = ({ item }) => {
         <div className="inventory-card__left-top">
           <p className="inventory-card__text">INVENTORY ITEM</p>
 
-          <p className="inventory-card__text inventory-card__text--link">
+          <Link
+            to={`/inventory/${item.id}`}
+            className="inventory-card__text inventory-card__text--link"
+          >
             {item.item_name}
-          </p>
+          </Link>
         </div>
         <div className="inventory-card__left-bottom">
           <p className="inventory-card__text">CATEGORY</p>
