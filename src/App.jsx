@@ -8,9 +8,10 @@ import Footer from "./components/Footer/Footer";
 function App() {
   return (
     <div>
-      <MainNav />
       <section className="app__container">
         <BrowserRouter>
+          <MainNav />
+
           <p>MAIN INFO PLACEHOLDER</p>
 
           <Routes>
