@@ -4,42 +4,89 @@ import editIcon from "../../assets/Icons/edit-24px.svg";
 import { Link } from "react-router-dom";
 const InventoryCard = ({ item }) => {
   return (
-    <li className="inventory-card">
-      <div className="inventory-card__left">
-        <div className="inventory-card__left-top">
-          <p className="inventory-card__text">INVENTORY ITEM</p>
+    <>
+      <div className="component__container">
+        <section className="component">
+          {/* !-- This is the part that should be rendered by javascript according to each Item --> */}
+          <div className="component__box">
+            <div className="component__box--break">
+              <div className="component__item">
+                <div className="component__subheader component__subheader--column">
+                  <span className="component__detail">INVENTORY ITEM</span>
+                </div>
 
-          <Link
-            to={`/inventory/${item.id}`}
-            className="inventory-card__text inventory-card__text--link"
-          >
-            {item.item_name}
-          </Link>
-        </div>
-        <div className="inventory-card__left-bottom">
-          <p className="inventory-card__text">CATEGORY</p>
-          <p className="inventory-card__text ">{item.category}</p>
-        </div>
-        <img
-          className="inventory-card__delete"
-          src={deleteIcon}
-          alt="trash icon"
-        />
+                <Link to={`/inventory/${item.id}`}>
+                  <div className="component__txt">
+                    <span className="component__detail">{item.item_name}</span>
+                  </div>
+                </Link>
+              </div>
+
+              <div className="component__item">
+                <div className="component__subheader component__subheader--column">
+                  <span className="component__detail">CATEGORY</span>
+                </div>
+                <div className="component__txt">
+                  <span className="component__detail">{item.category}</span>
+                </div>
+                <div className="component__txt">
+                  <img
+                    className=" component__icon--delete1"
+                    src={deleteIcon}
+                    alt="delete"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="component__box--break component__box--breakright">
+              <div className="component__item">
+                <div className="component__subheader component__subheader--column">
+                  <span className="component__detail"> STATUS </span>
+                </div>
+                <div className="component__txt">
+                  <span className="component__detail"> {item.quantity} </span>
+                </div>
+              </div>
+
+              <div className="component__item">
+                <div className="component__subheader component__subheader--column">
+                  <span className="component__detail"> QTY </span>
+                </div>
+                <div className="component__txt">
+                  <span className="component__detail">
+                    {" "}
+                    {item.warehouse_name}
+                  </span>
+                </div>
+              </div>
+
+              <div className="component__item">
+                <div className="component__subheader component__subheader--column">
+                  <span className="component__detail">WAREHOUSE</span>
+                </div>
+                <div className="component__txt">
+                  <span className="component__detail">Manhattan</span>
+                </div>
+              </div>
+
+              <div className="component__item">
+                <img
+                  className="component__icon component__icon--delete2"
+                  src={deleteIcon}
+                  alt="delete"
+                />
+                <img
+                  className="component__icon component__icon--edit"
+                  src={editIcon}
+                  alt="edit"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
-      <div className="inventory-card__right">
-        <div className="inventory-card__right-top">
-          <p className="inventory-card__text">STATUS</p>
-          <p className="inventory-card__text ">{item.status}</p>
-        </div>
-        <div className="inventory-card__right-bottom">
-          <p className="inventory-card__text">QTY</p>
-          <p className="inventory-card__text ">{item.quantity}</p>
-          <p className="inventory-card__text ">WAREHOUSE</p>
-          <p className="inventory-card__text ">{item.warehouse_name}</p>
-        </div>
-        <img src={editIcon} alt="writing icon" />
-      </div>
-    </li>
+    </>
   );
 };
 
