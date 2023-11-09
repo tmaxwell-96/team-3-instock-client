@@ -2,15 +2,18 @@ import "./WarehouseCard.scss";
 import { Link } from "react-router-dom";
 import deleteIcon from "../../assets/Icons/delete_outline-24px.svg";
 import editIcon from "../../assets/Icons/edit-24px.svg";
+import WarehouseDetail from "../WarehouseDetail/WarehouseDetail";
 
 const WarehouseCard = ({ warehouse }) => {
   if (warehouse) {
     return (
       <li className="warehouse-card">
+        <WarehouseDetail />
+
         <div className="warehouse-card__left">
           <div className="warehouse-card__left-top">
             <p className="warehouse-card__text">WAREHOUSE</p>
-            <Link to={`/${warehouse.id}`}>
+            <Link to={`/warehouses/${warehouse.id}`}>
               <p className="warehouse-card__text warehouse-card__text--link">
                 {`${warehouse.warehouse_name}   >`}
               </p>

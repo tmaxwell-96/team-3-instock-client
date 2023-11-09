@@ -3,6 +3,7 @@ import "./App.scss";
 import WarehousePage from "./Pages/WarehousePage/WarehousePage";
 import InventoryPage from "./Pages/InventoryPage/InventoryPage";
 import MainNav from "./components/MainNav/MainNav";
+import WarehouseDetail from "./components/WarehouseDetail/WarehouseDetail";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
 
           <Routes>
             <Route path="/" element={<WarehousePage />} />
-            <Route path="/:id" element={<WarehousePage />} />
+            <Route path="/:id" element={<WarehouseDetail />} />
             <Route path="/inventory" element={<InventoryPage />} />
             <Route path="/inventory/:id" element={<InventoryPage />} />
           </Routes>
