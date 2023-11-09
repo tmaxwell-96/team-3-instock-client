@@ -9,9 +9,10 @@ import AddInventory from "./components/AddInventory/AddInventory";
 function App() {
   return (
     <div>
-      <MainNav />
       <section className="app__container">
         <BrowserRouter>
+          <MainNav />
+
           <p>MAIN INFO PLACEHOLDER</p>
 
           <Routes>
