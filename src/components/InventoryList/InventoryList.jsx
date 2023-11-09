@@ -1,6 +1,7 @@
 import "./InventoryList.scss";
 import InventoryCard from "../InventoryCard/InventoryCard";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 const InventoryList = () => {
@@ -22,7 +23,10 @@ const InventoryList = () => {
         type="text"
         placeholder="Search"
       />
-      <button className="inventory-list__button">+ Add New inventory</button>
+      <Link to={`/inventory/add`}>
+        <button className="inventory-list__button">+ Add New inventory</button>
+      </Link>
+
       <ul className="inventory-list__wrapper">
         {inventoryList.map((item) => {
           return <InventoryCard key={item.id} item={item} />;
