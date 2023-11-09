@@ -1,0 +1,19 @@
+.inventory-card {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    border-top: 2px solid gray;
+
+    &__left,
+    &__right {
+        margin-right: 1rem;
+    }
+
+    &__delete {
+        margin-top: auto;
+    }
+}

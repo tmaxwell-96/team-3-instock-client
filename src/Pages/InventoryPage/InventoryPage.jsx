@@ -1,8 +1,12 @@
 import "./InventoryPage.scss";
-import InventoryItemDetail from "../../components/InventoryItemDetail/InventoryItemDetail";
+import InventoryList from "../../components/InventoryList/InventoryList";
 
 function InventoryPage() {
-  return <InventoryItemDetail />;
+  return (
+    <div>
+      <InventoryList />
+    </div>
+  );
 }
 
 export default InventoryPage;
