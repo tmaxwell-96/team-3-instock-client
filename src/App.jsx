@@ -12,8 +12,6 @@ function App() {
         <BrowserRouter>
           <MainNav />
 
-          <p>MAIN INFO PLACEHOLDER</p>
-
           <Routes>
             <Route path="/" element={<WarehousePage />} />
             <Route path="/:id" element={<WarehousePage />} />
