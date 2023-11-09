@@ -1,6 +1,10 @@
-.input {
-  &__field {
-    background-color: red;
-    border-radius: 50px;
+.warehouse-detail {
+  display: flex;
+  flex-direction: column;
+  &__container {
+    display: flex;
+  }
+  &__contact-container {
+    padding-left: 1rem;
   }
 }
