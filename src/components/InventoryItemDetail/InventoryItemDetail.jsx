@@ -65,7 +65,9 @@ const InventoryItemDetail = () => {
             </div>
             <div className="item-detail__content-status-bottom">
               <label className="item-detail__label">WAREHOUSE:</label>
-              <p className="item-detail__text">PLACEHOLDER </p>
+              <p className="item-detail__text">
+                {inventoryDetails.warehouse_name}{" "}
+              </p>
             </div>
           </div>
           <div className="item-detail__right">
