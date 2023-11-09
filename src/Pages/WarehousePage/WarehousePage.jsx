@@ -5,7 +5,6 @@ import WarehouseDetail from "../../components/WarehouseDetail/WarehouseDetail";
 const WarehousePage = () => {
   return (
     <div>
-      <WarehouseDetail />
       <WarehouseList />
     </div>
   );

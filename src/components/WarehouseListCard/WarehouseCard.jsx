@@ -8,12 +8,10 @@ const WarehouseCard = ({ warehouse }) => {
   if (warehouse) {
     return (
       <li className="warehouse-card">
-        <WarehouseDetail />
-
         <div className="warehouse-card__left">
           <div className="warehouse-card__left-top">
             <p className="warehouse-card__text">WAREHOUSE</p>
-            <Link to={`/warehouses/${warehouse.id}`}>
+            <Link to={`/${warehouse.id}`}>
               <p className="warehouse-card__text warehouse-card__text--link">
                 {`${warehouse.warehouse_name}   >`}
               </p>
