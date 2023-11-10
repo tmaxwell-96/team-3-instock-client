@@ -7,18 +7,6 @@ import Modal from "react-modal";
 import xIcon from "../../assets/Icons/close-24px.svg";
 
 const deleteModal = document.getElementById("deleteModal");
-console.log(deleteModal);
-
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-  },
-};
 
 Modal.setAppElement(deleteModal);
 
@@ -68,6 +56,7 @@ const InventoryCard = ({ item }) => {
                 <div className="component__txt">
                   <img
                     className=" component__icon--delete1"
+                    onClick={openModal}
                     src={deleteIcon}
                     alt="delete"
                   />
@@ -115,26 +104,33 @@ const InventoryCard = ({ item }) => {
                   onClick={openModal}
                 />
                 <Modal
+                  className={`modal`}
                   isOpen={modalIsOpen}
                   onAfterOpen={afterOpenModal}
                   onRequestClose={closeModal}
-                  style={customStyles}
-                  contentLabel="Testing testing"
                 >
                   <div className="modal__wrapper">
-                    <img className="modal__close" src={xIcon} alt="" />
+                    <img
+                      onClick={closeModal}
+                      className="modal__close"
+                      src={xIcon}
+                      alt=""
+                    />
                     <h2
                       className="modal__title"
                       // ref={(_subtitle) => (subtitle = _subtitle)}
                     >
-                      Delete Inventory Item?
+                      {`Delete ${item.item_name} inventory item?`}
                     </h2>
                     <p>
-                      Please confirm that you would like to delete PLACEHOLDER
-                      from the inventory list. You won't be able to undo this
-                      action.
+                      {`Please confirm that you'd like to delete ${item.item_name} from the inventory list. You won't be able to undo this action`}
                     </p>
-                    <button onClick={closeModal}>Click to get out</button>
+                    <div className="modal__bottom">
+                      <button className="modal__cancel" onClick={closeModal}>
+                        Cancel
+                      </button>
+                      <button className="modal__delete">Delete</button>
+                    </div>
                   </div>
                 </Modal>
 
