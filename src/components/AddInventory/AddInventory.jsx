@@ -1,17 +1,18 @@
-import "./EditInventory.scss";
-import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import "./AddInventory.scss";
+import { useEffect, useState } from "react";
 import backArrow from "../../assets/Icons/arrow_back-24px.svg";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const EditInventory = () => {
+const AddInventory = () => {
   //State variables for field changes
   const [itemName, setItemName] = useState("");
   const [category, setCategory] = useState();
   const [itemDescription, setItemDescription] = useState("");
   const [status, setStatus] = useState("");
-
+  const [quantity, setQuantity] = useState(0);
   const [warehouse, setWarehouse] = useState();
+  //Will add form validation sson
   // const [submitted, setSubmitted] = useState(false);
 
   //Handle change functions
@@ -32,6 +33,11 @@ const EditInventory = () => {
 
   const handleStatusChange = (event) => {
     setStatus(event.target.value);
+    // setSubmitted(false);
+  };
+
+  const handleQuantityChange = (event) => {
+    setQuantity(event.target.value);
     // setSubmitted(false);
   };
 
@@ -57,12 +63,14 @@ const EditInventory = () => {
     });
     setInventoryList(uniqueCategories);
   };
+
   useEffect(() => {
     getInventory();
   }, []);
 
   //Get warehouse information
   const [warehouseList, setWarehouseList] = useState([]);
+
   useEffect(() => {
     const getWarehouses = async () => {
       const response = await axios.get("http://localhost:8080/warehouses");
@@ -71,54 +79,63 @@ const EditInventory = () => {
     getWarehouses();
   }, []);
 
-  //Edit new object function
+  //Create new object function
 
-  const editInventoryItem = (event) => {
+  const createInventoryItem = async () => {
     const newInventory = {
-      warehouse_id: "Need to figure this out",
+      warehouse_id: warehouse,
       item_name: itemName,
       description: itemDescription,
       category: category,
       status: status,
-      warehouse: warehouse,
+      quantity: quantity,
     };
-    console.log(newInventory);
+
+    const postInventory = async (newInv) => {
+      await axios.post("http://localhost:8080/inventory", newInv);
+    };
+    postInventory(newInventory);
   };
 
   //Handle Submit Function
+  const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
-    editInventoryItem(event);
+    createInventoryItem(event);
+    alert(
+      "Thank you for submitting an inventory item! Returning to the inventory page."
+    );
+    navigate("/inventory");
   };
 
   return (
-    <div className="edit-inventory">
-      <header className="edit-inventory__header">
+    <div className="add-inventory">
+      <header className="add-inventory__header">
         <Link to={`/inventory`}>
           <img src={backArrow} alt="back arrow" />
         </Link>
 
-        <h2 className="edit-inventory__title">Edit new inventory item</h2>
+        <h2 className="add-inventory__title">Add new inventory item</h2>
       </header>
-      <form className="edit-inventory__form">
-        <section className="edit-inventory__details-container">
-          <p className="edit-inventory__label">Item Name</p>
+      <form className="add-inventory__form">
+        <section className="add-inventory__details-container">
+          <p className="add-inventory__label">Item Name</p>
           <input
-            className="edit-inventory__input"
+            className="add-inventory__input"
             type="text"
             placeholder="Item Name"
             onChange={handleNameChange}
             value={itemName}
           />
-          <p className="edit-inventory__label">Description</p>
+          <p className="add-inventory__label">Description</p>
           <textarea
-            className="edit-inventory__description"
+            className="add-inventory__description"
             name=""
             placeholder="Please enter a brief item description"
             onChange={handleDescrptionChange}
             value={itemDescription}
           ></textarea>
-          <p className="edit-inventory__label">Category</p>
+          <p className="add-inventory__label">Category</p>
           <select
             onChange={handleCategoryChange}
             value={category}
@@ -136,33 +153,49 @@ const EditInventory = () => {
             })}
           </select>
         </section>
-        <section className="edit-availability-container">
-          <h3 className="edit-inventory__subheading">Item Availability</h3>
-          <p className="edit-inventory__label">Status</p>
-          <div className="edit-inventory__radio-container">
+        <section className="add-availability-container">
+          <div className="add-inventory__radio-container">
             <input
               onChange={handleStatusChange}
               value="instock"
+              name="status"
               type="radio"
-              name="inStock"
-              id=""
+              id="instock"
             />{" "}
-            <label className="edit-inventory__radio-label" htmlFor="inStock">
+            <label className="add-inventory__radio-label" htmlFor="inStock">
               In Stock
             </label>
             <input
               onChange={handleStatusChange}
               value="outstock"
               type="radio"
-              name="outStock"
-              id=""
+              name="status"
+              id="outstock"
             />{" "}
-            <label className="edit-inventory__radio-label" htmlFor="outstock">
+            <label className="add-inventory__radio-label" htmlFor="outstock">
               Out of Stock
             </label>
           </div>
 
-          <p className="edit-inventory__label" htmlFor="warehouse">
+          <p
+            className={`add-inventory__label ${
+              status === "outstock" ? "add-inventory__label--hidden" : ""
+            }`}
+            htmlFor=""
+          >
+            Quantity
+          </p>
+          <input
+            onChange={handleQuantityChange}
+            value={quantity}
+            name="quanity"
+            className={`add-inventory__input ${
+              status === "outstock" ? "add-inventory__input--hidden" : ""
+            }`}
+            type="text"
+            placeholder="0"
+          />
+          <p className="add-inventory__label" htmlFor="warehouse">
             Warehouse
           </p>
           <select
@@ -180,10 +213,10 @@ const EditInventory = () => {
               );
             })}
           </select>
-          <div className="edit-inventory__buttons">
-            <button className="edit-inventory__cancel">Cancel</button>
-            <button onClick={handleSubmit} className="edit-inventory__submit">
-              Save
+          <div className="add-inventory__buttons">
+            <button className="add-inventory__cancel">Cancel</button>
+            <button onClick={handleSubmit} className="add-inventory__submit">
+              + Add Item
             </button>
           </div>
         </section>
@@ -191,4 +224,5 @@ const EditInventory = () => {
     </div>
   );
 };
-export default EditInventory;
+
+export default AddInventory;
