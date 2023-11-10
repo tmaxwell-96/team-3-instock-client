@@ -2,6 +2,7 @@ import "./WarehouseCard.scss";
 import { Link } from "react-router-dom";
 import deleteIcon from "../../assets/Icons/delete_outline-24px.svg";
 import editIcon from "../../assets/Icons/edit-24px.svg";
+// import hoverArrow from "../../assets/Icons/chevron_right-24px.svg"
 
 const WarehouseCard = ({ warehouse }) => {
   if (warehouse) {
@@ -12,9 +13,12 @@ const WarehouseCard = ({ warehouse }) => {
             <p className="warehouse-card__text">WAREHOUSE</p>
             <Link to={`/${warehouse.id}`}>
               <p className="warehouse-card__text warehouse-card__text--link">
-                {`${warehouse.warehouse_name}   >`}
+                {`${warehouse.warehouse_name}`}
               </p>
             </Link>
+
+            {/* <img className="warehouse-card__arrow" src={hoverArrow} alt="arrow" /> */}
+
           </div>
           <div className="warehouse-card__left-bottom">
             <p className="warehouse-card__text">ADDRESS</p>

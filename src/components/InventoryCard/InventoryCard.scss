@@ -158,3 +158,18 @@ h2 {
         }
     }
 }
+
+// SVT3-33 DIVING DEEPER STYLING
+.component__arrow {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    margin-left: 4px; 
+    transition: margin-left 0.3s ease; 
+    transform: translateY(2px); /* Adjust vertical alignment if needed */
+}
+
+
+.component__txt:hover .component__arrow {
+    margin-left: 8px; 
+}
