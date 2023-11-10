@@ -4,6 +4,7 @@ import backArrow from "../../assets/Icons/arrow_back-24px.svg";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import WarehouseInventoryList from "../WarehouseInventoryList/WarehouseInventoryList";
+import { Link } from "react-router-dom";
 
 const WarehouseDetail = () => {
   const [warehouseDetail, setWarehouseDetail] = useState([]);
@@ -23,11 +24,13 @@ const WarehouseDetail = () => {
     <div className="warehouse-detail">
       <div className="warehouse-detail__address-container">
         <h3 className="warehouse-detail__title">
-          <img
-            className="warehouse-detail__img"
-            src={backArrow}
-            alt="back arrow"
-          />
+          <Link to={"/"}>
+            <img
+              className="warehouse-detail__img"
+              src={backArrow}
+              alt="back arrow"
+            />
+          </Link>
           {warehouseDetail.warehouse_name}
         </h3>
 
