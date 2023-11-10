@@ -1,0 +1,44 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.warehouse-detail {
+  display: flex;
+  flex-direction: column;
+  &__container {
+    display: flex;
+  }
+  &__heading-container {
+    display: flex;
+    flex-direction: row;
+  }
+  &__edit-wrapper {
+    margin-left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 2.25rem;
+    min-height: 2.25rem;
+    background-color: #2e66e5;
+    border-radius: 1.25rem;
+    @include tablet {
+      padding: 0.5rem 1rem;
+    }
+  }
+  &__edit {
+    background-color: #2e66e5;
+    @include tablet {
+      margin-right: 0.5rem;
+    }
+  }
+  &__edit-text {
+    display: none;
+    @include tablet {
+      display: inline-block;
+      color: white;
+      margin: 0;
+    }
+  }
+  &__contact-container {
+    padding-left: 1rem;
+  }
+}
