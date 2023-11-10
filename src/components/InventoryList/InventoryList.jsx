@@ -8,7 +8,7 @@ import axios from "axios";
 
 const InventoryList = () => {
   const [inventoryList, setInventoryList] = useState([]);
-  const [searchKeyword, setSearchKeyword] = useState('');
+  const [searchKeyword, setSearchKeyword] = useState("");
 
   const getInventory = async () => {
     const response = await axios.get("http://localhost:8080/inventory");
@@ -18,18 +18,21 @@ const InventoryList = () => {
     getInventory();
   }, []);
 
-  useEffect(() =>{
-    const searchData = async () =>{
-      const response = await axios.get(`http://localhost:8080/search/inventories?searchTerm=${searchKeyword}`);
-      setInventoryList(response.data);
-    }
-    searchData();
-  }, [searchKeyword]);
+  // useEffect(() => {
+  //   const searchData = async () => {
+  //     const response = await axios.get(
+  //       `http://localhost:8080/search/inventories?searchTerm=${searchKeyword}`
+  //     );
+  //     setInventoryList(response.data);
+  //   };
+  //   searchData();
+  // }, [searchKeyword]);
 
-  const handleSearch = (event) =>{
+  const handleSearch = (event) => {
     setSearchKeyword(event.target.value);
-  }
+  };
 
+  // console.log(inventoryList);
   return (
     <>
       <div className="inventory-list">
@@ -71,8 +74,8 @@ const InventoryList = () => {
           </li>
         </ul>
         <ul className="inventory-list__wrapper">
-
-            {inventoryList.map((item, index) => {
+          {inventoryList.map((item, index) => {
+            // console.log(item.id, item.item_name, item.warehouse_id);
             return <InventoryCard key={index} item={item} />;
           })}
         </ul>
