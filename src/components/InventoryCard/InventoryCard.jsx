@@ -66,7 +66,9 @@ const InventoryCard = ({ item }) => {
                   <span className="component__detail">WAREHOUSE</span>
                 </div>
                 <div className="component__txt">
-                  <span className="component__detail">Manhattan</span>
+                  <span className="component__detail component__detail--disply-non">
+                    Manhattan
+                  </span>
                 </div>
               </div>
 
@@ -76,11 +78,13 @@ const InventoryCard = ({ item }) => {
                   src={deleteIcon}
                   alt="delete"
                 />
-                <img
-                  className="component__icon component__icon--edit"
-                  src={editIcon}
-                  alt="edit"
-                />
+                <Link to="edit">
+                  <img
+                    className="component__icon component__icon--edit"
+                    src={editIcon}
+                    alt="edit"
+                  />
+                </Link>
               </div>
             </div>
           </div>
