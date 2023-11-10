@@ -41,7 +41,6 @@ const InventoryList = () => {
     getInventory();
   };
 
-  // console.log(inventoryList);
   return (
     <>
       <div className="inventory-list">
@@ -84,7 +83,6 @@ const InventoryList = () => {
         </ul>
         <ul className="inventory-list__wrapper">
           {inventoryList.map((item, index) => {
-            // console.log(item.id, item.item_name, item.warehouse_id);
             return (
               <InventoryCard
                 key={index}

@@ -91,9 +91,11 @@ const InventoryCard = ({ item, deleteInventory }) => {
                 <div className="component__subheader component__subheader--column">
                   <span className="component__detail">WAREHOUSE</span>
                 </div>
-                {/* <div className="component__txt">
-                  <span className="component__detail">Manhattan</span>
-                </div> */}
+                <div className="component__txt">
+                  <span className="component__detail component__detail--disply-non">
+                    Manhattan
+                  </span>
+                </div>
               </div>
 
               <div className="component__item">
@@ -121,7 +123,7 @@ const InventoryCard = ({ item, deleteInventory }) => {
                       className="modal__title"
                       // ref={(_subtitle) => (subtitle = _subtitle)}
                     >
-                      {`Delete ${item.item_name} in warehouse ${item.id} inventory item?`}
+                      {`Delete ${item.item_name} inventory item?`}
                     </h2>
                     <p>
                       {`Please confirm that you'd like to delete ${item.item_name} from the inventory list. You won't be able to undo this action`}
@@ -143,11 +145,13 @@ const InventoryCard = ({ item, deleteInventory }) => {
                   </div>
                 </Modal>
 
-                <img
-                  className="component__icon component__icon--edit"
-                  src={editIcon}
-                  alt="edit"
-                />
+                <Link to="edit">
+                  <img
+                    className="component__icon component__icon--edit"
+                    src={editIcon}
+                    alt="edit"
+                  />
+                </Link>
               </div>
             </div>
           </div>
