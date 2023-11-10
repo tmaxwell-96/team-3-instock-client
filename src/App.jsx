@@ -6,8 +6,8 @@ import InventoryItemDetail from "./components/InventoryItemDetail/InventoryItemD
 import MainNav from "./components/MainNav/MainNav";
 import AddInventory from "./components/AddInventory/AddInventory";
 import WarehouseDetail from "./components/WarehouseDetail/WarehouseDetail";
-
 import Footer from "./components/Footer/Footer";
+import EditInventory from "./components/EditInventory/EditInventory";
 function App() {
   return (
     <div>
@@ -21,6 +21,7 @@ function App() {
             <Route path="/inventory" element={<InventoryPage />} />
             <Route path="/inventory/:id" element={<InventoryItemDetail />} />
             <Route path="/inventory/add" element={<AddInventory />} />
+            <Route path="/inventory/edit" element={<EditInventory />} />
           </Routes>
         </BrowserRouter>
 

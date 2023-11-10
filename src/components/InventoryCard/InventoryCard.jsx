@@ -78,11 +78,13 @@ const InventoryCard = ({ item }) => {
                   src={deleteIcon}
                   alt="delete"
                 />
-                <img
-                  className="component__icon component__icon--edit"
-                  src={editIcon}
-                  alt="edit"
-                />
+                <Link to="edit">
+                  <img
+                    className="component__icon component__icon--edit"
+                    src={editIcon}
+                    alt="edit"
+                  />
+                </Link>
               </div>
             </div>
           </div>
