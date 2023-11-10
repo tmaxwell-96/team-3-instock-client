@@ -10,7 +10,7 @@ function WarehouseInventoryList() {
 
   const getInventoryList = async () => {
     const response = await axios.get(
-      `http://localhost:8080/inventory/warehouses/${params.id}`
+      `http://localhost:8080/inventory/warehouses/${params.id}/inventories`
     );
     setInventoryList(response.data);
   };

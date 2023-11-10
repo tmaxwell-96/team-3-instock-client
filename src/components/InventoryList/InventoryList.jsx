@@ -3,6 +3,7 @@ import up from "../../assets/Icons/arrow_back-24px.svg";
 import down from "../../assets/Icons/arrow_drop_down-24px.svg";
 import InventoryCard from "../InventoryCard/InventoryCard";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 const InventoryList = () => {
@@ -41,9 +42,11 @@ const InventoryList = () => {
             placeholder="Search..."
             onChange={handleSearch}
           />
-          <button className="inventory-list__button">
-            + Add New inventory
-          </button>
+          <Link to={`/inventory/add`}>
+            <button className="inventory-list__button">
+              + Add New inventory
+            </button>
+          </Link>
         </div>
       </div>
       <div className="component__main">

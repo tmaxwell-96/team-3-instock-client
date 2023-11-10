@@ -23,17 +23,19 @@ const WarehouseDetail = () => {
 
   return (
     <div className="warehouse-detail">
-      <div className="waerhouse-detail__heading-container">
-        <h3 className="warehouse-detail__title">
-          <Link to={"/"}>
-            <img
-              className="warehouse-detail__img"
-              src={backArrow}
-              alt="back arrow"
-            />
-          </Link>
-          {warehouseDetail.warehouse_name}
-        </h3>
+      <div className="warehouse-detail__heading-container">
+        <div>
+          <h3 className="warehouse-detail__title">
+            <Link to={"/"}>
+              <img
+                className="warehouse-detail__img"
+                src={backArrow}
+                alt="back arrow"
+              />
+            </Link>
+            {warehouseDetail.warehouse_name}
+          </h3>
+        </div>
         <div className="warehouse-detail__edit-wrapper">
           <img className="warehouse-detail__edit" src={editWhite} alt="edit" />
           <p className="warehouse-detail__edit-text">Edit</p>
