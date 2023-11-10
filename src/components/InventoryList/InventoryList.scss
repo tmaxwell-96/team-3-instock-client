@@ -1,7 +1,7 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
 
-.inventory-list {
+.component-list {
     display: flex;
     flex-direction: column;
     margin: 1rem;

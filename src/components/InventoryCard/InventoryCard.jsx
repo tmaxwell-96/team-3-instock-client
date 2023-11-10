@@ -45,7 +45,7 @@ const InventoryCard = ({ item }) => {
                   <span className="component__detail"> STATUS </span>
                 </div>
                 <div className="component__txt">
-                  <span className="component__detail"> {item.quantity} </span>
+                  <span className="component__detail">{item.status} </span>
                 </div>
               </div>
 
@@ -54,10 +54,7 @@ const InventoryCard = ({ item }) => {
                   <span className="component__detail"> QTY </span>
                 </div>
                 <div className="component__txt">
-                  <span className="component__detail">
-                    {" "}
-                    {item.warehouse_name}
-                  </span>
+                  <span className="component__detail"> {item.quantity}</span>
                 </div>
               </div>
 
@@ -66,7 +63,9 @@ const InventoryCard = ({ item }) => {
                   <span className="component__detail">WAREHOUSE</span>
                 </div>
                 <div className="component__txt">
-                  <span className="component__detail">Manhattan</span>
+                  <span className="component__detail">
+                    {item.warehouse_name}
+                  </span>
                 </div>
               </div>
 
