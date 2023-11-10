@@ -1,25 +1,27 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/buttons" as *;
+@use "../../styles/partials/typography" as *;
 
 * {
     box-sizing: border-box;
+    font-family: "Titillium-Web";
 }
 
 .Test {
-
-   list-style: none;
-   text-decoration: none;
+    list-style: none;
+    text-decoration: none;
 }
 
-.nav{
-    width: 100%;
+.nav {
+    width: 100vw;
     background-color: #232940;
     height: 136px;
 
     @include tablet {
+    
         display: flex;
         justify-content: flex-start;
-        width:auto;
+        width: 100%;
         height: 92px;
     }
 
@@ -32,18 +34,18 @@
     }
 
     &__box {
+        
         display: flex;
         justify-content: center;
-       
+
         height: 4.5rem;
         width: 100%;
 
         @include tablet {
+            margin-left: 8%;
             height: 80px;
             width: 200px;
-          
         }
-
     }
 
     &__logo {
@@ -54,7 +56,7 @@
         font-size: 1.6rem;
         font-weight: 100;
         margin-top: 2rem;
-        height:30px;
+        height: 30px;
     }
 
     &__container {
@@ -62,74 +64,60 @@
         flex-direction: row;
         justify-content: center;
         margin-bottom: 1rem;
-  
+        width:auto;
 
         @include tablet {
             margin-left: 40vw;
             line-height: 80px;
-        
+            margin-right: 2%;
         }
     }
-
-
 
     &__block {
         display: flex;
         justify-content: center;
         margin-left: 1rem;
-
     }
 
-&__button {
+    &__button {
+        width: 107px;
+        height: 38px;
+        flex-shrink: 0;
 
-width: 107px;
-height: 38px;
-flex-shrink: 0;
+        color: #bdc5d5;
+        // font-family: "Titillium-Web";
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 22px;
 
-color: #BDC5D5;
-font-family: "Titillium-Web";
-font-size: 14px;
-font-style: normal;
-font-weight: 600;
-line-height: 22px;
+        border: none;
+        border-radius: 20px;
+        background-color: transparent;
 
-border:none;
-border-radius: 20px;
-background-color: transparent;
-   
-&:active {
-    background: #13182C;
-    color: #FFF;
+        &:active {
+            background: #13182c;
+            color: #fff;
+        }
+
+        &:focus {
+            background-color: #13182c;
+            color: #fff;
+        }
+
+        &:hover {
+            text-decoration: underline;
+            color: #fff;
+        }
+
+        &__button-text {
+            font-family: inherit;
+        }
+    }
+
+    &__img {
+        height: 30px;
+        width: 32px;
+        border-radius: 50%;
+    }
 }
-
-&:focus {
-    background-color: #13182C;
-    color: #FFF;
-}
-
-
-&:hover {
-         text-decoration: underline;
-         color: #FFF;
-         }
-
-
-}
-     
-  
-
-
-  &__img {
-    height: 30px;
-    width:32px;
-    border-radius: 50%;}
-
-
-
-  }
-      
-
-
-
-
-
