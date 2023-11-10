@@ -15,7 +15,6 @@ function WarehouseInventoryList() {
       `http://localhost:8080/inventory/warehouses/${params.id}`
     );
     setInventoryList(response.data);
-    console.log(response.data);
   };
 
   useEffect(() => {
@@ -26,7 +25,7 @@ function WarehouseInventoryList() {
       <ul className="warehouse-inventory__list">
         {inventoryList.map((item) => {
           return (
-            <div className="warehouse-inventory__container">
+            <div className="warehouse-inventory__container" key={item.id}>
               <div className="warehouse-inventory__wrapper">
                 <div className="warehouse-inventory__mobile-container">
                   <p className="warehouse-inventory__subheading">
