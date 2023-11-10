@@ -2,7 +2,32 @@ import "./InventoryCard.scss";
 import deleteIcon from "../../assets/Icons/delete_outline-24px.svg";
 import editIcon from "../../assets/Icons/edit-24px.svg";
 import { Link } from "react-router-dom";
-const InventoryCard = ({ item }) => {
+import { useState, useRef } from "react";
+import Modal from "react-modal";
+import xIcon from "../../assets/Icons/close-24px.svg";
+import axios from "axios";
+
+const deleteModal = document.getElementById("deleteModal");
+
+Modal.setAppElement("#root");
+
+const InventoryCard = ({ item, deleteInventory }) => {
+  //Modal Component
+  // let subtitle;
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // subtitle.style.color = "black";
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
   return (
     <>
       <div className="component__container">
@@ -32,6 +57,7 @@ const InventoryCard = ({ item }) => {
                 <div className="component__txt">
                   <img
                     className=" component__icon--delete1"
+                    onClick={openModal}
                     src={deleteIcon}
                     alt="delete"
                   />
@@ -77,12 +103,55 @@ const InventoryCard = ({ item }) => {
                   className="component__icon component__icon--delete2"
                   src={deleteIcon}
                   alt="delete"
+                  id="deleteModal"
+                  onClick={openModal}
                 />
-                <img
-                  className="component__icon component__icon--edit"
-                  src={editIcon}
-                  alt="edit"
-                />
+                <Modal
+                  className={`modal`}
+                  isOpen={modalIsOpen}
+                  onAfterOpen={afterOpenModal}
+                  onRequestClose={closeModal}
+                >
+                  <div className="modal__wrapper">
+                    <img
+                      onClick={closeModal}
+                      className="modal__close"
+                      src={xIcon}
+                      alt=""
+                    />
+                    <h2
+                      className="modal__title"
+                      // ref={(_subtitle) => (subtitle = _subtitle)}
+                    >
+                      {`Delete ${item.item_name} inventory item?`}
+                    </h2>
+                    <p>
+                      {`Please confirm that you'd like to delete ${item.item_name} from the inventory list. You won't be able to undo this action`}
+                    </p>
+                    <div className="modal__bottom">
+                      <button className="modal__cancel" onClick={closeModal}>
+                        Cancel
+                      </button>
+                      <button
+                        onClick={() => {
+                          deleteInventory(item.id);
+                          closeModal();
+                        }}
+                        className="modal__delete"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                </Modal>
+
+                <Link to="edit">
+                  <img
+                    className="component__icon component__icon--edit"
+                    src={editIcon}
+                    alt="edit"
+                  />
+                </Link>
               </div>
             </div>
           </div>

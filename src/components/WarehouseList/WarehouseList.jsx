@@ -1,6 +1,7 @@
 import "./WarehouseList.scss";
 import WarehouseCard from "../WarehouseListCard/WarehouseCard";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 const WarehouseList = () => {
@@ -31,6 +32,8 @@ const WarehouseList = () => {
   }
 
   return (
+    <>
+    
     <div className="warehouse-list">
       <h2 className="warehouse-list__header">Warehouses</h2>
       <input
@@ -40,7 +43,8 @@ const WarehouseList = () => {
         placeholder="Search"
         onChange={handleSearch}
       />
-      <button className="warehouse-list__button">+ Add New Warehouse</button>
+      {/* <button className="warehouse-list__button">+ Add New Warehouse</button> */}
+      <Link to="/add"><button className='addnew-btn'>+ Add New Warehouse</button></Link>
       <ul className="warehouse-list__wrapper">
         <WarehouseCard />
         {warehouseList.map((warehouse) => {
@@ -48,6 +52,9 @@ const WarehouseList = () => {
         })}
       </ul>
     </div>
+   
+    </>
+
   );
 };
 
