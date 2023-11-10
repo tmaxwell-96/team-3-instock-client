@@ -7,6 +7,7 @@ import axios from "axios";
 
 const InventoryList = () => {
   const [inventoryList, setInventoryList] = useState([]);
+  const [searchKeyword, setSearchKeyword] = useState('');
 
   const getInventory = async () => {
     const response = await axios.get("http://localhost:8080/inventory");
@@ -16,6 +17,18 @@ const InventoryList = () => {
     getInventory();
   }, []);
 
+  useEffect(() =>{
+    const searchData = async () =>{
+      const response = await axios.get(`http://localhost:8080/search/inventories?searchTerm=${searchKeyword}`);
+      setInventoryList(response.data);
+    }
+    searchData();
+  }, [searchKeyword]);
+
+  const handleSearch = (event) =>{
+    setSearchKeyword(event.target.value);
+  }
+
   return (
     <>
       <div className="inventory-list">
@@ -24,7 +37,9 @@ const InventoryList = () => {
           <input
             className="inventory-list__search"
             type="text"
+            name="search"
             placeholder="Search..."
+            onChange={handleSearch}
           />
           <button className="inventory-list__button">
             + Add New inventory
@@ -52,9 +67,10 @@ const InventoryList = () => {
             <span className="component__detail"> ACTIONS</span>
           </li>
         </ul>
-        <ul classNameName="inventory-list__wrapper">
-          {inventoryList.map((item) => {
-            return <InventoryCard key={item.id} item={item} />;
+        <ul className="inventory-list__wrapper">
+
+            {inventoryList.map((item, index) => {
+            return <InventoryCard key={index} item={item} />;
           })}
         </ul>
       </div>
