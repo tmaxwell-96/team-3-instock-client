@@ -1,7 +1,10 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
 .warehouse-card {
   list-style-type: none;
-  margin: 0;
-  padding: 0;
+  margin: 1rem 0 0 0;
+  padding: 1rem 0 0 0;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -11,5 +14,36 @@
   &__left,
   &__right {
     margin-right: 1rem;
+  }
+
+  &__left {
+    &-top,
+    &-bottom {
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__right {
+    &-top,
+    &-bottom {
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__link {
+    text-decoration: none;
+    color: #2e66e5;
+    display: flex;
+  }
+
+  &__label {
+    color: #5c667e;
+  }
+
+  &__edit {
+    display: inline-block;
+    margin-left: auto;
+    border: 1px dashed red;
+    width: auto;
   }
 }
