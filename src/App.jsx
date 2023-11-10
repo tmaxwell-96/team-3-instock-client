@@ -6,6 +6,7 @@ import InventoryItemDetail from "./components/InventoryItemDetail/InventoryItemD
 import MainNav from "./components/MainNav/MainNav";
 import Footer from "./components/Footer/Footer";
 import WarehouseDetail from "./components/WarehouseDetail/WarehouseDetail";
+import AddEditWarehouse from "./components/AddEditWarehouse/AddEditWarehouse";
 function App() {
   return (
     <div>
@@ -15,7 +16,9 @@ function App() {
 
           <Routes>
             <Route path="/" element={<WarehousePage />} />
-            <Route path="/:id" element={<WarehouseDetail />} />
+            {/* <Route path="/:id" element={<WarehouseDetail />} /> */}
+            <Route path="/:id?" element={<AddEditWarehouse/>}/>
+            <Route path="/add" element={<AddEditWarehouse/>}/>
             <Route path="/inventory" element={<InventoryPage />} />
             <Route path="/inventory/:id" element={<InventoryItemDetail />} />
           </Routes>
