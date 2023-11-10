@@ -14,7 +14,6 @@ const WarehouseDetail = () => {
       `http://localhost:8080/warehouses/${params.id}`
     );
     setWarehouseDetail(response.data);
-    console.log(response.data);
   };
   useEffect(() => {
     getWarehouseDetail();
