@@ -2,7 +2,43 @@ import "./InventoryCard.scss";
 import deleteIcon from "../../assets/Icons/delete_outline-24px.svg";
 import editIcon from "../../assets/Icons/edit-24px.svg";
 import { Link } from "react-router-dom";
+import { useState, useRef } from "react";
+import Modal from "react-modal";
+import xIcon from "../../assets/Icons/close-24px.svg";
+
+const deleteModal = document.getElementById("deleteModal");
+console.log(deleteModal);
+
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
+};
+
+Modal.setAppElement(deleteModal);
+
 const InventoryCard = ({ item }) => {
+  //Modal Component
+  // let subtitle;
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // subtitle.style.color = "black";
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
   return (
     <>
       <div className="component__container">
@@ -75,7 +111,33 @@ const InventoryCard = ({ item }) => {
                   className="component__icon component__icon--delete2"
                   src={deleteIcon}
                   alt="delete"
+                  id="deleteModal"
+                  onClick={openModal}
                 />
+                <Modal
+                  isOpen={modalIsOpen}
+                  onAfterOpen={afterOpenModal}
+                  onRequestClose={closeModal}
+                  style={customStyles}
+                  contentLabel="Testing testing"
+                >
+                  <div className="modal__wrapper">
+                    <img className="modal__close" src={xIcon} alt="" />
+                    <h2
+                      className="modal__title"
+                      // ref={(_subtitle) => (subtitle = _subtitle)}
+                    >
+                      Delete Inventory Item?
+                    </h2>
+                    <p>
+                      Please confirm that you would like to delete PLACEHOLDER
+                      from the inventory list. You won't be able to undo this
+                      action.
+                    </p>
+                    <button onClick={closeModal}>Click to get out</button>
+                  </div>
+                </Modal>
+
                 <img
                   className="component__icon component__icon--edit"
                   src={editIcon}
