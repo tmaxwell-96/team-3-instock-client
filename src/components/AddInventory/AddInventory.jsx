@@ -1,7 +1,8 @@
 import "./AddInventory.scss";
 import { useEffect, useState } from "react";
 import backArrow from "../../assets/Icons/arrow_back-24px.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const AddInventory = () => {
   //State variables for field changes
@@ -9,7 +10,7 @@ const AddInventory = () => {
   const [category, setCategory] = useState();
   const [itemDescription, setItemDescription] = useState("");
   const [status, setStatus] = useState("");
-  const [quantity, setQuantity] = useState();
+  const [quantity, setQuantity] = useState(0);
   const [warehouse, setWarehouse] = useState();
   const [submitted, setSubmitted] = useState(false);
 
@@ -44,27 +45,69 @@ const AddInventory = () => {
     setSubmitted(false);
   };
 
+  //Get category information
+  const [inventoryList, setInventoryList] = useState([]);
+
+  const getInventory = async () => {
+    const response = await axios.get("http://localhost:8080/inventory");
+    const allCategories = response.data.map((inventoryItem) => {
+      return inventoryItem.category;
+    });
+
+    const uniqueCategories = [];
+    allCategories.forEach((uniqueCategory) => {
+      if (uniqueCategories.indexOf(uniqueCategory) === -1) {
+        uniqueCategories.push(uniqueCategory);
+      }
+    });
+    setInventoryList(uniqueCategories);
+  };
+
+  useEffect(() => {
+    getInventory();
+  }, []);
+
+  //Get warehouse information
+  const [warehouseList, setWarehouseList] = useState([]);
+
+  useEffect(() => {
+    const getWarehouses = async () => {
+      const response = await axios.get("http://localhost:8080/warehouses");
+      setWarehouseList(response.data);
+    };
+    getWarehouses();
+  }, []);
+
   //Create new object function
 
-  const createInventoryItem = (event) => {
+  const createInventoryItem = async () => {
     const newInventory = {
-      warehouse_id: "Need to figure this out",
+      warehouse_id: warehouse,
       item_name: itemName,
       description: itemDescription,
       category: category,
       status: status,
       quantity: quantity,
-      warehouse: warehouse,
-      created_at: Date.now(),
-      updated_at: Date.now(),
     };
-    console.log(newInventory);
+
+    const postInventory = async (newInv) => {
+      const response = await axios.post(
+        "http://localhost:8080/inventory",
+        newInv
+      );
+    };
+    postInventory(newInventory);
   };
 
   //Handle Submit Function
+  const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     createInventoryItem(event);
+    alert(
+      "Thank you for submitting an inventory item! Returning to the inventory page."
+    );
+    navigate("/inventory");
   };
 
   return (
@@ -103,8 +146,13 @@ const AddInventory = () => {
             placeholder="Please select"
           >
             <option value="">Please Select</option>
-            <option value="Category1">Category1</option>
-            <option value="Category2">Category2</option>
+            {inventoryList.map((uniqueCategory, index) => {
+              return (
+                <option key={index} value={uniqueCategory}>
+                  {uniqueCategory}
+                </option>
+              );
+            })}
           </select>
         </section>
         <section className="add-availability-container">
@@ -112,9 +160,9 @@ const AddInventory = () => {
             <input
               onChange={handleStatusChange}
               value="instock"
+              name="status"
               type="radio"
-              name="inStock"
-              id=""
+              id="instock"
             />{" "}
             <label className="add-inventory__radio-label" htmlFor="inStock">
               In Stock
@@ -123,22 +171,29 @@ const AddInventory = () => {
               onChange={handleStatusChange}
               value="outstock"
               type="radio"
-              name="outStock"
-              id=""
+              name="status"
+              id="outstock"
             />{" "}
             <label className="add-inventory__radio-label" htmlFor="outstock">
               Out of Stock
             </label>
           </div>
 
-          <p className="add-inventory__label" htmlFor="">
+          <p
+            className={`add-inventory__label ${
+              status === "outstock" ? "add-inventory__label--hidden" : ""
+            }`}
+            htmlFor=""
+          >
             Quantity
           </p>
           <input
             onChange={handleQuantityChange}
             value={quantity}
             name="quanity"
-            className="add-inventory__input"
+            className={`add-inventory__input ${
+              status === "outstock" ? "add-inventory__input--hidden" : ""
+            }`}
             type="text"
             placeholder="0"
           />
@@ -152,8 +207,13 @@ const AddInventory = () => {
             id=""
           >
             <option value="">Please Select</option>
-            <option value="Warehouse1">Warehouse1</option>
-            <option value="Warehouse2">Warehouse2</option>
+            {warehouseList.map((name) => {
+              return (
+                <option key={name.id} value={name.id}>
+                  {name.warehouse_name}
+                </option>
+              );
+            })}
           </select>
           <div className="add-inventory__buttons">
             <button className="add-inventory__cancel">Cancel</button>

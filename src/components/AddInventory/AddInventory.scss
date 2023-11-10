@@ -16,6 +16,12 @@
     margin-left: 1rem;
   }
 
+  &__input {
+    &--hidden {
+      display: none;
+    }
+  }
+
   &__details-container {
     margin-bottom: 1rem;
     border-bottom: 1px solid #bdc5d5;
@@ -24,6 +30,9 @@
 
   &__label {
     margin-top: 1rem;
+    &--hidden {
+      display: none;
+    }
   }
 
   &__radio__container {
