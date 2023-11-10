@@ -5,6 +5,7 @@ import InventoryCard from "../InventoryCard/InventoryCard";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { unstable_renderSubtreeIntoContainer } from "react-dom";
 
 const InventoryList = () => {
   const [inventoryList, setInventoryList] = useState([]);
@@ -18,18 +19,26 @@ const InventoryList = () => {
     getInventory();
   }, []);
 
-  // useEffect(() => {
-  //   const searchData = async () => {
-  //     const response = await axios.get(
-  //       `http://localhost:8080/search/inventories?searchTerm=${searchKeyword}`
-  //     );
-  //     setInventoryList(response.data);
-  //   };
-  //   searchData();
-  // }, [searchKeyword]);
+  useEffect(() => {
+    const searchData = async () => {
+      const response = await axios.get(
+        `http://localhost:8080/search/inventories?searchTerm=${searchKeyword}`
+      );
+      setInventoryList(response.data);
+    };
+    if (searchKeyword.length > 3) {
+      searchData();
+    }
+  }, [searchKeyword]);
 
   const handleSearch = (event) => {
     setSearchKeyword(event.target.value);
+  };
+
+  //Delete Inventory Function
+  const deleteInventory = async (event) => {
+    await axios.delete(`http://localhost:8080/inventory/${event}`);
+    getInventory();
   };
 
   // console.log(inventoryList);
@@ -76,7 +85,13 @@ const InventoryList = () => {
         <ul className="inventory-list__wrapper">
           {inventoryList.map((item, index) => {
             // console.log(item.id, item.item_name, item.warehouse_id);
-            return <InventoryCard key={index} item={item} />;
+            return (
+              <InventoryCard
+                key={index}
+                deleteInventory={deleteInventory}
+                item={item}
+              />
+            );
           })}
         </ul>
       </div>

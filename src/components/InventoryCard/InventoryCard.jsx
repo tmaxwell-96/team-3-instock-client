@@ -11,7 +11,7 @@ const deleteModal = document.getElementById("deleteModal");
 
 Modal.setAppElement("#root");
 
-const InventoryCard = ({ item }) => {
+const InventoryCard = ({ item, deleteInventory }) => {
   //Modal Component
   // let subtitle;
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -27,14 +27,6 @@ const InventoryCard = ({ item }) => {
   function closeModal() {
     setIsOpen(false);
   }
-
-  //Delete Inventory Function
-  const deleteInventory = async (itemId) => {
-    // (item.id, item.name);
-    // console.log(item.id);
-    await axios.delete(`http://localhost:8080/inventory/${item.id}`);
-    closeModal();
-  };
 
   return (
     <>
@@ -129,7 +121,7 @@ const InventoryCard = ({ item }) => {
                       className="modal__title"
                       // ref={(_subtitle) => (subtitle = _subtitle)}
                     >
-                      {`Delete ${item.item_name} in warehouse ${item.warehouse_name} inventory item?`}
+                      {`Delete ${item.item_name} in warehouse ${item.id} inventory item?`}
                     </h2>
                     <p>
                       {`Please confirm that you'd like to delete ${item.item_name} from the inventory list. You won't be able to undo this action`}
@@ -139,7 +131,10 @@ const InventoryCard = ({ item }) => {
                         Cancel
                       </button>
                       <button
-                        onClick={deleteInventory}
+                        onClick={() => {
+                          deleteInventory(item.id);
+                          closeModal();
+                        }}
                         className="modal__delete"
                       >
                         Delete
