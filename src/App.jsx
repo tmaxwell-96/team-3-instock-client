@@ -8,7 +8,7 @@ import AddInventory from "./components/AddInventory/AddInventory";
 import WarehouseDetail from "./components/WarehouseDetail/WarehouseDetail";
 
 import Footer from "./components/Footer/Footer";
-import WarehouseCard from "./components/WarehouseListCard/WarehouseCard";
+import WarehouseDetail from "./components/WarehouseDetail/WarehouseDetail";
 function App() {
   return (
     <div>
