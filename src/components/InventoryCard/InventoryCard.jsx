@@ -78,7 +78,7 @@ const InventoryCard = ({ item }) => {
                   src={deleteIcon}
                   alt="delete"
                 />
-                <Link to="edit">
+                <Link to={`edit/${item.id}`}>
                   <img
                     className="component__icon component__icon--edit"
                     src={editIcon}

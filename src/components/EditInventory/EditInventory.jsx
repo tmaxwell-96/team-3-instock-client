@@ -46,6 +46,7 @@ const EditInventory = () => {
   const getInventory = async () => {
     const response = await axios.get("http://localhost:8080/inventory");
     const allCategories = response.data.map((inventoryItem) => {
+      // console.log(response.data);
       return inventoryItem.category;
     });
 
@@ -69,6 +70,17 @@ const EditInventory = () => {
       setWarehouseList(response.data);
     };
     getWarehouses();
+  }, []);
+
+  //Get name/discription information for value
+  const [productDetail, setProductDetail] = useState({});
+  useEffect(() => {
+    const getProductDetail = async () => {
+      const response = await axios.get("http://localhost:8080/inventory");
+      setWarehouseList(response.data);
+      console.log(response.data);
+    };
+    getProductDetail();
   }, []);
 
   //Edit new object function
@@ -102,7 +114,7 @@ const EditInventory = () => {
       </header>
       <form className="edit-inventory__form">
         <section className="edit-inventory__details-container">
-          <p className="edit-inventory__label">Item Name</p>
+          <p className="edit-inventory__label">Item Name{productDetail.id}</p>
           <input
             className="edit-inventory__input"
             type="text"
