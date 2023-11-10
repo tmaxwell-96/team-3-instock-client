@@ -1,5 +1,5 @@
 @use "../../styles/partials/mixins" as *;
-// @use "../../styles/partials/typography" as *;
+@use "../../styles/partials/buttons" as *;
 
 * {
     box-sizing: border-box;
@@ -14,11 +14,13 @@
 .nav{
     width: 100%;
     background-color: #232940;
+    height: 136px;
 
     @include tablet {
         display: flex;
         justify-content: flex-start;
         width:auto;
+        height: 92px;
     }
 
     @include desktop {
@@ -42,7 +44,6 @@
           
         }
 
-     
     }
 
     &__logo {
@@ -80,40 +81,55 @@
     }
 
 &__button {
-    background-color: #13182c;
-    border: none;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    border-radius: 3px;
-    font-size: 0.7rem;
-     width:5rem;
-     height: 2rem;
-     border-radius: 30%;
-     margin-bottom: 1rem;
-     margin-top: 1rem;
 
-  
-  
-     @include tablet {
-    //   min-width: 110px;
-    
-     }
+width: 107px;
+height: 38px;
+flex-shrink: 0;
+
+color: #BDC5D5;
+font-family: "Titillium-Web";
+font-size: 14px;
+font-style: normal;
+font-weight: 600;
+line-height: 22px;
+
+border:none;
+border-radius: 20px;
+background-color: transparent;
+   
+&:active {
+    background: #13182C;
+    color: #FFF;
+}
+
+&:focus {
+    background-color: #13182C;
+    color: #FFF;
+}
+
+
+&:hover {
+         text-decoration: underline;
+         color: #FFF;
+         }
+
+
+}
      
-  }
+  
 
 
   &__img {
     height: 30px;
     width:32px;
-    border-radius: 50%;
+    border-radius: 50%;}
 
 
-}
+
+  }
       
 
-}
+
 
 
 
