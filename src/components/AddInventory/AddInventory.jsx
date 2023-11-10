@@ -12,37 +12,38 @@ const AddInventory = () => {
   const [status, setStatus] = useState("");
   const [quantity, setQuantity] = useState(0);
   const [warehouse, setWarehouse] = useState();
-  const [submitted, setSubmitted] = useState(false);
+  //Will add form validation sson
+  // const [submitted, setSubmitted] = useState(false);
 
   //Handle change functions
 
   const handleNameChange = (event) => {
     setItemName(event.target.value);
-    setSubmitted(false);
+    // setSubmitted(false);
   };
   const handleCategoryChange = (event) => {
     setCategory(event.target.value);
-    setSubmitted(false);
+    // setSubmitted(false);
   };
 
   const handleDescrptionChange = (event) => {
     setItemDescription(event.target.value);
-    setSubmitted(false);
+    // setSubmitted(false);
   };
 
   const handleStatusChange = (event) => {
     setStatus(event.target.value);
-    setSubmitted(false);
+    // setSubmitted(false);
   };
 
   const handleQuantityChange = (event) => {
     setQuantity(event.target.value);
-    setSubmitted(false);
+    // setSubmitted(false);
   };
 
   const handleWarehousehange = (event) => {
     setWarehouse(event.target.value);
-    setSubmitted(false);
+    // setSubmitted(false);
   };
 
   //Get category information
@@ -91,10 +92,7 @@ const AddInventory = () => {
     };
 
     const postInventory = async (newInv) => {
-      const response = await axios.post(
-        "http://localhost:8080/inventory",
-        newInv
-      );
+      await axios.post("http://localhost:8080/inventory", newInv);
     };
     postInventory(newInventory);
   };
