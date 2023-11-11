@@ -3,6 +3,7 @@ import WarehouseCard from "../WarehouseListCard/WarehouseCard";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import ModalComopnent from "./../../components/ModalComopnent/ModalComopnent";
 
 const WarehouseList = () => {
   const [warehouseList, setWarehouseList] = useState([]);
@@ -31,6 +32,22 @@ const WarehouseList = () => {
     setSearchKeyword(event.target.value);
   }
 
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [selectedWarehouse, setSelectedWarehouse] = useState({
+    id: null,
+    name: "",
+  });
+
+    const openModal = (id, warehouseName) => {
+      setModalOpen(true);
+      setSelectedWarehouse({ id, warehouseName });
+    };
+  
+    const closeModal = () => {
+      setModalOpen(false);
+      getWarehouses();
+    };
+
   return (
     <>
     
@@ -43,18 +60,21 @@ const WarehouseList = () => {
         placeholder="Search"
         onChange={handleSearch}
       />
-      {/* <button className="warehouse-list__button">+ Add New Warehouse</button> */}
       <Link to="/add"><button className='addnew-btn'>+ Add New Warehouse</button></Link>
       <ul className="warehouse-list__wrapper">
         <WarehouseCard />
         {warehouseList.map((warehouse) => {
-          return <WarehouseCard key={warehouse.id} warehouse={warehouse} />;
+          return <WarehouseCard key={warehouse.id} warehouse={warehouse} openModal={openModal} />;
         })}
       </ul>
     </div>
-   
-    </>
 
+    <ModalComopnent
+          isOpen={isModalOpen}
+          onRequestClose={closeModal}
+          selectedWarehouse={selectedWarehouse}
+        />
+    </>
   );
 };
 
