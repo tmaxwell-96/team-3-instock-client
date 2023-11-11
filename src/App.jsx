@@ -10,24 +10,30 @@ import Footer from "./components/Footer/Footer";
 import EditInventory from "./components/EditInventory/EditInventory";
 function App() {
   return (
-    <div>
-      <section className="app__container">
-        <BrowserRouter>
-          <MainNav />
+    <div className="app">
+      <div className="app__box">
+       <div className="app__navbox">
+          <section className="app__container">
+            <BrowserRouter>
+              <MainNav />
+              
+              <Routes>
+                <Route path="/" element={<WarehousePage />} />
+                <Route path="/:id" element={<WarehouseDetail />} />
+                <Route path="/inventory" element={<InventoryPage />} />
+                <Route path="/inventory/:id" element={<InventoryItemDetail />} />
+                <Route path="/inventory/add" element={<AddInventory />} />
+                <Route path="/inventory/edit" element={<EditInventory />} />
+              </Routes>
+            </BrowserRouter>
 
-          <Routes>
-            <Route path="/" element={<WarehousePage />} />
-            <Route path="/:id" element={<WarehouseDetail />} />
-            <Route path="/inventory" element={<InventoryPage />} />
-            <Route path="/inventory/:id" element={<InventoryItemDetail />} />
-            <Route path="/inventory/add" element={<AddInventory />} />
-            <Route path="/inventory/edit" element={<EditInventory />} />
-          </Routes>
-        </BrowserRouter>
+            <Footer />
+          </section>
 
-        <Footer />
-      </section>
-    </div>
+      </div>
+      </div>
+   </div>
+
   );
 }
 
