@@ -22,10 +22,10 @@ const WarehouseDetail = () => {
   }, [params.id]);
 
   return (
-    <div className="warehouse-detail">
-      <div className="warehouse-detail__heading-container">
-        <div>
-          <h3 className="warehouse-detail__title">
+    <>
+      <div className="warehouse-detail">
+        <div className="warehouse-detail__heading-container">
+          <div className="warehouse-detail__container-left">
             <Link to={"/"}>
               <img
                 className="warehouse-detail__img"
@@ -33,43 +33,51 @@ const WarehouseDetail = () => {
                 alt="back arrow"
               />
             </Link>
-            {warehouseDetail.warehouse_name}
-          </h3>
+            <h3 className="warehouse-detail__title">
+              {warehouseDetail.warehouse_name}
+            </h3>
+          </div>
+          <div className="warehouse-detail__edit-wrapper">
+            <img
+              className="warehouse-detail__edit"
+              src={editWhite}
+              alt="edit"
+            />
+            <p className="warehouse-detail__edit-text">Edit</p>
+          </div>
         </div>
-        <div className="warehouse-detail__edit-wrapper">
-          <img className="warehouse-detail__edit" src={editWhite} alt="edit" />
-          <p className="warehouse-detail__edit-text">Edit</p>
-        </div>
-      </div>
-      <div className="warehouse-detail__address-container">
-        <p className="warehouse-detail__text">WAREHOUSE ADDRESS:</p>
-        <p className="warehouse-detail__text">
-          {warehouseDetail.address},{warehouseDetail.city},
-          {warehouseDetail.country}
-        </p>
-      </div>
-      <div className="warehouse-detail__container">
-        <div className="warehouse-detail__preson-container">
-          <p className="warehouse-detail__text">CONTACT NAME:</p>
-          <p className="warehouse-detail__text">
-            {warehouseDetail.contact_name}{" "}
-          </p>
-          <p className="warehouse-detail__text">
-            {warehouseDetail.contact_position}
-          </p>
-        </div>
-        <div className="warehouse-detail__contact-container">
-          <p className="warehouse-detail__text">CONTACT INFORMATION:</p>
-          <p className="warehouse-detail__text">
-            text:{warehouseDetail.contact_phone}
-          </p>
-          <p className="warehouse-detail__text">
-            {warehouseDetail.contact_email}
-          </p>
+        <div className="warehouse-detail__contact-wrapper">
+          <div className="warehouse-detail__address-container">
+            <p className="warehouse-detail__text">WAREHOUSE ADDRESS:</p>
+            <p className="warehouse-detail__text">
+              {warehouseDetail.address},{warehouseDetail.city},
+              {warehouseDetail.country}
+            </p>
+          </div>
+          <div className="warehouse-detail__info-container">
+            <div className="warehouse-detail__preson-container">
+              <p className="warehouse-detail__text">CONTACT NAME:</p>
+              <p className="warehouse-detail__text">
+                {warehouseDetail.contact_name}{" "}
+              </p>
+              <p className="warehouse-detail__text">
+                {warehouseDetail.contact_position}
+              </p>
+            </div>
+            <div className="warehouse-detail__inquiry-container">
+              <p className="warehouse-detail__text">CONTACT INFORMATION:</p>
+              <p className="warehouse-detail__text">
+                text:{warehouseDetail.contact_phone}
+              </p>
+              <p className="warehouse-detail__text">
+                {warehouseDetail.contact_email}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
       <WarehouseInventoryList />
-    </div>
+    </>
   );
 };
 

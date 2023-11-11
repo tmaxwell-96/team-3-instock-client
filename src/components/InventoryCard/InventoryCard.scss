@@ -5,74 +5,6 @@
   box-sizing: border-box;
 }
 
-.modal {
-  background-color: white;
-  opacity: 1;
-  width: 100%;
-  height: 100%;
-  padding: 1rem;
-  @include tablet {
-    background-color: rgba(19, 24, 44, 0.7);
-    display: flex;
-    justify-content: center;
-  }
-  &__wrapper {
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    border-radius: 4px;
-    height: 100%;
-    @include tablet {
-      width: 42rem;
-      height: 16rem;
-      margin-top: 10rem;
-      padding: 2rem;
-    }
-  }
-  &__close {
-    align-self: flex-end;
-  }
-
-  &__title {
-    margin: 0;
-    font-size: 1.75rem;
-    font-weight: 500;
-  }
-  &__bottom {
-    margin-top: auto;
-    align-self: center;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    @include tablet {
-      justify-content: flex-end;
-    }
-  }
-  &__cancel,
-  &__delete {
-    padding: 0.5rem 3.5rem;
-    border-radius: 1.25rem;
-    border: none;
-    @include tablet {
-      padding: 0.5rem 1rem;
-    }
-  }
-
-  &__delete {
-    background-color: #c94515;
-    color: white;
-  }
-
-  &__cancel {
-    background-color: white;
-    border: 1px solid #bdc5d5;
-    @include tablet {
-      margin-right: 1rem;
-    }
-  }
-}
-
 body {
   margin: 0;
 }
@@ -85,10 +17,11 @@ h2 {
   display: flex;
   justify-content: center;
   flex-direction: column;
+
   align-self: center;
 
   @include desktop {
-    max-width: 80%;
+    // width: 100%
   }
 
   &__container {
@@ -118,6 +51,7 @@ h2 {
 
       @include tablet {
         display: flex;
+        justify-content: center;
       }
     }
   }
@@ -155,7 +89,7 @@ h2 {
         min-width: 3rem;
         margin-right: 1rem;
         min-width: 150px;
-        // align-items: center;
+        align-items: center;
       }
 
       @include desktop {
@@ -207,6 +141,7 @@ h2 {
 
   &__icon--delete1 {
     margin-top: 4.8rem;
+    list-style-type: none;
 
     @include tablet {
       display: none;
@@ -218,6 +153,7 @@ h2 {
 
     @include tablet {
       display: inline-flex;
+      margin-left: 2rem;
     }
   }
 }

@@ -48,4 +48,15 @@
   &__buttons {
     margin-top: 1rem;
   }
+
+  &--error {
+    border: 1px solid #c94515;
+  }
+  &__error-details {
+    display: none;
+
+    &--hidden {
+      display: flex;
+    }
+  }
 }
