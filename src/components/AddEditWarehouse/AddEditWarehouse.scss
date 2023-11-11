@@ -1,93 +1,67 @@
-@use './../../styles/partials/mixins';
-@use './../../styles/partials/colors';
-@use './../../styles/partials/buttons';
+@use "./../../styles/partials/mixins";
+@use "./../../styles/partials/colors";
+@use "./../../styles/partials/buttons";
 
-*{
-    box-sizing: border-box;
-    border: 1px solid black;
+.header-pannel {
+  border-bottom: 1px solid silver;
+}
+.header-title {
+  margin: 1.8rem 0;
+}
+.sub-header {
+  margin: 0;
+  padding: 0;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.header-pannel{
-    border-bottom: 1px solid silver;
+.body-pannel {
+  display: flex;
+  justify-content: center;
 }
-.header-title{
-    margin: 1.8rem 0;
+.warehouse-details {
+  width: 50%;
+  padding: 2rem;
 }
-.sub-header{
-    margin: 0;
-    padding: 0;
+.contact-details {
+  width: 50%;
+  padding: 2rem;
+  border-left: 1px solid silver;
 }
 
-.body-pannel{
-    display: flex;
-    justify-content: center;
-    
-    
+.lbl {
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  font-weight: 400;
+  margin-bottom: 4px;
 }
-.warehouse-details{
-    width: 50%;
-    padding: 2rem;
-}
-.contact-details{
-    width: 50%;
-    padding: 2rem;
-    border-left: 1px solid silver;
+h2 {
+  text-align: left;
 }
 
-.lbl{
-    padding: 0;
-    margin: 0;
-    text-align: left;
-    font-weight: 400;
-    margin-bottom: 4px;
-}
-h2{
-    text-align: left; 
-   
+.input-fld {
+  height: 38px;
+  border-radius: 20px;
+  width: 100%;
+  margin-bottom: 1rem;
+  border: 1px solid gray;
+  padding-left: 1rem;
 }
 
-.input-fld{
-    height: 38px;
-    border-radius: 20px;
-    width: 100%;
-    margin-bottom: 1rem;
-    border: 1px solid gray;
-    padding-left: 1rem;
-    
-    
+.footer-pannel {
+  height: 67px;
+  background-color: #bdc5d5;
 }
-
-.footer-pannel{
-    height: 67px;
-    background-color: #bdc5d5; 
+.btn-cancel {
+  border-radius: 20px;
+  border: 1px solid silver;
+  height: 38px;
+  width: 80px;
 }
-.btn-cancel{
-    border-radius: 20px;
-    border: 1px solid silver;
-    height: 38px;
-    width: 80px;
-}
-.btn-add{
-    border-radius: 20px;
-    border: 1px solid silver;
-    height: 38px;
-    width: 120px;
-    background-color: #2e66e5;
-    color: white;
-
+.btn-add {
+  border-radius: 20px;
+  border: 1px solid silver;
+  height: 38px;
+  width: 120px;
+  background-color: #2e66e5;
+  color: white;
 }

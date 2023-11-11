@@ -2,14 +2,14 @@
 @use "../../styles/partials/mixins" as *;
 
 .warehouse-card {
+  font-size: 0.8125rem;
   list-style-type: none;
-  margin: 1rem 1rem 0 1rem;
-  padding: 1rem 0 0 0;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: 2rem;
-  border-top: 2px solid gray;
+  margin-bottom: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #bdc5d5;
 
   &__left,
   &__right {
@@ -19,18 +19,18 @@
   &__left {
     &-top,
     &-bottom {
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
     }
   }
 
   &__right {
     &-top,
     &-bottom {
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
     }
   }
 
-  &__link {
+  &__text--link {
     text-decoration: none;
     color: #2e66e5;
     display: flex;

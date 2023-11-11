@@ -1,4 +1,5 @@
 import "./WarehouseList.scss";
+import searchIcon from "../../assets/Icons/search-24px.svg";
 import WarehouseCard from "../WarehouseListCard/WarehouseCard";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -52,17 +53,33 @@ const WarehouseList = () => {
   return (
     <>
       <div className="warehouse-list">
-        <h2 className="warehouse-list__header">Warehouses</h2>
-        <input
-          className="warehouse-list__search"
-          type="text"
-          name="search"
-          placeholder="Search"
-          onChange={handleSearch}
-        />
-        <Link to="/add">
-          <button className="addnew-btn">+ Add New Warehouse</button>
-        </Link>
+        <div className="warehoues-list__top">
+          <h2 className="warehouse-list__header">Warehouses</h2>
+          <div className="warehouse-list__search-wrapper">
+            <div className="warehouse-list__overlay">
+              <img
+                className="warehouse-list__search-icon"
+                src={searchIcon}
+                alt="search icon"
+              />
+            </div>
+
+            <input
+              className="warehouse-list__search"
+              type="text"
+              name="search"
+              placeholder="Search"
+              onChange={handleSearch}
+            />
+          </div>
+
+          <Link to="/add">
+            <button className="warehouse-list__button">
+              + Add New Warehouse
+            </button>
+          </Link>
+        </div>
+
         <ul className="warehouse-list__wrapper">
           <WarehouseCard />
           {warehouseList.map((warehouse) => {

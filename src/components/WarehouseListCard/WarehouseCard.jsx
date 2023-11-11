@@ -12,7 +12,10 @@ const WarehouseCard = ({ warehouse, openModal }) => {
           <div className="warehouse-card__left">
             <div className="warehouse-card__left-top">
               <p className="warehouse-card__text">WAREHOUSE</p>
-              <Link to={`/${warehouse.id}`}>
+              <Link
+                className="warehouse-card__text warehouse-card__text--link"
+                to={`/${warehouse.id}`}
+              >
                 <p className="warehouse-card__text warehouse-card__text--link">
                   {`${warehouse.warehouse_name}   >`}
                 </p>
@@ -41,7 +44,7 @@ const WarehouseCard = ({ warehouse, openModal }) => {
               <p className="warehouse-card__text ">{warehouse.contact_phone}</p>
               <p className="warehouse-card__text ">{warehouse.contact_email}</p>
             </div>
-            <Link to={`/edit/${warehouse.id}`}>
+            <Link className="warehouse-card__edit" to={`/edit/${warehouse.id}`}>
               <img src={editIcon} alt="writing icon" />
             </Link>
           </div>
