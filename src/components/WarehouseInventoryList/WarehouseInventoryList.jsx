@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "./WarehouseInventoryList.scss";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import InventoryCard from "../InventoryCard/InventoryCard";
+import WarehouseInventoryListCard from "../WarehouseInventoryListCard/WarehouseInventoryListCard";
 
 function WarehouseInventoryList() {
   const [inventoryList, setInventoryList] = useState([]);
@@ -43,7 +43,7 @@ function WarehouseInventoryList() {
           </ul>
           <ul className="warehouse-inventory__wrapper">
             {inventoryList.map((item, index) => {
-              return <InventoryCard key={index} item={item} />;
+              return <WarehouseInventoryListCard key={index} item={item} />;
             })}
           </ul>
         </div>

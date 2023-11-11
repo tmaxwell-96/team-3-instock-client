@@ -30,8 +30,7 @@ const InventoryList = () => {
     };
     if (searchKeyword.length > 3) {
       searchData();
-    }
-    else{
+    } else {
       getInventory();
     }
   }, [searchKeyword]);
