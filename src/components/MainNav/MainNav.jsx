@@ -5,11 +5,11 @@ import { NavLink } from "react-router-dom";
 function MainNav() {
   return (
     <nav className="nav">
+        
       <div className="nav__box">
-        {/* Created a Temporary Link to App.jsx with "anchor tag" This can be erased/replaced when needed */}
-        <a href="./">
-          <img className="nav__logo" src={InStockLogo} alt="Logo" />
-        </a>
+         <NavLink to="/">
+             <img className="nav__logo" src={InStockLogo} alt="Logo" />
+          </NavLink>
       </div>
 
       <div className="nav__container">
