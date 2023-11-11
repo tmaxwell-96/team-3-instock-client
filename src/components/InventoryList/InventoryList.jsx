@@ -1,7 +1,8 @@
 import "./InventoryList.scss";
-import up from "../../assets/Icons/arrow_back-24px.svg";
-import down from "../../assets/Icons/arrow_drop_down-24px.svg";
+import sort from "../../assets/Icons/sort-24px.svg";
+
 import InventoryCard from "../InventoryCard/InventoryCard";
+import search from "../../assets/Icons/search-24px.svg";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -44,11 +45,11 @@ const InventoryList = () => {
 
   return (
     <>
-      <div className="inventory-list">
-        <h2 className="inventory-list__header">Inventory</h2>
+      <div className="component-list">
+        <h2 className="component-list__header">Inventory</h2>
         <div>
           <input
-            className="inventory-list__search"
+            className="component-list__search"
             type="text"
             name="search"
             placeholder="Search..."
@@ -65,21 +66,27 @@ const InventoryList = () => {
         <ul className="component__box component__box--row">
           <li className="component__subheader component__subheader--row">
             <span className="component__detail">INVENTORY ITEM</span>
+            <img src={sort} alt="sort-icon" />
           </li>
           <li className="component__subheader component__subheader--row">
             <span className="component__detail"> CATEGORY</span>
+            <img src={sort} alt="sort-icon" />
           </li>
           <li className="component__subheader component__subheader--row">
             <span className="component__detail"> STATUS</span>
+            <img src={sort} alt="sort-icon" />
           </li>
           <li className="component__subheader component__subheader--row">
             <span className="component__detail"> QUANTITY</span>
+            <img src={sort} alt="sort-icon" />
           </li>
           <li className="component__subheader component__subheader--row">
             <span className="component__detail"> WAREHOUSE</span>
+            <img src={sort} alt="sort-icon" />
           </li>
           <li className="component__subheader component__subheader--row">
             <span className="component__detail"> ACTIONS</span>
+            <img src={sort} alt="sort-icon" />
           </li>
         </ul>
         <ul className="inventory-list__wrapper">
