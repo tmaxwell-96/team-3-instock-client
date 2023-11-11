@@ -8,12 +8,6 @@ function WarehouseInventoryList() {
   const [inventoryList, setInventoryList] = useState([]);
   const params = useParams();
 
-  //Delete Inventory Function
-  const deleteInventory = async (event) => {
-    await axios.delete(`http://localhost:8080/inventory/${event}`);
-    getInventoryList();
-  };
-
   const getInventoryList = async () => {
     const response = await axios.get(
       `http://localhost:8080/inventory/warehouses/${params.id}/inventories`
@@ -24,6 +18,11 @@ function WarehouseInventoryList() {
   useEffect(() => {
     getInventoryList();
   }, [params.id]);
+
+  const deleteInventory = async (event) => {
+    await axios.delete(`http://localhost:8080/inventory/${event}`);
+    getInventoryList();
+  };
   return (
     <>
       <div className="warehouse-inventory">
