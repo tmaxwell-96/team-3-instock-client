@@ -8,6 +8,12 @@ function WarehouseInventoryList() {
   const [inventoryList, setInventoryList] = useState([]);
   const params = useParams();
 
+  //Delete Inventory Function
+  const deleteInventory = async (event) => {
+    await axios.delete(`http://localhost:8080/inventory/${event}`);
+    getInventoryList();
+  };
+
   const getInventoryList = async () => {
     const response = await axios.get(
       `http://localhost:8080/inventory/warehouses/${params.id}/inventories`
@@ -43,7 +49,13 @@ function WarehouseInventoryList() {
           </ul>
           <ul className="warehouse-inventory__wrapper">
             {inventoryList.map((item, index) => {
-              return <InventoryCard key={index} item={item} />;
+              return (
+                <InventoryCard
+                  deleteInventory={deleteInventory}
+                  key={index}
+                  item={item}
+                />
+              );
             })}
           </ul>
         </div>

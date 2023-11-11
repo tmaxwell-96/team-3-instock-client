@@ -17,17 +17,6 @@ const DeleteInventory = ({ item, deleteInventory }) => {
     setIsOpen(false);
   }
 
-  //   const customStyles = {
-  //     overlay: {
-  //       backgroundColor: "rgba(0, 0, 0, 0.75)", // Dim the background
-  //     },
-  //     content: {
-  //       width: "500px",
-  //       height: "250px",
-  //       margin: "auto",
-  //     },
-  //   };
-
   return (
     <div>
       <img onClick={openModal} src={trashIcon} alt="trash icon" />
