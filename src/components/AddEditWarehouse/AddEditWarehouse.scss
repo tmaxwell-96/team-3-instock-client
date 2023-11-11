@@ -1,3 +1,27 @@
+@use './../../styles/partials/mixins';
+@use './../../styles/partials/colors';
+@use './../../styles/partials/buttons';
+
+*{
+    box-sizing: border-box;
+    border: 1px solid black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .header-pannel{
     border-bottom: 1px solid silver;
 }
