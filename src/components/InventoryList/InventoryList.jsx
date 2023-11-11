@@ -5,6 +5,7 @@ import InventoryCard from "../InventoryCard/InventoryCard";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { unstable_renderSubtreeIntoContainer } from "react-dom";
 
 const InventoryList = () => {
   const [inventoryList, setInventoryList] = useState([]);
@@ -26,11 +27,19 @@ const InventoryList = () => {
       );
       setInventoryList(response.data);
     };
-    searchData();
+    if (searchKeyword.length > 3) {
+      searchData();
+    }
   }, [searchKeyword]);
 
   const handleSearch = (event) => {
     setSearchKeyword(event.target.value);
+  };
+
+  //Delete Inventory Function
+  const deleteInventory = async (event) => {
+    await axios.delete(`http://localhost:8080/inventory/${event}`);
+    getInventory();
   };
 
   return (
@@ -75,8 +84,13 @@ const InventoryList = () => {
         </ul>
         <ul className="inventory-list__wrapper">
           {inventoryList.map((item, index) => {
-            console.log(item);
-            return <InventoryCard key={index} item={item} />;
+            return (
+              <InventoryCard
+                key={index}
+                deleteInventory={deleteInventory}
+                item={item}
+              />
+            );
           })}
         </ul>
       </div>
