@@ -6,7 +6,7 @@ import axios from "axios";
 
 const WarehouseList = () => {
   const [warehouseList, setWarehouseList] = useState([]);
-  const [searchKeyword, setSearchKeyword] = useState('');
+  const [searchKeyword, setSearchKeyword] = useState("");
 
   const getWarehouses = async () => {
     const response = await axios.get("http://localhost:8080/warehouses");
@@ -17,44 +17,46 @@ const WarehouseList = () => {
     getWarehouses();
   }, []);
 
-  useEffect(() =>{
-    const searchData = async () =>{
-      const response = await axios.get(`http://localhost:8080/search/warehouses?searchTerm=${searchKeyword}`);
+  useEffect(() => {
+    const searchData = async () => {
+      const response = await axios.get(
+        `http://localhost:8080/search/warehouses?searchTerm=${searchKeyword}`
+      );
       setWarehouseList(response.data);
-    }
+    };
 
     searchData();
-
   }, [searchKeyword]);
 
-  const handleSearch = (event) =>{
+  const handleSearch = (event) => {
     setSearchKeyword(event.target.value);
-  }
+  };
 
   return (
     <>
-    
-    <div className="warehouse-list">
-      <h2 className="warehouse-list__header">Warehouses</h2>
-      <input
-        className="warehouse-list__search"
-        type="text"
-        name="search"
-        placeholder="Search"
-        onChange={handleSearch}
-      />
-      {/* <button className="warehouse-list__button">+ Add New Warehouse</button> */}
-      <Link to="/add"><button className='addnew-btn'>+ Add New Warehouse</button></Link>
-      <ul className="warehouse-list__wrapper">
-        <WarehouseCard />
-        {warehouseList.map((warehouse) => {
-          return <WarehouseCard key={warehouse.id} warehouse={warehouse} />;
-        })}
-      </ul>
-    </div>
-   
+      <div className="warehouse-list">
+        <h2 className="warehouse-list__header">Warehouses</h2>
+        <input
+          className="warehouse-list__search"
+          type="text"
+          name="search"
+          placeholder="Search"
+          onChange={handleSearch}
+        />
+        {/* <button className="warehouse-list__button">+ Add New Warehouse</button> */}
+        <Link to="/add">
+          <button className="warehouse-list__button">
+            + Add New Warehouse
+          </button>
+        </Link>
+        <ul className="warehouse-list__wrapper">
+          <WarehouseCard />
+          {warehouseList.map((warehouse) => {
+            return <WarehouseCard key={warehouse.id} warehouse={warehouse} />;
+          })}
+        </ul>
+      </div>
     </>
-
   );
 };
 

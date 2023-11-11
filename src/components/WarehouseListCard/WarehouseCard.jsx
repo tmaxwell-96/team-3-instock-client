@@ -60,9 +60,11 @@ const WarehouseCard = ({ warehouse }) => {
               <p className="warehouse-card__text ">{warehouse.contact_email}</p>
             </div>
 
-            <Link to={`/${warehouse.id}`}>
-              <img src={editIcon} alt="writing icon" />
-            </Link>
+            <div className="warehouse-card__edit">
+              <Link to={`/${warehouse.id}`}>
+                <img src={editIcon} alt="writing icon" />
+              </Link>
+            </div>
           </div>
         </li>
 
