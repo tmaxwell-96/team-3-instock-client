@@ -31,6 +31,9 @@ const InventoryList = () => {
     if (searchKeyword.length > 3) {
       searchData();
     }
+    else{
+      getInventory();
+    }
   }, [searchKeyword]);
 
   const handleSearch = (event) => {
