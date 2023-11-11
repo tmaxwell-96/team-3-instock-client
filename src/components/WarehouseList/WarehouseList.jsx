@@ -1,5 +1,6 @@
 import "./WarehouseList.scss";
 import searchIcon from "../../assets/Icons/search-24px.svg";
+import filterIcon from "../../assets/Icons/sort-24px.svg";
 import WarehouseCard from "../WarehouseListCard/WarehouseCard";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -53,31 +54,75 @@ const WarehouseList = () => {
   return (
     <>
       <div className="warehouse-list">
-        <div className="warehoues-list__top">
+        <div className="warehouse-list__top">
           <h2 className="warehouse-list__header">Warehouses</h2>
-          <div className="warehouse-list__search-wrapper">
-            <div className="warehouse-list__overlay">
-              <img
-                className="warehouse-list__search-icon"
-                src={searchIcon}
-                alt="search icon"
+          <div className="warehouse-list__top-container">
+            <div className="warehouse-list__search-wrapper">
+              <div className="warehouse-list__overlay">
+                <img
+                  className="warehouse-list__search-icon"
+                  src={searchIcon}
+                  alt="search icon"
+                />
+              </div>
+
+              <input
+                className="warehouse-list__search"
+                type="text"
+                name="search"
+                placeholder="Search"
+                onChange={handleSearch}
               />
             </div>
 
-            <input
-              className="warehouse-list__search"
-              type="text"
-              name="search"
-              placeholder="Search"
-              onChange={handleSearch}
+            <Link className="warehouse-list__button-wrapper" to="/add">
+              <button className="warehouse-list__button">
+                + Add New Warehouse
+              </button>
+            </Link>
+          </div>
+        </div>
+
+        <div className="warehouse-list__columns">
+          <div className="warehouse-list__column">
+            <p className="warehouse-list__text">WAREHOUSE</p>
+            <img
+              className="warehouse-list__sort"
+              src={filterIcon}
+              alt="sort icon"
             />
           </div>
 
-          <Link to="/add">
-            <button className="warehouse-list__button">
-              + Add New Warehouse
-            </button>
-          </Link>
+          <div className="warehouse-list__column">
+            <p className="warehouse-list__text">ADDRESS</p>
+            <img
+              className="warehouse-list__sort"
+              src={filterIcon}
+              alt="sort icon"
+            />
+          </div>
+
+          <div className="warehouse-list__column">
+            <p className="warehouse-list__text">CONTACT NAME</p>
+            <img
+              className="warehouse-list__sort"
+              src={filterIcon}
+              alt="sort icon"
+            />
+          </div>
+
+          <div className="warehouse-list__column">
+            <p className="warehouse-list__text">CONTACT INFORMATION</p>
+            <img
+              className="warehouse-list__sort"
+              src={filterIcon}
+              alt="sort icon"
+            />
+          </div>
+
+          <div className="warehouse-list__column">
+            <p className="warehouse-list__actions">ACTIONS</p>
+          </div>
         </div>
 
         <ul className="warehouse-list__wrapper">

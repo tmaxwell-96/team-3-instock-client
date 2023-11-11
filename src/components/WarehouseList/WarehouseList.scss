@@ -6,19 +6,20 @@ ul {
 }
 
 .warehouse-list {
-  margin: 1rem;
+  margin: 0;
   border-radius: 20px;
 
   &__header {
     font-weight: 600;
     font-size: 1.75rem;
     margin: 0 0 1rem 0;
-    align-self: center;
+    align-self: flex-start;
     display: inline-block;
   }
 
   &__search-wrapper {
     position: relative;
+    width: 100%;
   }
 
   &__overlay {
@@ -36,11 +37,49 @@ ul {
     position: absolute;
   }
 
+  &__columns {
+    display: none;
+    @include tablet {
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(247, 248, 249, 0.7);
+    }
+  }
+
+  &__sort {
+    margin-left: 0.25rem;
+  }
+
+  &__column {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: auto;
+  }
+
+  &__text {
+    font-size: 0.75rem;
+  }
+
+  &__actions {
+    font-size: 0.75rem;
+    margin-left: auto;
+  }
+
   &__top {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
+    padding: 1rem;
+    @include tablet {
+      padding: 2rem 2rem 0 2rem;
+    }
+    &-container {
+      width: 100%;
+    }
   }
 
   &__search {
@@ -65,5 +104,8 @@ ul {
     color: white;
     margin: 1rem 0;
     width: 100%;
+    &-wrapper {
+      width: 100%;
+    }
   }
 }

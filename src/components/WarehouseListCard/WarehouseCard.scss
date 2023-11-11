@@ -8,12 +8,31 @@
   align-items: flex-start;
   justify-content: space-between;
   margin-bottom: 1rem;
-  padding-top: 1rem;
+  padding: 1rem 1rem 0 1rem;
   border-top: 1px solid #bdc5d5;
+  @include tablet {
+    padding: 2rem 2rem 0 2rem;
+  }
 
   &__left,
   &__right {
     margin-right: 1rem;
+    @include tablet {
+      display: flex;
+      align-items: center;
+    }
+    @include tablet {
+      margin: 0;
+    }
+  }
+
+  &__column {
+    border: 1px solid red;
+    @include tablet {
+      &-warehouse {
+        width: 6.0275rem;
+      }
+    }
   }
 
   &__left {
@@ -21,6 +40,50 @@
     &-bottom {
       margin-bottom: 1rem;
     }
+    @include tablet {
+      display: flex;
+      justify-content: space-between;
+      width: 6.0275rem;
+    }
+  }
+
+  &__address {
+    &--mobile {
+      display: inline-block;
+      @include tablet {
+        display: none;
+      }
+    }
+    &--wide {
+      display: none;
+      @include tablet {
+        display: inline-block;
+        width: 9.375rem;
+      }
+      @include desktop {
+        display: flex;
+        gap: 1rem;
+        justify-content: flex-start;
+        width: 13.5rem;
+        flex-wrap: wrap;
+      }
+    }
+  }
+
+  &__contact {
+    display: none;
+
+    @include tablet {
+      display: inline-block;
+      width: 7.5rem;
+    }
+  }
+
+  &__contact-trash {
+    display: inline-block;
+    @include tablet {
+      display: none;
+    }
   }
 
   &__right {
@@ -28,21 +91,55 @@
     &-bottom {
       margin-bottom: 1rem;
     }
+
+    @include tablet {
+      width: 6.126rem;
+    }
   }
 
   &__text--link {
     text-decoration: none;
     color: #2e66e5;
     display: flex;
+    align-items: flex-end;
   }
 
   &__label {
     color: #5c667e;
+    @include tablet {
+      display: none;
+    }
+  }
+
+  &__trash {
+    &--mobile {
+      display: inline-block;
+      @include tablet {
+        display: none;
+      }
+    }
+    &--wide {
+      display: none;
+      @include tablet {
+        display: inline-block;
+      }
+    }
   }
 
   &__edit {
     display: flex;
     justify-content: flex-end;
     width: 100%;
+    @include tablet {
+      width: max-content;
+      margin-left: 1rem;
+    }
+  }
+
+  &__icons {
+    display: none;
+    @include tablet {
+      display: flex;
+    }
   }
 }
