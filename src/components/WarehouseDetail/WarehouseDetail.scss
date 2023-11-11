@@ -1,0 +1,74 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.warehouse-detail {
+  display: flex;
+  flex-direction: column;
+
+  &__container {
+    display: flex;
+  }
+  &__heading-container {
+    display: flex;
+    align-items: center;
+    padding: 2rem 1rem;
+    border-bottom: 1px solid #bdc5d5;
+  }
+  &__container-left {
+    display: flex;
+    align-items: center;
+  }
+  &__title {
+    padding-left: 1rem;
+  }
+  &__edit-wrapper {
+    margin-left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 2.25rem;
+    min-height: 2.25rem;
+    background-color: #2e66e5;
+    border-radius: 1.25rem;
+    @include tablet {
+      padding: 0.5rem 1rem;
+    }
+  }
+  &__edit {
+    background-color: #2e66e5;
+    @include tablet {
+      margin-right: 0.5rem;
+    }
+  }
+  &__edit-text {
+    display: none;
+    @include tablet {
+      display: inline-block;
+      color: white;
+      margin: 0;
+    }
+  }
+  &__contact-wrapper {
+    padding: 1rem 1rem;
+    @include tablet {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  &__info-container {
+    display: flex;
+  }
+  &__preson-container {
+    @include tablet {
+      padding-left: 3rem;
+      border-left: 1px solid #bdc5d5;
+    }
+  }
+
+  &__address-container {
+    padding-bottom: 2rem;
+  }
+  &__inquiry-container {
+    padding: 0 3rem;
+  }
+}
