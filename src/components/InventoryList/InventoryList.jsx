@@ -14,6 +14,7 @@ const InventoryList = () => {
   const getInventory = async () => {
     const response = await axios.get("http://localhost:8080/inventory");
     setInventoryList(response.data);
+    console.log(response.data);
   };
   useEffect(() => {
     getInventory();

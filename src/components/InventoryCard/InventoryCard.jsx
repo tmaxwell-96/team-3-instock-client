@@ -106,6 +106,7 @@ const InventoryCard = ({ item, deleteInventory }) => {
                   id="deleteModal"
                   onClick={openModal}
                 />
+
                 <Modal
                   className={`modal`}
                   isOpen={modalIsOpen}
@@ -144,8 +145,9 @@ const InventoryCard = ({ item, deleteInventory }) => {
                     </div>
                   </div>
                 </Modal>
+                {/* <Link to={`inventory/edit/${item.id}`}></Link> */}
 
-                <Link to="edit">
+                <Link to={`/inventory/edit/${item.id}`}>
                   <img
                     className="component__icon component__icon--edit"
                     src={editIcon}

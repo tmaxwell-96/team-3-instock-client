@@ -46,6 +46,7 @@ const EditInventory = () => {
   const getInventory = async () => {
     const response = await axios.get("http://localhost:8080/inventory");
     const allCategories = response.data.map((inventoryItem) => {
+      // console.log(response.data);
       return inventoryItem.category;
     });
 
@@ -71,18 +72,29 @@ const EditInventory = () => {
     getWarehouses();
   }, []);
 
+  //Get name/discription information for value
+  // const [productDetail, setProductDetail] = useState({});
+  // useEffect(() => {
+  //   const getProductDetail = async () => {
+  //     const response = await axios.get("http://localhost:8080/inventory");
+  //     setWarehouseList(response.data);
+  //     console.log(response.data);
+  //   };
+  //   getProductDetail();
+  // }, []);
+
   //Edit new object function
 
   const editInventoryItem = (event) => {
-    const newInventory = {
-      warehouse_id: "Need to figure this out",
-      item_name: itemName,
-      description: itemDescription,
-      category: category,
-      status: status,
-      warehouse: warehouse,
-    };
-    console.log(newInventory);
+    // const newInventory = {
+    //   warehouse_id: "Need to figure this out",
+    //   item_name: itemName,
+    //   description: itemDescription,
+    //   category: category,
+    //   status: status,
+    //   warehouse: warehouse,
+    // };
+    // console.log(newInventory);
   };
 
   //Handle Submit Function
