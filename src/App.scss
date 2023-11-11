@@ -1,45 +1,55 @@
 @use "./styles/partials/typography" as *;
+@use "./styles/partials/mixins" as *;
 
 body {
-    font-family: "Titilium-Web";
+    font-family: "Titillium-Web";
 }
 
-.App {
-    text-align: center;
-    font-family:  "Titilium-Web";
-}
+.app {
 
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
-}
+// display: flex;
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
-}
 
-.App-header {
-    background-color: #282c34;
-    min-height: 100vh;
+&__box {
+    background-color: #F7F8F9;
+    width: 100%;
+    height: 100vh;
+
     display: flex;
-    flex-direction: column;
-    align-items: center;
+ 
+
+
+}
+
+
+&__navbox{
+    background-color: #232940;
+    height:200px;
+    width:100%;
+
+    display: flex;
     justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+
+    @include tablet {
+        height: 186px;
+    }
+  
+
 }
 
-.App-link {
-    color: #61dafb;
+&__container {
+    background-color: white;
+    width: 95%;
+    height: 100vh;
+
+    
+    
+    
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
 }
+
+
+
+
+

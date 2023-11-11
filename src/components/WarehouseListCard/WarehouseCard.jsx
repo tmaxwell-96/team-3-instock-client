@@ -3,23 +3,9 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import deleteIcon from "../../assets/Icons/delete_outline-24px.svg";
 import editIcon from "../../assets/Icons/edit-24px.svg";
-import ModalComopnent from "./../../components/ModalComopnent/ModalComopnent";
 
-const WarehouseCard = ({ warehouse }) => {
-  const [isModalOpen, setModalOpen] = useState(false);
-  const [selectedWarehouse, setSelectedWarehouse] = useState({
-    id: null,
-    name: "",
-  });
 
-  const openModal = (id, warehouseName) => {
-    setModalOpen(true);
-    setSelectedWarehouse({ id, warehouseName });
-  };
-
-  const closeModal = () => {
-    setModalOpen(false);
-  };
+const WarehouseCard = ({ warehouse, openModal }) => {
 
   if (warehouse) {
     return (
@@ -62,12 +48,6 @@ const WarehouseCard = ({ warehouse }) => {
             </Link>
           </div>
         </li>
-
-        <ModalComopnent
-          isOpen={isModalOpen}
-          onRequestClose={closeModal}
-          selectedWarehouse={selectedWarehouse}
-        />
       </>
     );
   }
