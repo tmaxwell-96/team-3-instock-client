@@ -106,48 +106,48 @@ const InventoryCard = ({ item, deleteInventory }) => {
                   id="deleteModal"
                   onClick={openModal}
                 />
-                <Link to={`edit/${item.id}`}>
-                  <Modal
-                    className={`modal`}
-                    isOpen={modalIsOpen}
-                    onAfterOpen={afterOpenModal}
-                    onRequestClose={closeModal}
-                  >
-                    <div className="modal__wrapper">
-                      <img
-                        onClick={closeModal}
-                        className="modal__close"
-                        src={xIcon}
-                        alt=""
-                      />
-                      <h2
-                        className="modal__title"
-                        // ref={(_subtitle) => (subtitle = _subtitle)}
-                      >
-                        {`Delete ${item.item_name} inventory item?`}
-                      </h2>
-                      <p>
-                        {`Please confirm that you'd like to delete ${item.item_name} from the inventory list. You won't be able to undo this action`}
-                      </p>
-                      <div className="modal__bottom">
-                        <button className="modal__cancel" onClick={closeModal}>
-                          Cancel
-                        </button>
-                        <button
-                          onClick={() => {
-                            deleteInventory(item.id);
-                            closeModal();
-                          }}
-                          className="modal__delete"
-                        >
-                          Delete
-                        </button>
-                      </div>
-                    </div>
-                  </Modal>
-                </Link>
 
-                <Link to="edit">
+                <Modal
+                  className={`modal`}
+                  isOpen={modalIsOpen}
+                  onAfterOpen={afterOpenModal}
+                  onRequestClose={closeModal}
+                >
+                  <div className="modal__wrapper">
+                    <img
+                      onClick={closeModal}
+                      className="modal__close"
+                      src={xIcon}
+                      alt=""
+                    />
+                    <h2
+                      className="modal__title"
+                      // ref={(_subtitle) => (subtitle = _subtitle)}
+                    >
+                      {`Delete ${item.item_name} inventory item?`}
+                    </h2>
+                    <p>
+                      {`Please confirm that you'd like to delete ${item.item_name} from the inventory list. You won't be able to undo this action`}
+                    </p>
+                    <div className="modal__bottom">
+                      <button className="modal__cancel" onClick={closeModal}>
+                        Cancel
+                      </button>
+                      <button
+                        onClick={() => {
+                          deleteInventory(item.id);
+                          closeModal();
+                        }}
+                        className="modal__delete"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                </Modal>
+                {/* <Link to={`inventory/edit/${item.id}`}></Link> */}
+
+                <Link to={`/inventory/edit/${item.id}`}>
                   <img
                     className="component__icon component__icon--edit"
                     src={editIcon}

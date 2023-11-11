@@ -73,28 +73,28 @@ const EditInventory = () => {
   }, []);
 
   //Get name/discription information for value
-  const [productDetail, setProductDetail] = useState({});
-  useEffect(() => {
-    const getProductDetail = async () => {
-      const response = await axios.get("http://localhost:8080/inventory");
-      setWarehouseList(response.data);
-      console.log(response.data);
-    };
-    getProductDetail();
-  }, []);
+  // const [productDetail, setProductDetail] = useState({});
+  // useEffect(() => {
+  //   const getProductDetail = async () => {
+  //     const response = await axios.get("http://localhost:8080/inventory");
+  //     setWarehouseList(response.data);
+  //     console.log(response.data);
+  //   };
+  //   getProductDetail();
+  // }, []);
 
   //Edit new object function
 
   const editInventoryItem = (event) => {
-    const newInventory = {
-      warehouse_id: "Need to figure this out",
-      item_name: itemName,
-      description: itemDescription,
-      category: category,
-      status: status,
-      warehouse: warehouse,
-    };
-    console.log(newInventory);
+    // const newInventory = {
+    //   warehouse_id: "Need to figure this out",
+    //   item_name: itemName,
+    //   description: itemDescription,
+    //   category: category,
+    //   status: status,
+    //   warehouse: warehouse,
+    // };
+    // console.log(newInventory);
   };
 
   //Handle Submit Function
@@ -114,7 +114,7 @@ const EditInventory = () => {
       </header>
       <form className="edit-inventory__form">
         <section className="edit-inventory__details-container">
-          <p className="edit-inventory__label">Item Name{productDetail.id}</p>
+          <p className="edit-inventory__label">Item Name</p>
           <input
             className="edit-inventory__input"
             type="text"
