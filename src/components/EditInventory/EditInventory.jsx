@@ -1,10 +1,12 @@
 import "./EditInventory.scss";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import backArrow from "../../assets/Icons/arrow_back-24px.svg";
 import axios from "axios";
 
 const EditInventory = () => {
+  const params = useParams();
+  const [fieldDetails, setFieldDetails] = useState({});
   //State variables for field changes
   const [itemName, setItemName] = useState("");
   const [category, setCategory] = useState();
@@ -71,6 +73,18 @@ const EditInventory = () => {
     getWarehouses();
   }, []);
 
+  useEffect(() => {
+    const getInventoryInfo = async () => {
+      const response = await axios.get(
+        `http://localhost:8080/inventory/${params.id}`
+      );
+      setFieldDetails(response.data[0]);
+    };
+    getInventoryInfo();
+  }, []);
+
+  console.log(fieldDetails);
+
   //Edit new object function
 
   const editInventoryItem = (event) => {
@@ -98,7 +112,7 @@ const EditInventory = () => {
           <img src={backArrow} alt="back arrow" />
         </Link>
 
-        <h2 className="edit-inventory__title">Edit new inventory item</h2>
+        <h2 className="edit-inventory__title">Edit inventory item</h2>
       </header>
       <form className="edit-inventory__form">
         <section className="edit-inventory__details-container">
@@ -106,7 +120,7 @@ const EditInventory = () => {
           <input
             className="edit-inventory__input"
             type="text"
-            placeholder="Item Name"
+            placeholder={fieldDetails.item_name}
             onChange={handleNameChange}
             value={itemName}
           />
@@ -114,7 +128,7 @@ const EditInventory = () => {
           <textarea
             className="edit-inventory__description"
             name=""
-            placeholder="Please enter a brief item description"
+            placeholder={fieldDetails.description}
             onChange={handleDescrptionChange}
             value={itemDescription}
           ></textarea>

@@ -1,6 +1,7 @@
 import "./AddInventory.scss";
 import { useEffect, useState } from "react";
 import backArrow from "../../assets/Icons/arrow_back-24px.svg";
+import error from "../../assets/Icons/error-24px.svg";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -13,37 +14,52 @@ const AddInventory = () => {
   const [quantity, setQuantity] = useState(0);
   const [warehouse, setWarehouse] = useState();
   //Will add form validation sson
-  // const [submitted, setSubmitted] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   //Handle change functions
 
   const handleNameChange = (event) => {
     setItemName(event.target.value);
-    // setSubmitted(false);
+    setSubmitted(false);
   };
   const handleCategoryChange = (event) => {
     setCategory(event.target.value);
-    // setSubmitted(false);
+    setSubmitted(false);
   };
 
   const handleDescrptionChange = (event) => {
     setItemDescription(event.target.value);
-    // setSubmitted(false);
+    setSubmitted(false);
   };
 
   const handleStatusChange = (event) => {
     setStatus(event.target.value);
-    // setSubmitted(false);
+    setSubmitted(false);
   };
 
   const handleQuantityChange = (event) => {
     setQuantity(event.target.value);
-    // setSubmitted(false);
+    setSubmitted(false);
   };
 
   const handleWarehousehange = (event) => {
     setWarehouse(event.target.value);
-    // setSubmitted(false);
+    setSubmitted(false);
+  };
+
+  const isFormValid = () => {
+    if (
+      !itemName ||
+      !category ||
+      !itemDescription ||
+      !status ||
+      !quantity ||
+      !warehouse
+    ) {
+      return false;
+    } else {
+      return true;
+    }
   };
 
   //Get category information
@@ -101,11 +117,22 @@ const AddInventory = () => {
   const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
-    createInventoryItem(event);
-    alert(
-      "Thank you for submitting an inventory item! Returning to the inventory page."
-    );
-    navigate("/inventory");
+    setSubmitted(true);
+    if (isFormValid()) {
+      createInventoryItem(event);
+      setItemName("");
+      setItemDescription("");
+      setCategory("");
+      setStatus("");
+      setQuantity(0);
+      setWarehouse("");
+      alert(
+        "Thank you for submitting an inventory item! Returning to the inventory page."
+      );
+      navigate("/inventory");
+    } else {
+      alert("Please fill form fields");
+    }
   };
 
   return (
@@ -121,22 +148,49 @@ const AddInventory = () => {
         <section className="add-inventory__details-container">
           <p className="add-inventory__label">Item Name</p>
           <input
-            className="add-inventory__input"
+            className={`add-inventory__input ${
+              submitted && !itemName ? "add-inventory--error" : ""
+            }`}
             type="text"
             placeholder="Item Name"
             onChange={handleNameChange}
             value={itemName}
           />
+          <div
+            className={`add-inventory__error-details ${
+              submitted && !itemName
+                ? "add-inventory__error-details--hidden"
+                : ""
+            }`}
+          >
+            <img src={error} alt="error icon" />
+            <p>This field is required</p>
+          </div>
           <p className="add-inventory__label">Description</p>
           <textarea
-            className="add-inventory__description"
+            className={`add-inventory__description ${
+              submitted && !itemDescription ? "add-inventory--error" : ""
+            } `}
             name=""
             placeholder="Please enter a brief item description"
             onChange={handleDescrptionChange}
             value={itemDescription}
           ></textarea>
+          <div
+            className={`add-inventory__error-details ${
+              submitted && !itemName
+                ? "add-inventory__error-details--hidden"
+                : ""
+            }`}
+          >
+            <img src={error} alt="error icon" />
+            <p>This field is required</p>
+          </div>
           <p className="add-inventory__label">Category</p>
           <select
+            className={`add-inventory__select ${
+              submitted && !category ? "add-inventory--error" : ""
+            }`}
             onChange={handleCategoryChange}
             value={category}
             name=""
@@ -152,10 +206,23 @@ const AddInventory = () => {
               );
             })}
           </select>
+          <div
+            className={`add-inventory__error-details ${
+              submitted && !category
+                ? "add-inventory__error-details--hidden"
+                : ""
+            }`}
+          >
+            <img src={error} alt="error icon" />
+            <p>This field is required</p>
+          </div>
         </section>
         <section className="add-availability-container">
           <div className="add-inventory__radio-container">
             <input
+              className={`add-inventory__radio ${
+                submitted && !status ? "add-inventory--error" : ""
+              }`}
               onChange={handleStatusChange}
               value="instock"
               name="status"
@@ -166,6 +233,9 @@ const AddInventory = () => {
               In Stock
             </label>
             <input
+              className={`add-inventory__radio ${
+                submitted && !status ? "add-inventory--error" : ""
+              }`}
               onChange={handleStatusChange}
               value="outstock"
               type="radio"
@@ -175,6 +245,14 @@ const AddInventory = () => {
             <label className="add-inventory__radio-label" htmlFor="outstock">
               Out of Stock
             </label>
+          </div>
+          <div
+            className={`add-inventory__error-details ${
+              submitted && !status ? "add-inventory__error-details--hidden" : ""
+            }`}
+          >
+            <img src={error} alt="error icon" />
+            <p>This field is required</p>
           </div>
 
           <p
@@ -191,10 +269,20 @@ const AddInventory = () => {
             name="quanity"
             className={`add-inventory__input ${
               status === "outstock" ? "add-inventory__input--hidden" : ""
-            }`}
+            } ${submitted && !quantity ? "add-inventory--error" : ""}`}
             type="text"
             placeholder="0"
           />
+          <div
+            className={`add-inventory__error-details ${
+              submitted && !quantity
+                ? "add-inventory__error-details--hidden"
+                : ""
+            }`}
+          >
+            <img src={error} alt="error icon" />
+            <p>This field is required</p>
+          </div>
           <p className="add-inventory__label" htmlFor="warehouse">
             Warehouse
           </p>
@@ -203,6 +291,9 @@ const AddInventory = () => {
             value={warehouse}
             name="warehouse"
             id=""
+            className={`add-inventory__select ${
+              submitted && !warehouse ? "add-inventory--error" : ""
+            }`}
           >
             <option value="">Please Select</option>
             {warehouseList.map((name) => {
@@ -213,6 +304,16 @@ const AddInventory = () => {
               );
             })}
           </select>
+          <div
+            className={`add-inventory__error-details ${
+              submitted && !warehouse
+                ? "add-inventory__error-details--hidden"
+                : ""
+            }`}
+          >
+            <img src={error} alt="error icon" />
+            <p>This field is required</p>
+          </div>
           <div className="add-inventory__buttons">
             <button className="add-inventory__cancel">Cancel</button>
             <button onClick={handleSubmit} className="add-inventory__submit">
