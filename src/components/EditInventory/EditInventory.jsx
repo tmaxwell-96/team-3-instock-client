@@ -112,7 +112,7 @@ const EditInventory = () => {
           <img src={backArrow} alt="back arrow" />
         </Link>
 
-        <h2 className="edit-inventory__title">Edit new inventory item</h2>
+        <h2 className="edit-inventory__title">Edit inventory item</h2>
       </header>
       <form className="edit-inventory__form">
         <section className="edit-inventory__details-container">
