@@ -1,10 +1,12 @@
 import "./EditInventory.scss";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import backArrow from "../../assets/Icons/arrow_back-24px.svg";
 import axios from "axios";
 
 const EditInventory = () => {
+  const params = useParams();
+  const [fieldDetails, setFieldDetails] = useState({});
   //State variables for field changes
   const [itemName, setItemName] = useState("");
   const [category, setCategory] = useState();
@@ -46,7 +48,6 @@ const EditInventory = () => {
   const getInventory = async () => {
     const response = await axios.get("http://localhost:8080/inventory");
     const allCategories = response.data.map((inventoryItem) => {
-      // console.log(response.data);
       return inventoryItem.category;
     });
 
@@ -72,29 +73,30 @@ const EditInventory = () => {
     getWarehouses();
   }, []);
 
-  //Get name/discription information for value
-  // const [productDetail, setProductDetail] = useState({});
-  // useEffect(() => {
-  //   const getProductDetail = async () => {
-  //     const response = await axios.get("http://localhost:8080/inventory");
-  //     setWarehouseList(response.data);
-  //     console.log(response.data);
-  //   };
-  //   getProductDetail();
-  // }, []);
+  useEffect(() => {
+    const getInventoryInfo = async () => {
+      const response = await axios.get(
+        `http://localhost:8080/inventory/${params.id}`
+      );
+      setFieldDetails(response.data[0]);
+    };
+    getInventoryInfo();
+  }, []);
+
+  console.log(fieldDetails);
 
   //Edit new object function
 
   const editInventoryItem = (event) => {
-    // const newInventory = {
-    //   warehouse_id: "Need to figure this out",
-    //   item_name: itemName,
-    //   description: itemDescription,
-    //   category: category,
-    //   status: status,
-    //   warehouse: warehouse,
-    // };
-    // console.log(newInventory);
+    const newInventory = {
+      warehouse_id: "Need to figure this out",
+      item_name: itemName,
+      description: itemDescription,
+      category: category,
+      status: status,
+      warehouse: warehouse,
+    };
+    console.log(newInventory);
   };
 
   //Handle Submit Function
@@ -118,7 +120,7 @@ const EditInventory = () => {
           <input
             className="edit-inventory__input"
             type="text"
-            placeholder="Item Name"
+            placeholder={fieldDetails.item_name}
             onChange={handleNameChange}
             value={itemName}
           />
@@ -126,7 +128,7 @@ const EditInventory = () => {
           <textarea
             className="edit-inventory__description"
             name=""
-            placeholder="Please enter a brief item description"
+            placeholder={fieldDetails.description}
             onChange={handleDescrptionChange}
             value={itemDescription}
           ></textarea>
