@@ -13,37 +13,52 @@ const AddInventory = () => {
   const [quantity, setQuantity] = useState(0);
   const [warehouse, setWarehouse] = useState();
   //Will add form validation sson
-  // const [submitted, setSubmitted] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   //Handle change functions
 
   const handleNameChange = (event) => {
     setItemName(event.target.value);
-    // setSubmitted(false);
+    setSubmitted(false);
   };
   const handleCategoryChange = (event) => {
     setCategory(event.target.value);
-    // setSubmitted(false);
+    setSubmitted(false);
   };
 
   const handleDescrptionChange = (event) => {
     setItemDescription(event.target.value);
-    // setSubmitted(false);
+    setSubmitted(false);
   };
 
   const handleStatusChange = (event) => {
     setStatus(event.target.value);
-    // setSubmitted(false);
+    setSubmitted(false);
   };
 
   const handleQuantityChange = (event) => {
     setQuantity(event.target.value);
-    // setSubmitted(false);
+    setSubmitted(false);
   };
 
   const handleWarehousehange = (event) => {
     setWarehouse(event.target.value);
-    // setSubmitted(false);
+    setSubmitted(false);
+  };
+
+  const isFormValid = () => {
+    if (
+      !itemName ||
+      !category ||
+      !itemDescription ||
+      !status ||
+      !quantity ||
+      !warehouse
+    ) {
+      return false;
+    } else {
+      return true;
+    }
   };
 
   //Get category information
@@ -101,11 +116,22 @@ const AddInventory = () => {
   const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
-    createInventoryItem(event);
-    alert(
-      "Thank you for submitting an inventory item! Returning to the inventory page."
-    );
-    navigate("/inventory");
+    setSubmitted(true);
+    if (isFormValid()) {
+      createInventoryItem(event);
+      setItemName("");
+      setItemDescription("");
+      setCategory("");
+      setStatus("");
+      setQuantity(0);
+      setWarehouse("");
+      alert(
+        "Thank you for submitting an inventory item! Returning to the inventory page."
+      );
+      navigate("/inventory");
+    } else {
+      alert("Please fill form fields");
+    }
   };
 
   return (
@@ -121,7 +147,9 @@ const AddInventory = () => {
         <section className="add-inventory__details-container">
           <p className="add-inventory__label">Item Name</p>
           <input
-            className="add-inventory__input"
+            className={`add-inventory__input ${
+              submitted && !itemName ? "add-inventory--error" : ""
+            }`}
             type="text"
             placeholder="Item Name"
             onChange={handleNameChange}
@@ -129,7 +157,9 @@ const AddInventory = () => {
           />
           <p className="add-inventory__label">Description</p>
           <textarea
-            className="add-inventory__description"
+            className={`add-inventory__description ${
+              submitted && !itemName ? "add-inventory--error" : ""
+            } `}
             name=""
             placeholder="Please enter a brief item description"
             onChange={handleDescrptionChange}
@@ -137,6 +167,9 @@ const AddInventory = () => {
           ></textarea>
           <p className="add-inventory__label">Category</p>
           <select
+            className={`add-inventory__select ${
+              submitted && !itemName ? "add-inventory--error" : ""
+            }`}
             onChange={handleCategoryChange}
             value={category}
             name=""
@@ -156,6 +189,9 @@ const AddInventory = () => {
         <section className="add-availability-container">
           <div className="add-inventory__radio-container">
             <input
+              className={`add-inventory__radio ${
+                submitted && !itemName ? "add-inventory--error" : ""
+              }`}
               onChange={handleStatusChange}
               value="instock"
               name="status"
@@ -166,6 +202,9 @@ const AddInventory = () => {
               In Stock
             </label>
             <input
+              className={`add-inventory__radio ${
+                submitted && !itemName ? "add-inventory--error" : ""
+              }`}
               onChange={handleStatusChange}
               value="outstock"
               type="radio"
@@ -191,7 +230,7 @@ const AddInventory = () => {
             name="quanity"
             className={`add-inventory__input ${
               status === "outstock" ? "add-inventory__input--hidden" : ""
-            }`}
+            } ${submitted && !itemName ? "add-inventory--error" : ""}`}
             type="text"
             placeholder="0"
           />
@@ -203,6 +242,9 @@ const AddInventory = () => {
             value={warehouse}
             name="warehouse"
             id=""
+            className={`add-inventory__select ${
+              submitted && !itemName ? "add-inventory--error" : ""
+            }`}
           >
             <option value="">Please Select</option>
             {warehouseList.map((name) => {
