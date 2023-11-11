@@ -18,6 +18,11 @@ function WarehouseInventoryList() {
   useEffect(() => {
     getInventoryList();
   }, [params.id]);
+
+  const deleteInventory = async (event) => {
+    await axios.delete(`http://localhost:8080/inventory/${event}`);
+    getInventoryList();
+  };
   return (
     <>
       <div className="warehouse-inventory">
@@ -43,7 +48,13 @@ function WarehouseInventoryList() {
           </ul>
           <ul className="warehouse-inventory__wrapper">
             {inventoryList.map((item, index) => {
-              return <InventoryCard key={index} item={item} />;
+              return (
+                <InventoryCard
+                  deleteInventory={deleteInventory}
+                  key={index}
+                  item={item}
+                />
+              );
             })}
           </ul>
         </div>
