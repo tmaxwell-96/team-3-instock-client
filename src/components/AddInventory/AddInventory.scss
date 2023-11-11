@@ -1,8 +1,16 @@
+@use '../../styles/partials/mixins';
+@use '../../styles/partials/colors';
+@use '../../styles/partials/buttons';
+
+
 * {
   margin: 0;
 }
 
 .add-inventory {
+
+  margin:1rem;
+
   &__header {
     display: flex;
     align-items: flex-start;
@@ -12,8 +20,22 @@
     padding-bottom: 1rem;
   }
 
+  // &__form{
+
+  
+  
+  // }
+
   &__title {
     margin-left: 1rem;
+  }
+
+  &__subheader {
+
+    margin-top:1rem;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: 500;
   }
 
   &__input {
@@ -47,6 +69,22 @@
 
   &__buttons {
     margin-top: 1rem;
+    background: rgba(247, 248, 249, 0.70);
+  
+    min-height: 68px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+  &__buttonbox{
+    display: flex;
+    justify-content: center;
+    width:100%;
+    
+  }
+
   }
 
   &--error {
@@ -59,4 +97,106 @@
       display: flex;
     }
   }
+
+
+
+  &__cancel{
+   
+    display: inline-flex;
+    padding: 8px 28px;
+    align-items: center;
+    gap: 10px;
+    border-radius: 20px;
+    font-family: "Titillium-Web";
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+    color: #FFF;
+    margin:0.5rem;
+
+
+    border: 1px solid #BDC5D5;
+         background: #FFF;
+         color: #5C667E;
+       
+         &:hover {
+           background: #FFF;
+           color: #2E66E5;
+         }
+
+  }
+
+
+
+
+  &__submit {
+
+  
+    display: inline-flex;
+    padding: 8px 16px;
+    align-items: center;
+    gap: 10px;
+    border-radius: 20px;
+    font-family: "Titillium-Web";
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+    color: #FFF;
+    margin:0.5rem;
+
+
+     border: none;
+     background: #2E66E5;
+   
+     &:hover {
+       background: #232940;
+     }
+
+  }
+
+
 }
+
+input[type=text] {
+  padding: 0.2rem;
+  padding-left:0.5rem;
+  padding-right: 0.5rem;
+  border: 2px solid;
+  border-radius: 4px;
+  color: #5C667E;
+  font-size: 13.5px;
+
+  border-radius: 20px;
+  border: 1px solid var(--Cloud, #BDC5D5);
+  background: var(--White, #FFF);
+}
+
+textarea {
+
+  padding: 0.2rem;
+  padding-left:0.5rem;
+  padding-right: 0.5rem;
+  border-radius: 20px;
+  border: 1px solid var(--Cloud, #BDC5D5);
+  background: var(--White, #FFF);
+  height: 5rem;
+  color: #5C667E;
+  font-size: 13.5px;
+}
+
+
+select {
+
+  padding: 0.2rem;
+  padding-left:0.5rem;
+  padding-right: 0.5rem;
+  border-radius: 20px;
+  border: 1px solid var(--Cloud, #BDC5D5);
+  background: var(--White, #FFF);
+  color: #5C667E;
+  font-size: 13.5px;
+
+}
+
