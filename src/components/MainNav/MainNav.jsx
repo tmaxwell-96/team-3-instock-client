@@ -15,13 +15,13 @@ function MainNav() {
             <div className="nav__container">
                 <div className="nav__block">
                     <NavLink to="/">
-                        <button className="nav__button"> Warehouses </button>
+                        <button className="nav__button nav__button--warehouse"> Warehouses </button>
                     </NavLink>
                 </div>
 
                 <div className="nav__block">
                     <NavLink to="/inventory">
-                        <button className="nav__button"> Inventory </button>
+                        <button className="nav__button  nav__button--inventory"> Inventory </button>
                     </NavLink>
                 </div>
             </div>

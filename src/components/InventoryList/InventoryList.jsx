@@ -4,18 +4,44 @@ import sort from "../../assets/Icons/sort-24px.svg";
 import InventoryCard from "../InventoryCard/InventoryCard";
 import search from "../../assets/Icons/search-24px.svg";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
+import { unstable_renderSubtreeIntoContainer } from "react-dom";
 
 const InventoryList = () => {
   const [inventoryList, setInventoryList] = useState([]);
+  const [searchKeyword, setSearchKeyword] = useState("");
 
   const getInventory = async () => {
     const response = await axios.get("http://localhost:8080/inventory");
     setInventoryList(response.data);
+    console.log(response.data);
   };
   useEffect(() => {
     getInventory();
   }, []);
+
+  useEffect(() => {
+    const searchData = async () => {
+      const response = await axios.get(
+        `http://localhost:8080/search/inventories?searchTerm=${searchKeyword}`
+      );
+      setInventoryList(response.data);
+    };
+    if (searchKeyword.length > 3) {
+      searchData();
+    }
+  }, [searchKeyword]);
+
+  const handleSearch = (event) => {
+    setSearchKeyword(event.target.value);
+  };
+
+  //Delete Inventory Function
+  const deleteInventory = async (event) => {
+    await axios.delete(`http://localhost:8080/inventory/${event}`);
+    getInventory();
+  };
 
   return (
     <>
@@ -25,12 +51,15 @@ const InventoryList = () => {
           <input
             className="component-list__search"
             type="text"
+            name="search"
             placeholder="Search..."
+            onChange={handleSearch}
           />
-
-          <button className="component-list__button">
-            + Add New inventory
-          </button>
+          <Link to={`/inventory/add`}>
+            <button className="inventory-list__button">
+              + Add New inventory
+            </button>
+          </Link>
         </div>
       </div>
       <div className="component__main">
@@ -60,9 +89,15 @@ const InventoryList = () => {
             <img src={sort} alt="sort-icon" />
           </li>
         </ul>
-        <ul classNameName="inventory-list__wrapper">
-          {inventoryList.map((item) => {
-            return <InventoryCard key={item.id} item={item} />;
+        <ul className="inventory-list__wrapper">
+          {inventoryList.map((item, index) => {
+            return (
+              <InventoryCard
+                key={index}
+                deleteInventory={deleteInventory}
+                item={item}
+              />
+            );
           })}
         </ul>
       </div>
