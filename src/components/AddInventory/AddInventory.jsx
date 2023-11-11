@@ -34,11 +34,11 @@ const AddInventory = () => {
 
   const handleStatusChange = (event) => {
     setStatus(event.target.value);
-    setSubmitted(false);
   };
 
   const handleQuantityChange = (event) => {
-    setQuantity(event.target.value);
+    const inputQuantity = event.target.value;
+    setQuantity(inputQuantity || 0);
     setSubmitted(false);
   };
 
@@ -53,7 +53,7 @@ const AddInventory = () => {
       !category ||
       !itemDescription ||
       !status ||
-      !quantity ||
+      (status === "instock" && !quantity) ||
       !warehouse
     ) {
       return false;
@@ -109,6 +109,7 @@ const AddInventory = () => {
 
     const postInventory = async (newInv) => {
       await axios.post("http://localhost:8080/inventory", newInv);
+      console.log(newInventory);
     };
     postInventory(newInventory);
   };
@@ -266,13 +267,14 @@ const AddInventory = () => {
           <input
             onChange={handleQuantityChange}
             value={quantity}
-            name="quanity"
+            name="quantity"
             className={`add-inventory__input ${
               status === "outstock" ? "add-inventory__input--hidden" : ""
             } ${submitted && !quantity ? "add-inventory--error" : ""}`}
             type="text"
             placeholder="0"
           />
+
           <div
             className={`add-inventory__error-details ${
               submitted && !quantity
@@ -283,6 +285,7 @@ const AddInventory = () => {
             <img src={error} alt="error icon" />
             <p>This field is required</p>
           </div>
+
           <p className="add-inventory__label" htmlFor="warehouse">
             Warehouse
           </p>
