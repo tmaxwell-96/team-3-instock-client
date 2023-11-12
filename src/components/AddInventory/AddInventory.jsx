@@ -147,6 +147,7 @@ const AddInventory = () => {
       </header>
       <form className="add-inventory__form">
         <section className="add-inventory__details-container">
+          <p className="add-inventory__subheader"> Item Details </p>
           <p className="add-inventory__label">Item Name</p>
           <input
             className={`add-inventory__input ${
@@ -219,7 +220,9 @@ const AddInventory = () => {
           </div>
         </section>
         <section className="add-availability-container">
+        <p className="add-inventory__subheader"> Item Availability </p>
           <div className="add-inventory__radio-container">
+          <p className="add-inventory__subheader2"> Status </p>
             <input
               className={`add-inventory__radio ${
                 submitted && !status ? "add-inventory--error" : ""
@@ -317,14 +320,18 @@ const AddInventory = () => {
             <img src={error} alt="error icon" />
             <p>This field is required</p>
           </div>
-          <div className="add-inventory__buttons">
+         
+        </section>
+       
+      </form>
+      <div className="add-inventory__buttons">
+            <div className="add-inventory__buttonbox">
             <button className="add-inventory__cancel">Cancel</button>
             <button onClick={handleSubmit} className="add-inventory__submit">
               + Add Item
             </button>
+            </div>
           </div>
-        </section>
-      </form>
     </div>
   );
 };
