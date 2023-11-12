@@ -11,26 +11,33 @@ import EditInventory from "./components/EditInventory/EditInventory";
 import AddEditWarehouse from "./components/AddEditWarehouse/AddEditWarehouse";
 function App() {
   return (
-    <div>
-      <section className="app__container">
-        <BrowserRouter>
-          <MainNav />
+    <div className="app">
+      <div className="app__box">
+        <div className="app__navbox">
+          <section className="app__container">
+            <BrowserRouter>
+              <MainNav />
 
-          <Routes>
-            <Route path="/" element={<WarehousePage />} />
+              <Routes>
+                <Route path="/" element={<WarehousePage />} />
 
-            <Route path="/:id" element={<WarehouseDetail />} />
-            <Route path="/edit/:id?" element={<AddEditWarehouse />} />
-            <Route path="/add" element={<AddEditWarehouse />} />
-            <Route path="/inventory" element={<InventoryPage />} />
-            <Route path="/inventory/:id" element={<InventoryItemDetail />} />
-            <Route path="/inventory/add" element={<AddInventory />} />
-            <Route path="/inventory/edit/:id" element={<EditInventory />} />
-          </Routes>
-        </BrowserRouter>
+                <Route path="/:id" element={<WarehouseDetail />} />
+                <Route path="/edit/:id?" element={<AddEditWarehouse />} />
+                <Route path="/add" element={<AddEditWarehouse />} />
+                <Route path="/inventory" element={<InventoryPage />} />
+                <Route
+                  path="/inventory/:id"
+                  element={<InventoryItemDetail />}
+                />
+                <Route path="/inventory/add" element={<AddInventory />} />
+                <Route path="/inventory/edit/:id" element={<EditInventory />} />
+              </Routes>
+            </BrowserRouter>
 
-        <Footer />
-      </section>
+            <Footer />
+          </section>
+        </div>
+      </div>
     </div>
   );
 }

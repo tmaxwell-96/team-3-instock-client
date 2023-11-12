@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "./WarehouseInventoryList.scss";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import InventoryCard from "../InventoryCard/InventoryCard";
+import WarehouseInventoryListCard from "../WarehouseInventoryListCard/WarehouseInventoryListCard";
 
 function WarehouseInventoryList() {
   const [inventoryList, setInventoryList] = useState([]);
@@ -18,6 +18,11 @@ function WarehouseInventoryList() {
   useEffect(() => {
     getInventoryList();
   }, [params.id]);
+
+  const deleteInventory = async (event) => {
+    await axios.delete(`http://localhost:8080/inventory/${event}`);
+    getInventoryList();
+  };
   return (
     <>
       <div className="warehouse-inventory">
@@ -43,7 +48,9 @@ function WarehouseInventoryList() {
           </ul>
           <ul className="warehouse-inventory__wrapper">
             {inventoryList.map((item, index) => {
-              return <InventoryCard key={index} item={item} />;
+
+              return <WarehouseInventoryListCard key={index} item={item} />;
+
             })}
           </ul>
         </div>

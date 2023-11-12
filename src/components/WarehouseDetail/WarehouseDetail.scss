@@ -4,12 +4,22 @@
 .warehouse-detail {
   display: flex;
   flex-direction: column;
+
   &__container {
     display: flex;
   }
   &__heading-container {
     display: flex;
-    flex-direction: row;
+    align-items: center;
+    padding: 2rem 1rem;
+    border-bottom: 1px solid #bdc5d5;
+  }
+  &__container-left {
+    display: flex;
+    align-items: center;
+  }
+  &__title {
+    padding-left: 1rem;
   }
   &__edit-wrapper {
     margin-left: auto;
@@ -38,7 +48,27 @@
       margin: 0;
     }
   }
-  &__contact-container {
-    padding-left: 1rem;
+  &__contact-wrapper {
+    padding: 1rem 1rem;
+    @include tablet {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  &__info-container {
+    display: flex;
+  }
+  &__preson-container {
+    @include tablet {
+      padding-left: 3rem;
+      border-left: 1px solid #bdc5d5;
+    }
+  }
+
+  &__address-container {
+    padding-bottom: 2rem;
+  }
+  &__inquiry-container {
+    padding: 0 3rem;
   }
 }
