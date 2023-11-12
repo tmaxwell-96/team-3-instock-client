@@ -1,3 +1,160 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
 ul {
   padding: 0;
+}
+
+.warehouse-list {
+  margin: 0;
+  border-radius: 20px;
+
+  &__header {
+    font-weight: 600;
+    font-size: 1.75rem;
+    margin: 0 0 1rem 0;
+    align-self: flex-start;
+    display: inline-block;
+    @include tablet {
+      margin: 0;
+    }
+  }
+
+  &__search-wrapper {
+    position: relative;
+    width: 100%;
+    @include tablet {
+      width: 50%;
+    }
+    @include desktop {
+      width: 75%;
+    }
+  }
+
+  &__overlay {
+    position: absolute;
+    width: 100%;
+    height: 2.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 1rem;
+    pointer-events: none;
+  }
+
+  &__search-icon {
+    position: absolute;
+  }
+
+  &__columns {
+    display: none;
+    @include tablet {
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(247, 248, 249, 0.7);
+    }
+  }
+
+  &__sort {
+    margin-left: 0.25rem;
+    &:hover {
+      background-color: #bdc5d5;
+      border-radius: 20px;
+    }
+  }
+
+  &__column {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    &--address {
+      @include tablet {
+        width: 9.375rem;
+      }
+      @include desktop {
+        width: 13.5rem;
+      }
+    }
+    &--name {
+      @include tablet {
+        width: 7rem;
+      }
+    }
+    &--actions {
+      @include tablet {
+        width: 4rem;
+      }
+    }
+  }
+
+  &__text {
+    font-size: 0.75rem;
+  }
+
+  &__actions {
+    font-size: 0.75rem;
+    margin-left: auto;
+  }
+
+  &__top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+    @include tablet {
+      padding: 2rem 2rem 0 2rem;
+      flex-direction: row;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+    &-container {
+      width: 100%;
+      @include tablet {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        width: 50%;
+        margin-left: auto;
+      }
+    }
+  }
+
+  &__search {
+    display: inline-block;
+    height: 2.25rem;
+    width: 100%;
+    border-radius: 1.25rem;
+    padding: 1rem;
+    border: 1px solid #bdc5d5;
+    &:focus {
+      border: 1px solid #2e66e5;
+      outline: none;
+    }
+  }
+
+  &__button {
+    background-color: #2e66e5;
+    display: inline-block;
+    border: none;
+    border-radius: 20px;
+    padding: 0.5rem;
+    color: white;
+    margin: 1rem 0;
+    width: 100%;
+    @include tablet {
+      margin: 0;
+    }
+    &-wrapper {
+      width: 100%;
+      @include tablet {
+        width: 50%;
+      }
+      @include desktop {
+        width: 40%;
+      }
+    }
+  }
 }

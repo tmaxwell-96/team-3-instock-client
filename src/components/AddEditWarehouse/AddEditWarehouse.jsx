@@ -1,20 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import {useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import "./AddEditWarehouse.scss";
 import { useParams } from 'react-router-dom';
+import backArrow from "../../assets/Icons/arrow_back-24px.svg";
 
 const AddEditWarehouse = () =>{
     const [formData, setFormData] = useState({});
-    const [warehouseData, setWarehouseData] = useState([]);
+    const navigate = useNavigate();
     const {id} = useParams();
-    
     const isEditMode = !!id;
 
     useEffect(() =>{
         if (isEditMode){
             const getWarehouseDataById = async () =>{
                 const response = await axios.get(`http://localhost:8080/warehouses/${id}`);
-                setWarehouseData(response.data);
+                setFormData(response.data);
                 console.log(response.data);
             }
             getWarehouseDataById();
@@ -25,6 +26,8 @@ const AddEditWarehouse = () =>{
     const handleSubmit = async(e) => {
         e.preventDefault();
         if (isEditMode){
+            const data = formData;
+            console.log(data);
             const response = await axios.put(`http://localhost:8080/warehouses/${id}`, formData);
         }
         else{
@@ -32,6 +35,7 @@ const AddEditWarehouse = () =>{
         }
         
         setFormData('');
+        navigate("/");
       };
 
     const handleChange = (e) => {
@@ -45,109 +49,145 @@ const AddEditWarehouse = () =>{
     };
     return(
         <>
-            <div className="header-pannel">
-                <h1 className="header-title">
-                {isEditMode ? 'Edit Warehouse' : 'Add New Warehouse'}
-                </h1> 
+        <div className='pannel-1'>
+
+        </div>
+        <div className="warehouse">
+            <div className="warehouse__header">
+                <Link className='warehouse__arrow-link' to={"/"}>
+                    <img src={backArrow} alt="back arrow" />
+                    <h1 className="warehouse__header-title">
+                        {isEditMode ? 'Edit Warehouse' : 'Add New Warehouse'}
+                    </h1>
+                </Link>
             </div>
             <form onSubmit={handleSubmit}>
-
-            <div className="body-pannel">
-                <div className="warehouse-details">
-                    <h2 className="sub-header">Warehouse Details</h2>
+                <div className="warehouse__body">
+                <div className="warehouse__details">
+                    <h2 className="warehouse__sub-header">Warehouse Details</h2>
                     <div>
-                        <h4 className="lbl">Warehouse Name</h4>
-                        <input 
-                            className="input-fld" 
+                        <h3 className="warehouse__lbl">Warehouse Name</h3>
+                        <input  
                             type="text" 
                             name="warehouse_name"
-                            value={warehouseData.warehouse_name}
+                            placeholder='Warehouse Name'
+                            value={formData.warehouse_name}
                             onChange={handleChange}
+                            className={`warehouse__form-input ${
+                                formData.warehouse_name ? "" : "warehouse__form-input--invalid"
+                              }`}
                         />
                     </div> 
                     <div>
-                        <h4 className="lbl">Street Address</h4>
+                        <h3 className="warehouse__lbl">Street Address</h3>
                         <input 
-                            className="input-fld" 
                             type="text" 
                             name="address"
-                            value={warehouseData.address}
+                            placeholder='Address'
+                            value={formData.address}
                             onChange={handleChange}
+                            className={`warehouse__form-input ${
+                                formData.address ? "" : "warehouse__form-input--invalid"
+                              }`}
                             />
                     </div> 
                     <div>
-                        <h4 className="lbl">City</h4>
-                        <input 
-                            className="input-fld" 
+                        <h3 className="warehouse__lbl">City</h3>
+                        <input  
                             type="text" 
                             name="city"
-                            value={warehouseData.city}
-                            onChange={handleChange}/>
+                            placeholder='City'
+                            value={formData.city}
+                            onChange={handleChange}
+                            className={`warehouse__form-input ${
+                                formData.city ? "" : "warehouse__form-input--invalid"
+                              }`}
+                            />
                     </div> 
                     <div>
-                        <h4 className="lbl">Country</h4>
+                        <h3 className="warehouse__lbl">Country</h3>
                         <input 
-                            className="input-fld" 
                             type="text" 
                             name="country"
-                            value={warehouseData.country}
-                            onChange={handleChange}/>
+                            placeholder='Country'
+                            value={formData.country}
+                            onChange={handleChange}
+                            className={`warehouse__form-input ${
+                                formData.country ? "" : "form__form-input--invalid"
+                              }`}
+                            />
                     </div> 
                     
                 </div>
-                <div className="contact-details">
-                <h2 className="sub-header">Contact Details</h2>
-                <div>
-                        <h4 className="lbl">Contact Name</h4>
+                <div class="warehouse__vertical-line"></div>
+                <div className="warehouse__details">
+                    <h2 className="warehouse__sub-header">Contact Details</h2>
+                    <div>
+                        <h3 className="warehouse__lbl">Contact Name</h3>
                         <input 
-                            className="input-fld" 
                             type="text" 
                             name="contact_name"
-                            value={warehouseData.contact_name}
-                            onChange={handleChange}/>
+                            placeholder='Contact Name'
+                            value={formData.contact_name}
+                            onChange={handleChange}
+                            className={`warehouse__form-input ${
+                                formData.contact_name ? "" : "warehouse__form-input--invalid"
+                              }`}
+                        />
                     </div> 
                     <div>
-                        <h4 className="lbl">Position</h4>
-                        <input 
-                            className="input-fld" 
+                        <h3 className="warehouse__lbl">Position</h3>
+                        <input  
                             type="text" 
                             name="contact_position"
-                            value={warehouseData.contact_position}
-                            onChange={handleChange}/>
+                            placeholder='Position'
+                            value={formData.contact_position}
+                            onChange={handleChange}
+                            className={`warehouse__form-input ${
+                                formData.contact_position ? "" : "warehouse__form-input--invalid"
+                              }`}
+                        />
                     </div> 
                     <div>
-                        <h4 className="lbl">Phone Number</h4>
+                        <h3 className="warehouse__lbl">Phone Number</h3>
                         <input 
-                            className="input-fld" 
                             type="text" 
                             name="contact_phone"
-                            value={warehouseData.contact_phone}
-                            onChange={handleChange}/>
+                            placeholder='Phone Number'
+                            value={formData.contact_phone}
+                            onChange={handleChange}
+                            className={`warehouse__form-input ${
+                                formData.contact_phone ? "" : "warehouse__form-input--invalid"
+                              }`}
+                        />
                     </div> 
                     <div>
-                        <h4 className="lbl">Email</h4>
+                        <h3 className="warehouse__lbl">Email</h3>
                         <input 
-                            className="input-fld" 
                             type="text" 
                             name="contact_email"
-                            value={warehouseData.contact_email}
-                            onChange={handleChange}/>
+                            placeholder='Email'
+                            required
+                            value={formData.contact_email}
+                            onChange={handleChange}
+                            className={`warehouse__form-input ${
+                                formData.contact_email ? "" : "warehouse__form-input--invalid"
+                              }`}
+                        />
                     </div>
-
                 </div>
-
-            </div>
-            <div className="footer-pannel">
-                <button onClick={handleCancel} className="btn-cancel">Cancel</button>
-                <button className="btn-add">
-                {isEditMode ? 'Save' : 'Add Warehouse'}
-                </button>
-            </div>
+                </div>
+                <div className="warehouse__button-pannel">
+                    <button onClick={handleCancel} className="warehouse__btn-cancel">Cancel</button>
+                    <button className="warehouse__btn-add">
+                        {isEditMode ? 'Save' : '+ Add Warehouse'}
+                    </button>
+                </div>
             </form>
+        </div>
         
         </>
     );
-
 }
 
 export default AddEditWarehouse;

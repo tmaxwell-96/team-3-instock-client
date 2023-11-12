@@ -1,7 +1,7 @@
-@use "./typography" as *;
+// @use "./typography" as *;
 
-@mixin button-styles {
-     display: inline-flex;
+@mixin button-styles{
+     //display: inline-flex;
      padding: 8px 16px;
      align-items: center;
      gap: 10px;
