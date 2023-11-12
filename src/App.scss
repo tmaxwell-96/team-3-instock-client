@@ -1,6 +1,12 @@
 @use "./styles/partials/typography" as *;
 @use "./styles/partials/mixins" as *;
 
+
+html {
+
+    background-color: #F7F8F9;
+}
+
 body {
     font-family: "Titillium-Web";
 }
@@ -38,7 +44,7 @@ body {
 }
 
 &__container {
-    background-color: white;
+    // background-color: white;
     width: 95%;
     height: 100vh;
 

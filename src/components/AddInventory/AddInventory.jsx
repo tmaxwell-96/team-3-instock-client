@@ -140,7 +140,7 @@ const AddInventory = () => {
     <div className="add-inventory">
       <header className="add-inventory__header">
         <Link to={`/inventory`}>
-          <img src={backArrow} alt="back arrow" />
+          <img className="add-inventory__arrow" src={backArrow} alt="back arrow" />
         </Link>
 
         <h2 className="add-inventory__title">Add new inventory item</h2>

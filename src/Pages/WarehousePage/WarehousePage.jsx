@@ -7,7 +7,7 @@ import WarehouseDetail from "../../components/WarehouseDetail/WarehouseDetail";
 
 const WarehousePage = () => {
   return (
-    <div>
+    <div className="WarehousePage">
       {/* <MainNav/> */}
 
       <WarehouseList />

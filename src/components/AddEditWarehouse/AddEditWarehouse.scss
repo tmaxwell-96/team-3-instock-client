@@ -3,14 +3,17 @@
 @use './../../styles/partials/buttons' as *;
 
 .warehouse{
-    padding: 1rem;
     
-    @include tablet{
-        padding: 0 1.5rem;
-    }
-    @include desktop{
-        padding: 0 1.5rem;
-    }
+    border-radius: 3px;
+    background-color: white;
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(105, 101, 101, 0.19);
+    
+    // @include tablet{
+    //     padding: 0 1.5rem;
+    // }
+    // @include desktop{
+    //     padding: 0 1.5rem;
+    // }
     
     &__header{
         border-bottom: 1px solid $colour-secondary-Cloud;
@@ -20,12 +23,15 @@
         display: flex;
         text-decoration: none;
         color: $colour-primary-InstockBlack;
-        justify-content: center;
+        justify-content: flex-start;
         width: 100%;
         margin: 1rem 0;
+        padding-left: 2rem;
+        padding-top: 1.5rem;
         
         @include tablet{
             justify-content: left;
+            padding-top: 0.6rem;
         }
     }
     &__header-title{
@@ -51,6 +57,8 @@
 
     }
     &__details{
+
+        padding-left: 2rem;
         
         @include tablet{
             flex-direction: row;
@@ -104,6 +112,8 @@
         padding: 1rem;
         background-color: $colour-background-LightGrey;
         display: flex;
+        width:100%;
+
         
         @include tablet{
             flex-direction: row;

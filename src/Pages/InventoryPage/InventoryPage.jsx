@@ -3,7 +3,7 @@ import InventoryList from "../../components/InventoryList/InventoryList";
 
 function InventoryPage() {
   return (
-    <div>
+    <div className="InvPage">
       <InventoryList />
     </div>
   );
