@@ -4,39 +4,59 @@ import axios from 'axios';
 import "./AddEditWarehouse.scss";
 import { useParams } from 'react-router-dom';
 import backArrow from "../../assets/Icons/arrow_back-24px.svg";
+import ErrorIcon from "./../../assets/Icons/error-24px.svg";
 
 const AddEditWarehouse = () =>{
-    const [formData, setFormData] = useState({});
     const navigate = useNavigate();
     const {id} = useParams();
     const isEditMode = !!id;
+    const [formData, setFormData] = useState({
+        warehouse_name:'',
+        address:'',
+        city:'',
+        country:'',
+        contact_name:'',
+        contact_position:'',
+        contact_phone:'',
+        contact_email:'',
+    });
 
-    useEffect(() =>{
-        if (isEditMode){
-            const getWarehouseDataById = async () =>{
-                const response = await axios.get(`http://localhost:8080/warehouses/${id}`);
-                setFormData(response.data);
-                console.log(response.data);
-            }
-            getWarehouseDataById();
-        }
-        
-    }, [id, isEditMode]);
+    const [error, setError] = useState({
+        warehouse_name:'',
+        address:'',
+        city:'',
+        country:'',
+        contact_name:'',
+        contact_position:'',
+        contact_phone:'',
+        contact_email:'',
+    });
 
-    const handleSubmit = async(e) => {
-        e.preventDefault();
-        if (isEditMode){
-            const data = formData;
-            console.log(data);
-            const response = await axios.put(`http://localhost:8080/warehouses/${id}`, formData);
+    const validateForm = () =>{
+        const newFormErrors = {};
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const phoneRegex = /^\+\d{1,2} \(\d{3}\) \d{3}-\d{4}$/;
+        if (formData.warehouse_name.trim() === ''){
+            
+            newFormErrors.warehouse_name = 'Warehouse name is required';
+        }else if(formData.address.trim() === ''){
+            newFormErrors.address = 'Address is required';
+        }else if(formData.city.trim() === ''){
+            newFormErrors.city = 'City is required';
+        }else if(formData.country.trim() === ''){
+            newFormErrors.country = 'Country is required';
+        }else if(formData.contact_name.trim() === ''){
+            newFormErrors.contact_name = 'Contact name is required';
+        }else if(formData.contact_position.trim() === ''){
+            newFormErrors.contact_position = 'Contact position is required';
+        }else if(!phoneRegex.test(formData.contact_phone)){
+            newFormErrors.contact_phone = 'Contact phone is invalid';
+        }else if(!emailRegex.test(formData.contact_email)){
+            newFormErrors.contact_email = 'Contact email is invalid';
         }
-        else{
-            const response = await axios.post("http://localhost:8080/warehouses", formData);
-        }
-        
-        setFormData('');
-        navigate("/");
-      };
+        setError(newFormErrors);
+        return Object.keys(newFormErrors).length === 0;
+    }
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -47,6 +67,36 @@ const AddEditWarehouse = () =>{
         e.preventDefault();
         window.history.back();
     };
+
+    const handleSubmit = async(e) => {
+        e.preventDefault();
+
+        const isValid = validateForm();
+
+        if (isEditMode && isValid){
+            const data = formData;
+            console.log(data);
+            const response = await axios.put(`http://localhost:8080/warehouses/${id}`, formData);
+            setFormData('');
+            navigate("/");
+        }else if(isValid){
+            const response = await axios.post("http://localhost:8080/warehouses", formData);
+            setFormData('');
+            navigate("/");
+        }
+      };
+
+    useEffect(() =>{
+        if (isEditMode){
+            const getWarehouseDataById = async () =>{
+                const response = await axios.get(`http://localhost:8080/warehouses/${id}`);
+                setFormData(response.data);
+                console.log(response.data);
+            }
+            getWarehouseDataById();
+        }
+    }, [id, isEditMode]);
+
     return(
         <>
         <div className='pannel-1'>
@@ -77,6 +127,12 @@ const AddEditWarehouse = () =>{
                                 formData.warehouse_name ? "" : "warehouse__form-input--invalid"
                               }`}
                         />
+                         {error.warehouse_name && (
+                            <div className="warehouse__error-container">
+                            <img src={ErrorIcon} alt="Error" /> <div className="warehouse__error-message">{error.warehouse_name}</div>
+                            </div>
+                        )}
+                        
                     </div> 
                     <div>
                         <h3 className="warehouse__lbl">Street Address</h3>
@@ -90,6 +146,11 @@ const AddEditWarehouse = () =>{
                                 formData.address ? "" : "warehouse__form-input--invalid"
                               }`}
                             />
+                            {error.address && (
+                            <div className="warehouse__error-container">
+                            <img src={ErrorIcon} alt="Error" /> <div className="warehouse__error-message">{error.address}</div>
+                            </div>
+                        )}
                     </div> 
                     <div>
                         <h3 className="warehouse__lbl">City</h3>
@@ -101,8 +162,14 @@ const AddEditWarehouse = () =>{
                             onChange={handleChange}
                             className={`warehouse__form-input ${
                                 formData.city ? "" : "warehouse__form-input--invalid"
-                              }`}
-                            />
+                            }`}
+                        />
+                        {error.city && (
+                            <div className="warehouse__error-container">
+                            <img src={ErrorIcon} alt="Error" /> <div className="warehouse__error-message">{error.city}</div>
+                            </div>
+                        )}
+
                     </div> 
                     <div>
                         <h3 className="warehouse__lbl">Country</h3>
@@ -115,11 +182,16 @@ const AddEditWarehouse = () =>{
                             className={`warehouse__form-input ${
                                 formData.country ? "" : "form__form-input--invalid"
                               }`}
-                            />
+                        />
+                        {error.country && (
+                            <div className="warehouse__error-container">
+                            <img src={ErrorIcon} alt="Error" /> <div className="warehouse__error-message">{error.country}</div>
+                            </div>
+                        )}    
                     </div> 
                     
                 </div>
-                <div class="warehouse__vertical-line"></div>
+                <div className="warehouse__vertical-line"></div>
                 <div className="warehouse__details">
                     <h2 className="warehouse__sub-header">Contact Details</h2>
                     <div>
@@ -134,6 +206,11 @@ const AddEditWarehouse = () =>{
                                 formData.contact_name ? "" : "warehouse__form-input--invalid"
                               }`}
                         />
+                        {error.contact_name && (
+                            <div className="warehouse__error-container">
+                            <img src={ErrorIcon} alt="Error" /> <div className="warehouse__error-message">{error.contact_name}</div>
+                            </div>
+                        )}
                     </div> 
                     <div>
                         <h3 className="warehouse__lbl">Position</h3>
@@ -147,6 +224,11 @@ const AddEditWarehouse = () =>{
                                 formData.contact_position ? "" : "warehouse__form-input--invalid"
                               }`}
                         />
+                        {error.contact_position && (
+                            <div className="warehouse__error-container">
+                            <img src={ErrorIcon} alt="Error" /> <div className="warehouse__error-message">{error.contact_position}</div>
+                            </div>
+                        )}
                     </div> 
                     <div>
                         <h3 className="warehouse__lbl">Phone Number</h3>
@@ -160,6 +242,11 @@ const AddEditWarehouse = () =>{
                                 formData.contact_phone ? "" : "warehouse__form-input--invalid"
                               }`}
                         />
+                        {error.contact_phone && (
+                            <div className="warehouse__error-container">
+                            <img src={ErrorIcon} alt="Error" /> <div className="warehouse__error-message">{error.contact_phone}</div>
+                            </div>
+                        )}
                     </div> 
                     <div>
                         <h3 className="warehouse__lbl">Email</h3>
@@ -167,13 +254,17 @@ const AddEditWarehouse = () =>{
                             type="text" 
                             name="contact_email"
                             placeholder='Email'
-                            required
                             value={formData.contact_email}
                             onChange={handleChange}
                             className={`warehouse__form-input ${
                                 formData.contact_email ? "" : "warehouse__form-input--invalid"
                               }`}
                         />
+                        {error.contact_email && (
+                            <div className="warehouse__error-container">
+                            <img src={ErrorIcon} alt="Error" /> <div className="warehouse__error-message">{error.contact_email}</div>
+                            </div>
+                        )}
                     </div>
                 </div>
                 </div>
