@@ -105,6 +105,12 @@ const EditInventory = () => {
     editInventoryItem(event);
   };
 
+  //handle Cancel
+  const handleCancel = (e) => {
+    e.preventDefault();
+    window.history.back();
+  };
+
   return (
     <div className="edit-inventory">
       <header className="edit-inventory__header">
@@ -116,6 +122,7 @@ const EditInventory = () => {
       </header>
       <form className="edit-inventory__form">
         <section className="edit-inventory__details-container">
+          <h3 className="edit-inventory__subheading">Item Details</h3>
           <p className="edit-inventory__label">Item Name</p>
           <input
             className="edit-inventory__input"
@@ -126,7 +133,7 @@ const EditInventory = () => {
           />
           <p className="edit-inventory__label">Description</p>
           <textarea
-            className="edit-inventory__description"
+            className="edit-inventory__description edit-inventory__input"
             name=""
             placeholder={fieldDetails.description}
             onChange={handleDescrptionChange}
@@ -134,13 +141,16 @@ const EditInventory = () => {
           ></textarea>
           <p className="edit-inventory__label">Category</p>
           <select
+            className="edit-inventory__pulltag"
             onChange={handleCategoryChange}
             value={category}
             name=""
             id=""
-            placeholder="Please select"
+            placeholder="Please select "
           >
-            <option value="">Please Select</option>
+            {/* <option className="edit-inventory__pulltag" value="">
+              Please Select
+            </option> */}
             {inventoryList.map((uniqueCategory, index) => {
               return (
                 <option key={index} value={uniqueCategory}>
@@ -161,7 +171,10 @@ const EditInventory = () => {
               name="inStock"
               id=""
             />{" "}
-            <label className="edit-inventory__radio-label" htmlFor="inStock">
+            <label
+              className="edit-inventory__radio-label edit-inventory__radio-label-left"
+              htmlFor="inStock"
+            >
               In Stock
             </label>
             <input
@@ -171,7 +184,7 @@ const EditInventory = () => {
               name="outStock"
               id=""
             />{" "}
-            <label className="edit-inventory__radio-label" htmlFor="outstock">
+            <label className="edit-inventory__radio-label " htmlFor="outstock">
               Out of Stock
             </label>
           </div>
@@ -180,6 +193,7 @@ const EditInventory = () => {
             Warehouse
           </p>
           <select
+            className="edit-inventory__pulltag"
             onChange={handleWarehousehange}
             value={warehouse}
             name="warehouse"
@@ -194,14 +208,17 @@ const EditInventory = () => {
               );
             })}
           </select>
-          <div className="edit-inventory__buttons">
-            <button className="edit-inventory__cancel">Cancel</button>
-            <button onClick={handleSubmit} className="edit-inventory__submit">
-              Save
-            </button>
-          </div>
         </section>
       </form>
+      <div className="edit-inventory__button-pannel">
+        <button onClick={handleCancel} className="edit-inventory__btn-cancel">
+          Cancel
+        </button>
+        <button className="edit-inventory__btn-add">
+          <p>Save</p>
+          {/* {isEditMode ? "Save" : "+ Add Warehouse"} */}
+        </button>
+      </div>
     </div>
   );
 };
