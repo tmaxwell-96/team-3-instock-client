@@ -93,7 +93,7 @@
   }
 
   &__buttons {
-    // margin-top: 3%;
+    margin-top: 3%;
     background: rgba(247, 248, 249, 0.70);
   
     min-height: 68px;
@@ -103,10 +103,23 @@
     align-items: center;
 
 
+    @include tablet {
+      justify-content: flex-end;
+      padding-right: 1.5rem;
+      
+    }
+
+
   &__buttonbox{
     display: flex;
     justify-content: center;
     width:100%;
+
+    // @include tablet {
+    //   margin-right: 2rem;
+      
+    // }
+
 
     
   }
@@ -150,7 +163,6 @@
            background: #FFF;
            color: #2E66E5;
          }
-
   }
 
 
@@ -175,9 +187,15 @@
 
      border: none;
      background: #2E66E5;
+     
    
      &:hover {
        background: #232940;
+     }
+
+     @include tablet {
+      padding: 8px 33px;
+
      }
 
   }
