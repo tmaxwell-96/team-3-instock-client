@@ -1,93 +1,157 @@
-@use './../../styles/partials/mixins';
-@use './../../styles/partials/colors';
-@use './../../styles/partials/buttons';
+@use './../../styles/partials/mixins' as *;
+@use './../../styles/partials/colors' as *;
+@use './../../styles/partials/buttons' as *;
 
-*{
-    box-sizing: border-box;
-    border: 1px solid black;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.header-pannel{
-    border-bottom: 1px solid silver;
-}
-.header-title{
-    margin: 1.8rem 0;
-}
-.sub-header{
-    margin: 0;
-    padding: 0;
-}
-
-.body-pannel{
-    display: flex;
-    justify-content: center;
+.warehouse{
+    padding: 1rem;
     
+    @include tablet{
+        padding: 0 2.5rem;
+    }
+    @include desktop{
+        padding: 0 8.5rem;
+    }
     
-}
-.warehouse-details{
-    width: 50%;
-    padding: 2rem;
-}
-.contact-details{
-    width: 50%;
-    padding: 2rem;
-    border-left: 1px solid silver;
-}
+    &__header{
+        border-bottom: 1px solid $colour-secondary-Cloud;
+    }
+    &__arrow-link{
+        display: flex;
+        text-decoration: none;
+        color: $colour-primary-InstockBlack;
+        justify-content: center;
+        width: 100%;
+        @include tablet{
+            justify-content: left;
+        }
+    }
+    &__header-title{
+        margin: 0;
+        padding: 0;
+        width: 270px;
+        height: 36px;
+        font-weight: 600;
+        @include tablet{
+            margin: 1rem 0;
+        }
+        @include desktop{
+            margin: 1rem 0;
+        }
+    }
+    &__body{
+        display: flex;
+        flex-direction: column;
 
-.lbl{
-    padding: 0;
-    margin: 0;
-    text-align: left;
-    font-weight: 400;
-    margin-bottom: 4px;
-}
-h2{
-    text-align: left; 
-   
-}
+        @include tablet{
+            flex-direction: row;
+        }
 
-.input-fld{
-    height: 38px;
-    border-radius: 20px;
-    width: 100%;
-    margin-bottom: 1rem;
-    border: 1px solid gray;
-    padding-left: 1rem;
+    }
+    &__details{
+        
+        @include tablet{
+            flex-direction: row;
+            border-bottom: none;
+            width: 50%;
+        }
+        
+    }
+    &__sub-header{
+        width: 180px;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 28px;
+        margin: 0;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        padding: 0;
+    }
+    &__lbl{
+        font-size: 13px;
+        line-height: 20px;
+        font-weight: 600;
+    }
+    &__form-input{
+        height: 38px;
+        border-radius: 20px;
+        width: 100%;
+        margin-bottom: 1rem;
+        border: 1px solid $colour-secondary-Cloud;
+        padding-left: 1rem;
+
+        &--invalid{
+            border-color: $colour-supporting-Red;
+        }
+        &:active{
+            border-color: $colour-primary-InstockIndigo;
+        }
+        &:focus{
+            border-color: $colour-secondary-Cloud;
+        }
+
+        @include tablet{
+            width: 100%;
+        }
+
+        @include desktop{
+            width: 100%;
+        }
+    }
+    &__button-pannel{
+        padding: 1rem;
+        background-color: $colour-background-LightGrey;
+        display: flex;
+        
+        @include tablet{
+            flex-direction: row;
+            justify-content: right;
+        }
+    }
+
+    &__btn-add{
+       @include button-styles;
+        border: none;
+        font-weight: 400;
+        background: #2E66E5;
+        width: 139px;
+        height: 36px;
+        &:hover {
+            background: #232940;
+        }
+
+        @include tablet{
+            height: 38px
+        }
+    }
+    &__btn-cancel{
+        @include button-styles;
+        border: 1px solid #BDC5D5;
+        background: #FFF;
+        color: #5C667E;
+        font-weight: 400;
+        width: auto;
+        height: 36px;
+        @include tablet{
+            height: 38px
+        }
     
-    
+        &:hover {
+            background: #FFF;
+            color: #2E66E5;
+        }
+    }
+    &__vertical-line{
+        border-bottom: 1px solid $colour-secondary-Cloud;
+        @include tablet{
+            margin: 1rem 1rem;
+            height: 340px;
+            border-right: 1px solid $colour-secondary-Cloud;
+        }
+        @include desktop{
+            margin: 1rem 1rem;
+            height: 340px;
+            border-right: 1px solid $colour-secondary-Cloud;
+        }
+    }
 }
 
-.footer-pannel{
-    height: 67px;
-    background-color: #bdc5d5; 
-}
-.btn-cancel{
-    border-radius: 20px;
-    border: 1px solid silver;
-    height: 38px;
-    width: 80px;
-}
-.btn-add{
-    border-radius: 20px;
-    border: 1px solid silver;
-    height: 38px;
-    width: 120px;
-    background-color: #2e66e5;
-    color: white;
-
-}
