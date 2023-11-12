@@ -11,11 +11,16 @@
     @include tablet{
         width: 500px;
         height: 100px;
-        margin: 2.5rem 2.5rem;
+        margin: 1.5rem 2.5rem;
+    }
+    @include tablet{
+        margin: 8.5rem;
+        width: auto;
+
     }
     @include desktop{
-        margin: 5.5rem;
-        width: 500px;
+        margin: 15.5rem;
+        width: auto;
     }
     
 }

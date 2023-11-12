@@ -6,14 +6,15 @@
     padding: 1rem;
     
     @include tablet{
-        padding: 0 2.5rem;
+        padding: 0 1.5rem;
     }
     @include desktop{
-        padding: 0 8.5rem;
+        padding: 0 1.5rem;
     }
     
     &__header{
         border-bottom: 1px solid $colour-secondary-Cloud;
+        height: 80px;
     }
     &__arrow-link{
         display: flex;
@@ -21,6 +22,8 @@
         color: $colour-primary-InstockBlack;
         justify-content: center;
         width: 100%;
+        margin: 1rem 0;
+        
         @include tablet{
             justify-content: left;
         }
