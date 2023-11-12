@@ -4,10 +4,10 @@
 .warehouse-inventory-card {
   padding: 1rem;
   @include tablet {
-    width: 100%;
+    max-width: 90%;
+    // width: 90%;
     padding: 1rem;
     display: flex;
-
     justify-content: space-between;
   }
 
@@ -20,29 +20,36 @@
     }
   }
 
-  &__container-left,
-  &__container-right {
+  &__container-left {
+    // height: 130px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     @include tablet {
-      width: 100%;
+      width: 70%;
       flex-direction: row;
-      justify-content: space-around;
+      justify-content: space-between;
+      padding: 0;
     }
-  }
-
-  &__container-left {
-    height: 140px;
   }
 
   &__container-right {
     padding-left: 3rem;
+    @include tablet {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      padding: 0;
+    }
   }
 
   &__item-container,
   &__category-container {
     padding-bottom: 1rem;
+    @include tablet {
+      width: 120px;
+    }
   }
 
   &__txt {
