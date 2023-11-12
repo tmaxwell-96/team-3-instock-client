@@ -51,6 +51,60 @@ const WarehouseList = () => {
     getWarehouses();
   };
 
+  //Sort list functions
+
+  const sortByName = () => {
+    const nameSort = [...warehouseList].sort((a, b) => {
+      if (a.warehouse_name < b.warehouse_name) {
+        return -1;
+      }
+      if (a.warehouse_name > b.warehouse_name) {
+        return 1;
+      }
+      return 0;
+    });
+    setWarehouseList(nameSort);
+  };
+
+  const sortByAddress = () => {
+    const addressSort = [...warehouseList].sort((a, b) => {
+      if (a.address < b.address) {
+        return -1;
+      }
+      if (a.address > b.address) {
+        return 1;
+      }
+      return 0;
+    });
+    setWarehouseList(addressSort);
+  };
+
+  const sortByContactName = () => {
+    const contactSort = [...warehouseList].sort((a, b) => {
+      if (a.contact_name < b.contact_name) {
+        return -1;
+      }
+      if (a.contact_name > b.contact_name) {
+        return 1;
+      }
+      return 0;
+    });
+    setWarehouseList(contactSort);
+  };
+
+  const sortByInfo = () => {
+    const infoSort = [...warehouseList].sort((a, b) => {
+      if (a.contact_email < b.contact_email) {
+        return -1;
+      }
+      if (a.contact_email > b.contact_email) {
+        return 1;
+      }
+      return 0;
+    });
+    setWarehouseList(infoSort);
+  };
+
   return (
     <>
       <div className="warehouse-list">
@@ -90,6 +144,7 @@ const WarehouseList = () => {
               className="warehouse-list__sort"
               src={filterIcon}
               alt="sort icon"
+              onClick={sortByName}
             />
           </div>
 
@@ -99,6 +154,7 @@ const WarehouseList = () => {
               className="warehouse-list__sort"
               src={filterIcon}
               alt="sort icon"
+              onClick={sortByAddress}
             />
           </div>
 
@@ -108,6 +164,7 @@ const WarehouseList = () => {
               className="warehouse-list__sort"
               src={filterIcon}
               alt="sort icon"
+              onClick={sortByContactName}
             />
           </div>
 
@@ -117,6 +174,7 @@ const WarehouseList = () => {
               className="warehouse-list__sort"
               src={filterIcon}
               alt="sort icon"
+              onClick={sortByInfo}
             />
           </div>
 
