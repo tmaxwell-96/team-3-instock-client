@@ -33,6 +33,10 @@
     }
   }
   &__edit-wrapper {
+    &:hover {
+      background-color: #232940;
+    }
+    text-decoration: none;
     margin-left: auto;
     display: flex;
     justify-content: center;

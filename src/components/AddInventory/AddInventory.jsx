@@ -122,10 +122,13 @@ const AddInventory = () => {
       description: itemDescription,
       category: category,
       status: status,
-      quantity: quantity,
+      quantity: Number(quantity),
     };
     if (isEditMode) {
-      await axios.put(`http://localhost:8080/inventory/${id}`);
+      const changeInventory = async (changedInv) => {
+        await axios.put(`http://localhost:8080/inventory/${id}`, changedInv);
+      };
+      changeInventory(newInventory);
     } else {
       const postInventory = async (newInv) => {
         await axios.post("http://localhost:8080/inventory", newInv);
@@ -211,7 +214,7 @@ const AddInventory = () => {
           ></textarea>
           <div
             className={`add-inventory__error-details ${
-              submitted && !itemName
+              submitted && !itemDescription
                 ? "add-inventory__error-details--hidden"
                 : ""
             }`}
@@ -362,7 +365,9 @@ const AddInventory = () => {
       </form>
       <div className="add-inventory__buttons">
         <div className="add-inventory__buttonbox">
-          <button className="add-inventory__cancel">Cancel</button>
+          <Link to="/inventory">
+            <button className="add-inventory__cancel">Cancel</button>
+          </Link>
           <button onClick={handleSubmit} className="add-inventory__submit">
             + Add Item
           </button>
