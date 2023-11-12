@@ -13,19 +13,22 @@ function App() {
   return (
     <div className="app">
       <div className="app__box">
-       <div className="app__navbox">
+        <div className="app__navbox">
           <section className="app__container">
             <BrowserRouter>
               <MainNav />
-              
+
               <Routes>
                 <Route path="/" element={<WarehousePage />} />
-    
+
                 <Route path="/:id" element={<WarehouseDetail />} />
                 <Route path="/edit/:id?" element={<AddEditWarehouse />} />
                 <Route path="/add" element={<AddEditWarehouse />} />
                 <Route path="/inventory" element={<InventoryPage />} />
-                <Route path="/inventory/:id" element={<InventoryItemDetail />} />
+                <Route
+                  path="/inventory/:id"
+                  element={<InventoryItemDetail />}
+                />
                 <Route path="/inventory/add" element={<AddInventory />} />
                 <Route path="/inventory/edit/:id" element={<EditInventory />} />
               </Routes>
@@ -33,11 +36,9 @@ function App() {
 
             <Footer />
           </section>
-
+        </div>
       </div>
-      </div>
-   </div>
-
+    </div>
   );
 }
 
