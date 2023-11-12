@@ -1,15 +1,153 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
 .warehouse-card {
+  font-size: 0.8125rem;
   list-style-type: none;
-  margin: 0;
-  padding: 0;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: 2rem;
-  border-top: 2px solid gray;
+  padding-bottom: 1rem;
+  padding: 1rem 1rem 0 1rem;
+  border-top: 1px solid #bdc5d5;
+  &:hover {
+    background: rgba(46, 102, 229, 0.07);
+  }
+  @include tablet {
+    padding: 1rem 2rem 1rem 2rem;
+  }
 
   &__left,
   &__right {
     margin-right: 1rem;
+    @include tablet {
+      display: flex;
+      align-items: center;
+    }
+    @include tablet {
+      margin: 0;
+    }
+  }
+
+  &__column {
+    border: 1px solid red;
+    @include tablet {
+      &-warehouse {
+        width: 6.0275rem;
+      }
+    }
+  }
+
+  &__left {
+    &-top,
+    &-bottom {
+      margin-bottom: 1rem;
+    }
+    @include tablet {
+      display: flex;
+      justify-content: space-between;
+      width: 6.0275rem;
+    }
+  }
+
+  &__address {
+    &--mobile {
+      display: inline-block;
+      @include tablet {
+        display: none;
+      }
+    }
+    &--wide {
+      display: none;
+      @include tablet {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        width: 9.375rem;
+      }
+      @include desktop {
+        display: flex;
+        gap: 1rem;
+        justify-content: flex-start;
+        width: 13.5rem;
+        flex-wrap: wrap;
+      }
+    }
+  }
+
+  &__contact {
+    display: none;
+
+    @include tablet {
+      display: inline-block;
+      width: 9.625rem;
+    }
+  }
+
+  &__contact-trash {
+    display: inline-block;
+    @include tablet {
+      display: none;
+    }
+  }
+
+  &__right {
+    &-top,
+    &-bottom {
+      margin-bottom: 1rem;
+    }
+
+    @include tablet {
+      width: 7rem;
+    }
+  }
+
+  &__text--link {
+    text-decoration: none;
+    color: #2e66e5;
+    display: flex;
+    align-items: flex-end;
+    @include tablet {
+      width: 7rem;
+    }
+  }
+
+  &__label {
+    color: #5c667e;
+    @include tablet {
+      display: none;
+    }
+  }
+
+  &__trash {
+    &--mobile {
+      display: inline-block;
+      @include tablet {
+        display: none;
+      }
+    }
+    &--wide {
+      display: none;
+      @include tablet {
+        display: inline-block;
+      }
+    }
+  }
+
+  &__edit {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    @include tablet {
+      width: max-content;
+      margin-left: 1rem;
+    }
+  }
+
+  &__icons {
+    display: none;
+    @include tablet {
+      display: flex;
+    }
   }
 }

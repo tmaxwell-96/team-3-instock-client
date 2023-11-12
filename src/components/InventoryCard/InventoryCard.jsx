@@ -43,12 +43,13 @@ const InventoryCard = ({ item, deleteInventory }) => {
                   <span className="component__detail">{item.category}</span>
                 </div>
                 <div className="component__txt">
-                  <img
-                    className=" component__icon--delete1"
-                    onClick={openModal}
-                    src={deleteIcon}
-                    alt="delete"
-                  />
+                  <div className=" component__icon--delete1">
+                    <DeleteInventory
+                      modalIsOpen={modalIsOpen}
+                      item={item}
+                      deleteInventory={deleteInventory}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
