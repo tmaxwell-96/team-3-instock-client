@@ -7,11 +7,14 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: 1rem;
+  padding-bottom: 1rem;
   padding: 1rem 1rem 0 1rem;
   border-top: 1px solid #bdc5d5;
+  &:hover {
+    background: rgba(46, 102, 229, 0.07);
+  }
   @include tablet {
-    padding: 2rem 2rem 0 2rem;
+    padding: 1rem 2rem 1rem 2rem;
   }
 
   &__left,
@@ -57,7 +60,9 @@
     &--wide {
       display: none;
       @include tablet {
-        display: inline-block;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
         width: 9.375rem;
       }
       @include desktop {
@@ -75,7 +80,7 @@
 
     @include tablet {
       display: inline-block;
-      width: 7.5rem;
+      width: 9.625rem;
     }
   }
 
@@ -93,7 +98,7 @@
     }
 
     @include tablet {
-      width: 6.126rem;
+      width: 7rem;
     }
   }
 
@@ -102,6 +107,9 @@
     color: #2e66e5;
     display: flex;
     align-items: flex-end;
+    @include tablet {
+      width: 7rem;
+    }
   }
 
   &__label {

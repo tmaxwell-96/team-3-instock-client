@@ -15,11 +15,20 @@ ul {
     margin: 0 0 1rem 0;
     align-self: flex-start;
     display: inline-block;
+    @include tablet {
+      margin: 0;
+    }
   }
 
   &__search-wrapper {
     position: relative;
     width: 100%;
+    @include tablet {
+      width: 50%;
+    }
+    @include desktop {
+      width: 75%;
+    }
   }
 
   &__overlay {
@@ -56,7 +65,24 @@ ul {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    width: auto;
+    &--address {
+      @include tablet {
+        width: 9.375rem;
+      }
+      @include desktop {
+        width: 13.5rem;
+      }
+    }
+    &--name {
+      @include tablet {
+        width: 7rem;
+      }
+    }
+    &--actions {
+      @include tablet {
+        width: 4rem;
+      }
+    }
   }
 
   &__text {
@@ -76,9 +102,19 @@ ul {
     padding: 1rem;
     @include tablet {
       padding: 2rem 2rem 0 2rem;
+      flex-direction: row;
+      align-items: flex-start;
+      margin-bottom: 1rem;
     }
     &-container {
       width: 100%;
+      @include tablet {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        width: 50%;
+        margin-left: auto;
+      }
     }
   }
 
@@ -104,8 +140,17 @@ ul {
     color: white;
     margin: 1rem 0;
     width: 100%;
+    @include tablet {
+      margin: 0;
+    }
     &-wrapper {
       width: 100%;
+      @include tablet {
+        width: 50%;
+      }
+      @include desktop {
+        width: 40%;
+      }
     }
   }
 }

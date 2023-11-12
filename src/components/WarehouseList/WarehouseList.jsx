@@ -84,7 +84,7 @@ const WarehouseList = () => {
         </div>
 
         <div className="warehouse-list__columns">
-          <div className="warehouse-list__column">
+          <div className="warehouse-list__column warehouse-list__column--warehouse">
             <p className="warehouse-list__text">WAREHOUSE</p>
             <img
               className="warehouse-list__sort"
@@ -93,7 +93,7 @@ const WarehouseList = () => {
             />
           </div>
 
-          <div className="warehouse-list__column">
+          <div className="warehouse-list__column warehouse-list__column--address">
             <p className="warehouse-list__text">ADDRESS</p>
             <img
               className="warehouse-list__sort"
@@ -102,7 +102,7 @@ const WarehouseList = () => {
             />
           </div>
 
-          <div className="warehouse-list__column">
+          <div className="warehouse-list__column warehouse-list__column--name">
             <p className="warehouse-list__text">CONTACT NAME</p>
             <img
               className="warehouse-list__sort"
@@ -111,7 +111,7 @@ const WarehouseList = () => {
             />
           </div>
 
-          <div className="warehouse-list__column">
+          <div className="warehouse-list__column warehouse-list__column--info">
             <p className="warehouse-list__text">CONTACT INFORMATION</p>
             <img
               className="warehouse-list__sort"
@@ -120,7 +120,7 @@ const WarehouseList = () => {
             />
           </div>
 
-          <div className="warehouse-list__column">
+          <div className="warehouse-list__column warehouse-list__column--actions">
             <p className="warehouse-list__actions">ACTIONS</p>
           </div>
         </div>
