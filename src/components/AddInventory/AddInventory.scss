@@ -1,6 +1,6 @@
-@use '../../styles/partials/mixins';
-@use '../../styles/partials/colors';
-@use '../../styles/partials/buttons';
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/colors' as *;
+@use '../../styles/partials/buttons'as *;
 
 
 * {
@@ -10,6 +10,7 @@
 .add-inventory {
 
   margin:1rem;
+  height: 100%;
 
   &__header {
     display: flex;
@@ -20,23 +21,35 @@
     padding-bottom: 1rem;
   }
 
-  // &__form{
+  &__form{
 
+    @include tablet {
+    display: flex;
+    height: 45%;
+
+    }
   
   
-  // }
+  }
 
   &__title {
     margin-left: 1rem;
   }
 
   &__subheader {
-
     margin-top:1rem;
     margin-bottom: 1rem;
     font-size: 1.2rem;
     font-weight: 500;
   }
+
+  &__subheader2 {
+    margin-top:1rem;
+    margin-bottom: 0.2rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
 
   &__input {
     &--hidden {
@@ -48,10 +61,19 @@
     margin-bottom: 1rem;
     border-bottom: 1px solid #bdc5d5;
     padding-bottom: 1rem;
+
+    @include tablet {
+      width:50%;
+      border:none;
+      
+    }
   }
+
+  
 
   &__label {
     margin-top: 1rem;
+    font-size: 0.8rem;
     &--hidden {
       display: none;
     }
@@ -61,14 +83,17 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    
   }
 
   &__radio-label {
     margin-right: 1rem;
+    font-size: 0.8rem;
+    color: #5C667E;
   }
 
   &__buttons {
-    margin-top: 1rem;
+    // margin-top: 3%;
     background: rgba(247, 248, 249, 0.70);
   
     min-height: 68px;
@@ -82,6 +107,7 @@
     display: flex;
     justify-content: center;
     width:100%;
+
     
   }
 
@@ -159,6 +185,20 @@
 
 }
 
+.add-availability-container{
+  
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+
+  @include tablet {
+    width:50%;
+    border-left: 1px solid #bdc5d5;
+    padding-left: 2rem;
+    
+  }
+}
+
+
 input[type=text] {
   padding: 0.2rem;
   padding-left:0.5rem;
@@ -171,6 +211,8 @@ input[type=text] {
   border-radius: 20px;
   border: 1px solid var(--Cloud, #BDC5D5);
   background: var(--White, #FFF);
+  margin-top: 0.3rem;
+  width: 90%;
 }
 
 textarea {
@@ -184,6 +226,8 @@ textarea {
   height: 5rem;
   color: #5C667E;
   font-size: 13.5px;
+  margin-top: 0.3rem;
+  width: 90%;
 }
 
 
@@ -197,6 +241,8 @@ select {
   background: var(--White, #FFF);
   color: #5C667E;
   font-size: 13.5px;
+  margin-top: 0.3rem;
+  width: 90%;
 
 }
 
