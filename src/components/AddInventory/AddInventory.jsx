@@ -365,7 +365,9 @@ const AddInventory = () => {
       </form>
       <div className="add-inventory__buttons">
         <div className="add-inventory__buttonbox">
-          <button className="add-inventory__cancel">Cancel</button>
+          <Link to="/inventory">
+            <button className="add-inventory__cancel">Cancel</button>
+          </Link>
           <button onClick={handleSubmit} className="add-inventory__submit">
             + Add Item
           </button>
