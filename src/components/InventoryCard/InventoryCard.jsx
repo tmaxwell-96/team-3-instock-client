@@ -4,6 +4,8 @@ import editIcon from "../../assets/Icons/edit-24px.svg";
 import { Link } from "react-router-dom";
 import { useState, useRef } from "react";
 import Modal from "react-modal";
+import chevronIcon from "../../assets/Icons/chevron_right-24px.svg";
+
 import DeleteInventory from "../DeleteInventory/DeleteInventory";
 
 Modal.setAppElement("#root");
@@ -29,8 +31,11 @@ const InventoryCard = ({ item, deleteInventory }) => {
                 </div>
 
                 <Link to={`/inventory/${item.id}`}>
-                  <div className="component__txt">
-                    <span className="component__detail">{item.item_name}</span>
+                  <div className="warehouse-inventory-card__txt">
+                    <span className="warehouse-inventory-card__detail">
+                      {item.item_name}
+                    </span>
+                    <img src={chevronIcon} alt="chevronIcon" />
                   </div>
                 </Link>
               </div>
@@ -59,8 +64,22 @@ const InventoryCard = ({ item, deleteInventory }) => {
                 <div className="component__subheader component__subheader--column">
                   <span className="component__detail"> STATUS </span>
                 </div>
-                <div className="component__txt">
-                  <span className="component__detail">{item.status} </span>
+                <div
+                  className={`warehouse-inventory-card__stock-wrapper ${
+                    item.status === "In Stock"
+                      ? "warehouse-inventory-card__stock-wrapper--instock"
+                      : "warehouse-inventory-card__stock-wrapper--outstock"
+                  } warehouse-inventory-card__stock-wrapper--instock"`}
+                >
+                  <p
+                    className={`warehouse-inventory-card__text ${
+                      item.status === "In Stock"
+                        ? "warehouse-inventory-card__text--instock"
+                        : "warehouse-inventory-card__text--outstock"
+                    }`}
+                  >
+                    {item.status}
+                  </p>
                 </div>
               </div>
 
