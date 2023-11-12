@@ -124,7 +124,7 @@ const AddEditWarehouse = () =>{
                             value={formData.warehouse_name}
                             onChange={handleChange}
                             className={`warehouse__form-input ${
-                                formData.warehouse_name ? "" : "warehouse__form-input--invalid"
+                                error.warehouse_name ? "warehouse__form-input--invalid" : ""
                               }`}
                         />
                          {error.warehouse_name && (
@@ -143,7 +143,7 @@ const AddEditWarehouse = () =>{
                             value={formData.address}
                             onChange={handleChange}
                             className={`warehouse__form-input ${
-                                formData.address ? "" : "warehouse__form-input--invalid"
+                                error.address ? "warehouse__form-input--invalid" : ""
                               }`}
                             />
                             {error.address && (
@@ -161,7 +161,7 @@ const AddEditWarehouse = () =>{
                             value={formData.city}
                             onChange={handleChange}
                             className={`warehouse__form-input ${
-                                formData.city ? "" : "warehouse__form-input--invalid"
+                                error.city ? "warehouse__form-input--invalid" : ""
                             }`}
                         />
                         {error.city && (
@@ -180,7 +180,7 @@ const AddEditWarehouse = () =>{
                             value={formData.country}
                             onChange={handleChange}
                             className={`warehouse__form-input ${
-                                formData.country ? "" : "form__form-input--invalid"
+                                error.country ? "warehouse__form-input--invalid" : ""
                               }`}
                         />
                         {error.country && (
@@ -203,7 +203,7 @@ const AddEditWarehouse = () =>{
                             value={formData.contact_name}
                             onChange={handleChange}
                             className={`warehouse__form-input ${
-                                formData.contact_name ? "" : "warehouse__form-input--invalid"
+                                error.contact_name ? "warehouse__form-input--invalid" : ""
                               }`}
                         />
                         {error.contact_name && (
@@ -221,7 +221,7 @@ const AddEditWarehouse = () =>{
                             value={formData.contact_position}
                             onChange={handleChange}
                             className={`warehouse__form-input ${
-                                formData.contact_position ? "" : "warehouse__form-input--invalid"
+                                error.contact_position ? "warehouse__form-input--invalid" : ""
                               }`}
                         />
                         {error.contact_position && (
@@ -239,7 +239,7 @@ const AddEditWarehouse = () =>{
                             value={formData.contact_phone}
                             onChange={handleChange}
                             className={`warehouse__form-input ${
-                                formData.contact_phone ? "" : "warehouse__form-input--invalid"
+                                error.contact_phone ? "warehouse__form-input--invalid" : ""
                               }`}
                         />
                         {error.contact_phone && (
@@ -257,7 +257,7 @@ const AddEditWarehouse = () =>{
                             value={formData.contact_email}
                             onChange={handleChange}
                             className={`warehouse__form-input ${
-                                formData.contact_email ? "" : "warehouse__form-input--invalid"
+                                error.contact_email ? "warehouse__form-input--invalid" : ""
                               }`}
                         />
                         {error.contact_email && (
