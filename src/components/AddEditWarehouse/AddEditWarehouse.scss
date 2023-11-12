@@ -74,12 +74,13 @@
         line-height: 20px;
         font-weight: 600;
     }
-    &__form-input{
+    &__form-input-invalid{
         height: 38px;
         border-radius: 20px;
         width: 100%;
         margin-bottom: 1rem;
         border: 1px solid $colour-secondary-Cloud;
+        
         padding-left: 1rem;
 
         &--invalid{
@@ -99,6 +100,12 @@
         @include desktop{
             width: 100%;
         }
+    }
+    &__error-container{
+        display: flex;
+    }
+    &__error-message{
+        color: $colour-supporting-Red;
     }
     &__button-pannel{
         padding: 1rem;
