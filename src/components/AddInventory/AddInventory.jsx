@@ -2,18 +2,20 @@ import "./AddInventory.scss";
 import { useEffect, useState } from "react";
 import backArrow from "../../assets/Icons/arrow_back-24px.svg";
 import error from "../../assets/Icons/error-24px.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 const AddInventory = () => {
+  //Check if edit or add
+  const { id } = useParams();
+  const isEditMode = !!id;
   //State variables for field changes
   const [itemName, setItemName] = useState("");
   const [category, setCategory] = useState();
   const [itemDescription, setItemDescription] = useState("");
   const [status, setStatus] = useState("");
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState("");
   const [warehouse, setWarehouse] = useState();
-  //Will add form validation sson
   const [submitted, setSubmitted] = useState(false);
 
   //Handle change functions
@@ -95,6 +97,22 @@ const AddInventory = () => {
     getWarehouses();
   }, []);
 
+  //Get inventory by id
+  const [inventoryDetails, setInventoryDetails] = useState({});
+
+  useEffect(() => {
+    if (isEditMode) {
+      const getInventoryById = async () => {
+        const response = await axios.get(
+          `http://localhost:8080/inventory/${id}`
+        );
+        setInventoryDetails(response.data[0]);
+        setStatus(response.data[0].status);
+      };
+      getInventoryById();
+    }
+  }, [id, isEditMode]);
+
   //Create new object function
 
   const createInventoryItem = async () => {
@@ -106,13 +124,18 @@ const AddInventory = () => {
       status: status,
       quantity: quantity,
     };
-
-    const postInventory = async (newInv) => {
-      await axios.post("http://localhost:8080/inventory", newInv);
-      console.log(newInventory);
-    };
-    postInventory(newInventory);
+    if (isEditMode) {
+      await axios.put(`http://localhost:8080/inventory/${id}`);
+    } else {
+      const postInventory = async (newInv) => {
+        await axios.post("http://localhost:8080/inventory", newInv);
+      };
+      postInventory(newInventory);
+    }
   };
+
+  if (isEditMode) {
+  }
 
   //Handle Submit Function
   const navigate = useNavigate();
@@ -143,7 +166,9 @@ const AddInventory = () => {
           <img src={backArrow} alt="back arrow" />
         </Link>
 
-        <h2 className="add-inventory__title">Add new inventory item</h2>
+        <h2 className="add-inventory__title">
+          {isEditMode ? `Edit Inventory Item` : `Add new inventory item`}
+        </h2>
       </header>
       <form className="add-inventory__form">
         <section className="add-inventory__details-container">
@@ -154,7 +179,9 @@ const AddInventory = () => {
               submitted && !itemName ? "add-inventory--error" : ""
             }`}
             type="text"
-            placeholder="Item Name"
+            placeholder={
+              isEditMode ? `${inventoryDetails.item_name}` : `Item Name`
+            }
             onChange={handleNameChange}
             value={itemName}
           />
@@ -174,7 +201,11 @@ const AddInventory = () => {
               submitted && !itemDescription ? "add-inventory--error" : ""
             } `}
             name=""
-            placeholder="Please enter a brief item description"
+            placeholder={
+              isEditMode
+                ? `${inventoryDetails.description}`
+                : `Please enter a brief item description`
+            }
             onChange={handleDescrptionChange}
             value={itemDescription}
           ></textarea>
@@ -197,9 +228,10 @@ const AddInventory = () => {
             value={category}
             name=""
             id=""
-            placeholder="Please select"
           >
-            <option value="">Please Select</option>
+            <option value="">
+              {isEditMode ? `${inventoryDetails.category}` : `Please select`}
+            </option>
             {inventoryList.map((uniqueCategory, index) => {
               return (
                 <option key={index} value={uniqueCategory}>
@@ -220,18 +252,19 @@ const AddInventory = () => {
           </div>
         </section>
         <section className="add-availability-container">
-        <p className="add-inventory__subheader"> Item Availability </p>
+          <p className="add-inventory__subheader"> Item Availability </p>
           <div className="add-inventory__radio-container">
-          <p className="add-inventory__subheader2"> Status </p>
+            <p className="add-inventory__subheader2"> Status </p>
             <input
               className={`add-inventory__radio ${
                 submitted && !status ? "add-inventory--error" : ""
               }`}
               onChange={handleStatusChange}
-              value="instock"
+              value="In Stock"
               name="status"
               type="radio"
               id="instock"
+              checked={status === "In Stock"}
             />{" "}
             <label className="add-inventory__radio-label" htmlFor="inStock">
               In Stock
@@ -241,10 +274,11 @@ const AddInventory = () => {
                 submitted && !status ? "add-inventory--error" : ""
               }`}
               onChange={handleStatusChange}
-              value="outstock"
+              value="Out of Stock"
               type="radio"
               name="status"
               id="outstock"
+              checked={status === "Out of Stock"}
             />{" "}
             <label className="add-inventory__radio-label" htmlFor="outstock">
               Out of Stock
@@ -272,10 +306,10 @@ const AddInventory = () => {
             value={quantity}
             name="quantity"
             className={`add-inventory__input ${
-              status === "outstock" ? "add-inventory__input--hidden" : ""
+              status === "Out of Stock" ? "add-inventory__input--hidden" : ""
             } ${submitted && !quantity ? "add-inventory--error" : ""}`}
             type="text"
-            placeholder="0"
+            placeholder={isEditMode ? `${inventoryDetails.quantity}` : `0`}
           />
 
           <div
@@ -301,7 +335,11 @@ const AddInventory = () => {
               submitted && !warehouse ? "add-inventory--error" : ""
             }`}
           >
-            <option value="">Please Select</option>
+            <option value="">
+              {isEditMode
+                ? `${inventoryDetails.warehouse_name}`
+                : `Please Select`}
+            </option>
             {warehouseList.map((name) => {
               return (
                 <option key={name.id} value={name.id}>
@@ -320,18 +358,16 @@ const AddInventory = () => {
             <img src={error} alt="error icon" />
             <p>This field is required</p>
           </div>
-         
         </section>
-       
       </form>
       <div className="add-inventory__buttons">
-            <div className="add-inventory__buttonbox">
-            <button className="add-inventory__cancel">Cancel</button>
-            <button onClick={handleSubmit} className="add-inventory__submit">
-              + Add Item
-            </button>
-            </div>
-          </div>
+        <div className="add-inventory__buttonbox">
+          <button className="add-inventory__cancel">Cancel</button>
+          <button onClick={handleSubmit} className="add-inventory__submit">
+            + Add Item
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
