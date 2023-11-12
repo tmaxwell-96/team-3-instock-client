@@ -51,7 +51,6 @@
 
     }
     &__details{
-        
         @include tablet{
             flex-direction: row;
             border-bottom: none;
