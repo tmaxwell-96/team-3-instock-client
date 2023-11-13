@@ -41,7 +41,7 @@ const AddInventory = () => {
 
   const handleQuantityChange = (event) => {
     const inputQuantity = event.target.value;
-    setQuantity(inputQuantity || 0);
+    setQuantity(inputQuantity === "" ? "" : Number(inputQuantity));
     setSubmitted(false);
   };
 
@@ -402,7 +402,7 @@ const AddInventory = () => {
             <button className="add-inventory__cancel">Cancel</button>
           </Link>
           <button onClick={handleSubmit} className="add-inventory__submit">
-            + Add Item
+            {isEditMode ? `Save Item` : `+ Add Item`}
           </button>
         </div>
       </div>

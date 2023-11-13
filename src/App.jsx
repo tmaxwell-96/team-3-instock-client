@@ -7,7 +7,6 @@ import MainNav from "./components/MainNav/MainNav";
 import AddInventory from "./components/AddInventory/AddInventory";
 import WarehouseDetail from "./components/WarehouseDetail/WarehouseDetail";
 import Footer from "./components/Footer/Footer";
-import EditInventory from "./components/EditInventory/EditInventory";
 import AddEditWarehouse from "./components/AddEditWarehouse/AddEditWarehouse";
 function App() {
   return (

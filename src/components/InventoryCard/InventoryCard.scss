@@ -1,8 +1,14 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/colors" as *;
 
 * {
   box-sizing: border-box;
+}
+
+.warehouse-inventory-card__txt--link {
+  text-decoration: none;
+  color: $colour-primary-InstockIndigo;
 }
 
 body {

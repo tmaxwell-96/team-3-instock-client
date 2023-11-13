@@ -37,7 +37,10 @@ const WarehouseInventoryListCard = ({ item, deleteInventory }) => {
               <span className="warehouse-inventory-card__detail, warehouse-inventory-card__detail--mobile">
                 INVENTORY ITEM
               </span>
-              <Link to={`/inventory/${item.id}`}>
+              <Link
+                className="warehouse-inventory-card__txt--link"
+                to={`/inventory/${item.id}`}
+              >
                 <div className="warehouse-inventory-card__txt">
                   <span className="warehouse-inventory-card__detail">
                     {item.item_name}
