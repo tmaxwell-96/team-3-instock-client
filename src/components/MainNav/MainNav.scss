@@ -1,6 +1,7 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/buttons" as *;
 @use "../../styles/partials/typography" as *;
+@use "../../styles/partials/colors" as *;
 
 * {
   box-sizing: border-box;
@@ -13,7 +14,7 @@
 }
 
 .nav {
-  background-color: #232940;
+  background-color: $colour-background-Graphite;
   height: 12.5rem;
 
   @include tablet {
@@ -81,7 +82,7 @@
     height: 38px;
     flex-shrink: 0;
 
-    color: #bdc5d5;
+    color: $colour-secondary-Cloud;
     // font-family: "Titillium-Web";
     font-size: 14px;
     font-style: normal;
@@ -93,7 +94,7 @@
     background-color: transparent;
 
     &:active {
-      background: #13182c;
+      background: $colour-primary-InstockBlack;
       color: #fff;
     }
 

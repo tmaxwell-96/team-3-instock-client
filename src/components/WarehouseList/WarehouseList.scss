@@ -1,5 +1,6 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
+@use "../../styles/partials/colors" as *;
 
 ul {
   padding: 0;
@@ -60,7 +61,7 @@ ul {
   &__sort {
     margin-left: 0.25rem;
     &:hover {
-      background-color: #bdc5d5;
+      background-color: $colour-secondary-Cloud;
       border-radius: 20px;
     }
   }
@@ -128,15 +129,15 @@ ul {
     width: 100%;
     border-radius: 1.25rem;
     padding: 1rem;
-    border: 1px solid #bdc5d5;
+    border: 1px solid $colour-secondary-Cloud;
     &:focus {
-      border: 1px solid #2e66e5;
+      border: 1px solid $colour-primary-InstockIndigo;
       outline: none;
     }
   }
 
   &__button {
-    background-color: #2e66e5;
+    background-color: $colour-primary-InstockIndigo;
     display: inline-block;
     border: none;
     border-radius: 20px;

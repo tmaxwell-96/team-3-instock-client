@@ -76,7 +76,7 @@ const InventoryList = () => {
           />
           <Link to={`/inventory/add`}>
             <button className="component-list__button">
-              + Add New Warehouse
+              + Add New Inventory
             </button>
           </Link>
         </div>

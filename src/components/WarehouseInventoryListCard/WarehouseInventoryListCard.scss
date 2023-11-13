@@ -1,5 +1,6 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
+@use "../../styles/partials/colors" as *;
 
 .warehouse-inventory-card {
   width: 100%;
@@ -68,7 +69,7 @@
   }
 
   &__label {
-    color: #5c667e;
+    color: $colour-secondary-Slate;
     font-weight: 500;
   }
 
@@ -94,11 +95,11 @@
     margin: 0;
 
     &--instock {
-      color: #158463;
+      color: $colour-supporting-Green;
     }
 
     &--outstock {
-      color: #c94515;
+      color: $colour-supporting-Red;
     }
   }
 

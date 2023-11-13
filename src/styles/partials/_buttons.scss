@@ -1,26 +1,23 @@
 // @use "./typography" as *;
 
-@mixin button-styles{
-     //display: inline-flex;
-     padding: 8px 16px;
-     align-items: center;
-     gap: 10px;
-     border-radius: 20px;
-     font-family: "Titillium-Web";
-     font-size: 13px;
-     font-style: normal;
-     font-weight: 600;
-     line-height: 20px;
-     color: #FFF;
-    
-   }
-   
+@mixin button-styles {
+  //display: inline-flex;
+  padding: 8px 16px;
+  align-items: center;
+  gap: 10px;
+  border-radius: 20px;
+  font-family: "Titillium-Web";
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+  color: #fff;
+}
 
 // NOTE: If you have any trouble applying font-family: "Titillium-Web" to your buttons, try using this on top of your .SCSS page:
 // * {
 //   font-family: "Titillium-Web";
 // }
-
 
 // AFTER IMPORTING MIXIN IN SCSS,
 // ADD THIS CODE WHICH WILL STYLE YOUR BUTTONS DEPENDING THE TYPE YOU NEED (LOOK INTO FIGMA FOR REFERENCE)
@@ -29,36 +26,34 @@
 //    .btn__primary {
 //      @include button-styles;
 //      border: none;
-//      background: #2E66E5;
-   
+//      background: $colour-primary-InstockIndigo;
+
 //      &:hover {
-//        background: #232940;
+//        background: $colour-background-Graphite;
 //      }
 //    }
 
-   
 // Secondary button  - WHITE BUTTON
 //    .btn__secondary {
 //      @include button-styles;
-//      border: 1px solid #BDC5D5;
+//      border: 1px solid $colour-secondary-Cloud;
 //      background: #FFF;
-//      color: #5C667E;
-   
+//      color: $colour-secondary-Slate;
+
 //      &:hover {
 //        background: #FFF;
-//        color: #2E66E5;
+//        color: $colour-primary-InstockIndigo;
 //      }
 //    }
-   
 
 // Delete button  - ORANGE BUTTON
 //    .btn__delete {
 //      @include button-styles;
 //      border: none;
-//      background: #C94515;
-   
+//      background: $colour-supporting-Red;
+
 //      &:hover {
-//        background: #232940;
+//        background: $colour-background-Graphite;
 //        color: #FFF;
 //      }
 //    }
