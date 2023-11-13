@@ -1,5 +1,8 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
+.component__box {
+  width: 100%;
+}
 
 .component-list {
   display: flex;
@@ -48,16 +51,13 @@
     }
   }
 
-    &__sort {
-        margin-left: 0.25rem;
-        &:hover {
-          background-color: #bdc5d5;
-          border-radius: 20px;
-        }
-      }
+  &__sort {
+    margin-left: 0.25rem;
+    &:hover {
+      background-color: #bdc5d5;
+      border-radius: 20px;
+    }
+  }
 
-    border-radius: 20px;
+  border-radius: 20px;
 }
-
- 
-
