@@ -29,7 +29,6 @@ h2 {
   }
 
   @include desktop {
-    // width: 100%;
   }
   &__main {
     width: 100%;
@@ -112,15 +111,12 @@ h2 {
       @include tablet {
         display: flex;
         flex-direction: row;
-        // min-width: 3rem;
         margin-right: 1rem;
-        // min-width: 150px;
         align-items: center;
         justify-content: space-between;
       }
 
       @include desktop {
-        // min-width: 10rem;
       }
     }
 
@@ -132,20 +128,16 @@ h2 {
   }
 
   &__item {
-    // margin-bottom: 2rem;
-
     @include tablet {
       flex-direction: row;
       align-self: center;
       align-items: center;
-      // min-width: 170px;
     }
   }
 
   &__detail {
     @include tablet {
       align-items: center;
-      // margin-left: 2rem;
     }
   }
 

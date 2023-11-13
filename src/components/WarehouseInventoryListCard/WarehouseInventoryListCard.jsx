@@ -10,16 +10,13 @@ Modal.setAppElement("#root");
 
 const WarehouseInventoryListCard = ({ item, deleteInventory }) => {
   //Modal warehouse-inventory-card
-  // let subtitle;
   const [modalIsOpen, setIsOpen] = useState(false);
 
   function openModal() {
     setIsOpen(true);
   }
 
-  function afterOpenModal() {
-    // subtitle.style.color = "black";
-  }
+  function afterOpenModal() {}
 
   function closeModal() {
     setIsOpen(false);
@@ -29,7 +26,6 @@ const WarehouseInventoryListCard = ({ item, deleteInventory }) => {
     <>
       <section className="warehouse-inventory-card">
         <div className="warehouse-inventory-card__wrapper">
-          {/* !-- This is the part that should be rendered by javascript according to each Item --> */}
           <div className="warehouse-inventory-card__container-left">
             <div className="warehouse-inventory-card__item-container">
               <span className="warehouse-inventory-card__detail, warehouse-inventory-card__detail--mobile">

@@ -36,7 +36,14 @@ const AddEditInventory = () => {
   };
 
   const handleStatusChange = (event) => {
-    setStatus(event.target.value);
+    const selectedStatus = event.target.value;
+    setStatus(selectedStatus);
+
+    if (selectedStatus === "Out of Stock") {
+      setQuantity(0);
+    }
+
+    setSubmitted(false);
   };
 
   const handleQuantityChange = (event) => {

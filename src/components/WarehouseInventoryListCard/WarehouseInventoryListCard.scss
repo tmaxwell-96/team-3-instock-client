@@ -8,7 +8,6 @@
 
   @include tablet {
     max-width: 100%;
-    // width: 90%;
     padding: 1rem;
     display: flex;
     justify-content: space-between;
@@ -24,14 +23,12 @@
   }
   &__detail {
     @include tablet {
-      // margin-right: 2rem;
     }
     &--QTY {
       margin-right: 3rem;
     }
   }
   &__container-left {
-    // height: 130px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -110,7 +107,7 @@
     @include tablet {
       display: flex;
       flex-direction: row;
-      align-items: start;
+      align-items: flex-start;
       padding: 0;
     }
   }

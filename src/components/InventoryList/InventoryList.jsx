@@ -1,8 +1,6 @@
 import "./InventoryList.scss";
 import sort from "../../assets/Icons/sort-24px.svg";
-
 import InventoryCard from "../InventoryCard/InventoryCard";
-import search from "../../assets/Icons/search-24px.svg";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
