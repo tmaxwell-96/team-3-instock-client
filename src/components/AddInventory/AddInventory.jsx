@@ -17,6 +17,7 @@ const AddInventory = () => {
   const [quantity, setQuantity] = useState("");
   const [warehouse, setWarehouse] = useState();
   const [submitted, setSubmitted] = useState(false);
+  const [inventoryDetails, setInventoryDetails] = useState({});
 
   //Handle change functions
 
@@ -64,6 +65,17 @@ const AddInventory = () => {
     }
   };
 
+  useEffect(() => {
+    if (isEditMode) {
+      setItemName(inventoryDetails.item_name || "");
+      setCategory(inventoryDetails.category || "");
+      setItemDescription(inventoryDetails.description || "");
+      setStatus(inventoryDetails.status || "");
+      setQuantity(inventoryDetails.quantity || "");
+      setWarehouse(inventoryDetails.warehouse_id || "");
+    }
+  }, [isEditMode, inventoryDetails]);
+
   //Get category information
   const [inventoryList, setInventoryList] = useState([]);
 
@@ -98,7 +110,6 @@ const AddInventory = () => {
   }, []);
 
   //Get inventory by id
-  const [inventoryDetails, setInventoryDetails] = useState({});
 
   useEffect(() => {
     if (isEditMode) {

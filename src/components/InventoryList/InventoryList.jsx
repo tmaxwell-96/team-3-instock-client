@@ -65,8 +65,8 @@ const InventoryList = () => {
             onChange={handleSearch}
           />
           <Link to={`/inventory/add`}>
-            <button className="inventory-list__button">
-              + Add New inventory
+            <button className="component-list__button">
+              + Add New Warehouse
             </button>
           </Link>
         </div>

@@ -2,42 +2,51 @@
 @use "../../styles/partials/variables" as *;
 
 .component-list {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+
+  @include tablet {
     display: flex;
-    flex-direction: column;
-    margin: 1rem;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  &__header {
+    font-size: 1.75rem;
+    font-weight: 600;
+  }
+
+  &__search {
+    width: 100%;
+    padding: 0.7rem;
+    border-radius: 20px;
+    margin-bottom: 10px;
 
     @include tablet {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+      width: 185px;
+      height: 38px;
     }
+  }
 
-    &__search {
-        width: 100%;
-        padding: .7rem;
-        border-radius: 20px;
-        margin-bottom: 10px;
+  &__button {
+    width: 100%;
+    padding: 0.7rem;
+    border-radius: 20px;
+    background-color: #2e66e5;
+    display: inline-block;
+    border: none;
+    border-radius: 20px;
+    padding: 0.5rem;
+    color: white;
+    margin: 1rem 0;
+    width: 100%;
 
-        @include tablet {
-            width: 185px;
-            height: 38px;
-        }
-
+    @include tablet {
+      width: 10rem;
+      height: 38px;
+      margin-left: 1rem;
     }
-
-    &__button {
-        width: 100%;
-        padding: .7rem;
-        border-radius: 20px;
-
-        @include tablet {
-
-            width: 10rem;
-            height: 38px;
-            margin-left: 1rem;
-        }
-
-    }
+  }
 
     &__sort {
         margin-left: 0.25rem;
@@ -49,3 +58,6 @@
 
     border-radius: 20px;
 }
+
+ 
+

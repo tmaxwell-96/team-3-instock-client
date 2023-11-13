@@ -120,9 +120,6 @@
     }
   }
 
-  &--error {
-    border: 1px solid #c94515;
-  }
   &__error-details {
     display: none;
 
@@ -204,6 +201,9 @@
     font-size: 13.5px;
     margin-top: 0.3rem;
     width: 90%;
+  }
+  &--error {
+    border: 1px solid #c94515;
   }
 }
 
