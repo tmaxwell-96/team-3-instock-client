@@ -1,11 +1,11 @@
-import "./AddInventory.scss";
+import "./AddEditInventory.scss";
 import { useEffect, useState } from "react";
 import backArrow from "../../assets/Icons/arrow_back-24px.svg";
 import error from "../../assets/Icons/error-24px.svg";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
-const AddInventory = () => {
+const AddEditInventory = () => {
   //Check if edit or add
   const { id } = useParams();
   const isEditMode = !!id;
@@ -410,4 +410,4 @@ const AddInventory = () => {
   );
 };
 
-export default AddInventory;
+export default AddEditInventory;
