@@ -74,18 +74,11 @@ const AddEditWarehouse = () => {
 
     try {
       if (isEditMode && isValid) {
-        const data = formData;
-        const response = await axios.put(
-          `http://localhost:8080/warehouses/${id}`,
-          formData
-        );
+        await axios.put(`http://localhost:8080/warehouses/${id}`, formData);
         setFormData("");
         navigate("/");
       } else if (isValid) {
-        const response = await axios.post(
-          "http://localhost:8080/warehouses",
-          formData
-        );
+        await axios.post("http://localhost:8080/warehouses", formData);
         setFormData("");
         navigate("/");
       }
