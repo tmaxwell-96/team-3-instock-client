@@ -24,7 +24,7 @@ const InventoryCard = ({ item, deleteInventory }) => {
         <section className="component">
           {/* !-- This is the part that should be rendered by javascript according to each Item --> */}
           <div className="component__box">
-            <div className="component__box--break">
+            <div className="component__box--break component__box--breakleft">
               <div className="component__item">
                 <div className="component__subheader component__subheader--column">
                   <span className="component__detail">INVENTORY ITEM</span>
