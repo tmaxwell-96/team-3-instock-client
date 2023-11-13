@@ -19,10 +19,6 @@ h2 {
   flex-direction: column;
   align-self: center;
 
-  @include desktop {
-    max-width: 80%;
-  }
-
   &__container {
     display: flex;
     flex-direction: column;

@@ -54,9 +54,15 @@
       display: flex;
       justify-content: space-between;
     }
+    @include desktop {
+      justify-content: start;
+    }
   }
   &__info-container {
     display: flex;
+    @include desktop {
+      width: 50%;
+    }
   }
   &__preson-container {
     @include tablet {
@@ -67,6 +73,9 @@
 
   &__address-container {
     padding-bottom: 2rem;
+    @include desktop {
+      width: 40%;
+    }
   }
   &__inquiry-container {
     padding: 0 3rem;
