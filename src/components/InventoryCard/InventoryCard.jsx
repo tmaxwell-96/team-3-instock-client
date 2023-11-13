@@ -22,7 +22,6 @@ const InventoryCard = ({ item, deleteInventory }) => {
     <>
       <div className="component__container">
         <section className="component">
-          {/* !-- This is the part that should be rendered by javascript according to each Item --> */}
           <div className="component__box">
             <div className="component__box--break component__box--breakleft">
               <div className="component__item">
@@ -107,7 +106,6 @@ const InventoryCard = ({ item, deleteInventory }) => {
               </div>
 
               <div className="component__item">
-                {/* <Link to={`inventory/edit/${item.id}`}></Link> */}
                 <div className="component__icon component__icon--delete2">
                   <DeleteInventory
                     modalIsOpen={modalIsOpen}

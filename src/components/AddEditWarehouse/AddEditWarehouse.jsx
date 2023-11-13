@@ -75,7 +75,6 @@ const AddEditWarehouse = () => {
     try {
       if (isEditMode && isValid) {
         const data = formData;
-        console.log(data);
         const response = await axios.put(
           `http://localhost:8080/warehouses/${id}`,
           formData
@@ -105,7 +104,6 @@ const AddEditWarehouse = () => {
             `http://localhost:8080/warehouses/${id}`
           );
           setFormData(response.data);
-          console.log(response.data);
         };
         getWarehouseDataById();
       } catch (error) {

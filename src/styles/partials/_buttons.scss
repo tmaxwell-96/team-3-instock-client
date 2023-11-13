@@ -1,7 +1,4 @@
-// @use "./typography" as *;
-
 @mixin button-styles {
-  //display: inline-flex;
   padding: 8px 16px;
   align-items: center;
   gap: 10px;
@@ -13,47 +10,3 @@
   line-height: 20px;
   color: #fff;
 }
-
-// NOTE: If you have any trouble applying font-family: "Titillium-Web" to your buttons, try using this on top of your .SCSS page:
-// * {
-//   font-family: "Titillium-Web";
-// }
-
-// AFTER IMPORTING MIXIN IN SCSS,
-// ADD THIS CODE WHICH WILL STYLE YOUR BUTTONS DEPENDING THE TYPE YOU NEED (LOOK INTO FIGMA FOR REFERENCE)
-
-// Primary button - BLUE BUTTON
-//    .btn__primary {
-//      @include button-styles;
-//      border: none;
-//      background: $colour-primary-InstockIndigo;
-
-//      &:hover {
-//        background: $colour-background-Graphite;
-//      }
-//    }
-
-// Secondary button  - WHITE BUTTON
-//    .btn__secondary {
-//      @include button-styles;
-//      border: 1px solid $colour-secondary-Cloud;
-//      background: #FFF;
-//      color: $colour-secondary-Slate;
-
-//      &:hover {
-//        background: #FFF;
-//        color: $colour-primary-InstockIndigo;
-//      }
-//    }
-
-// Delete button  - ORANGE BUTTON
-//    .btn__delete {
-//      @include button-styles;
-//      border: none;
-//      background: $colour-supporting-Red;
-
-//      &:hover {
-//        background: $colour-background-Graphite;
-//        color: #FFF;
-//      }
-//    }
