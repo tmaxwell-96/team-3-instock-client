@@ -18,7 +18,7 @@ const InventoryList = () => {
       setInventoryList(response.data);
     } catch (error) {
       alert(
-        `Error accessing the server, please try again later. Error code ${error}`
+        `There was an issue communicating with the server, please try again later. Error : ${error}`
       );
     }
   };
@@ -27,22 +27,22 @@ const InventoryList = () => {
   }, []);
 
   useEffect(() => {
-    const searchData = async () => {
-      try {
+    try {
+      const searchData = async () => {
         const response = await axios.get(
           `http://localhost:8080/search/inventories?searchTerm=${searchKeyword}`
         );
         setInventoryList(response.data);
-      } catch (error) {
-        alert(
-          `Error accessing the server, please try again later. Error code ${error}`
-        );
+      };
+      if (searchKeyword.length > 3) {
+        searchData();
+      } else {
+        getInventory();
       }
-    };
-    if (searchKeyword.length > 3) {
-      searchData();
-    } else {
-      getInventory();
+    } catch (error) {
+      alert(
+        `There was an issue communicating with the server, please try again later. Error : ${error}`
+      );
     }
   }, [searchKeyword]);
 
@@ -57,7 +57,7 @@ const InventoryList = () => {
       getInventory();
     } catch (error) {
       alert(
-        `Error accessing the server, please try again later. Error code ${error}`
+        `There was an issue communicating with the server, please try again later. Error : ${error}`
       );
     }
   };
@@ -76,7 +76,7 @@ const InventoryList = () => {
           />
           <Link to={`/inventory/add`}>
             <button className="component-list__button">
-              + Add New Inventory
+              + Add New Warehouse
             </button>
           </Link>
         </div>
