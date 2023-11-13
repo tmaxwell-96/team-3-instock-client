@@ -46,18 +46,24 @@ const EditInventory = () => {
   const [inventoryList, setInventoryList] = useState([]);
 
   const getInventory = async () => {
-    const response = await axios.get("http://localhost:8080/inventory");
-    const allCategories = response.data.map((inventoryItem) => {
-      return inventoryItem.category;
-    });
+    try {
+      const response = await axios.get("http://localhost:8080/inventory");
+      const allCategories = response.data.map((inventoryItem) => {
+        return inventoryItem.category;
+      });
 
-    const uniqueCategories = [];
-    allCategories.forEach((uniqueCategory) => {
-      if (uniqueCategories.indexOf(uniqueCategory) === -1) {
-        uniqueCategories.push(uniqueCategory);
-      }
-    });
-    setInventoryList(uniqueCategories);
+      const uniqueCategories = [];
+      allCategories.forEach((uniqueCategory) => {
+        if (uniqueCategories.indexOf(uniqueCategory) === -1) {
+          uniqueCategories.push(uniqueCategory);
+        }
+      });
+      setInventoryList(uniqueCategories);
+    } catch (error) {
+      alert(
+        `Error accessing the server, please try again later. Error code ${error}`
+      );
+    }
   };
   useEffect(() => {
     getInventory();
@@ -66,21 +72,33 @@ const EditInventory = () => {
   //Get warehouse information
   const [warehouseList, setWarehouseList] = useState([]);
   useEffect(() => {
-    const getWarehouses = async () => {
-      const response = await axios.get("http://localhost:8080/warehouses");
-      setWarehouseList(response.data);
-    };
-    getWarehouses();
+    try {
+      const getWarehouses = async () => {
+        const response = await axios.get("http://localhost:8080/warehouses");
+        setWarehouseList(response.data);
+      };
+      getWarehouses();
+    } catch (error) {
+      alert(
+        `Error accessing the server, please try again later. Error code ${error}`
+      );
+    }
   }, []);
 
   useEffect(() => {
-    const getInventoryInfo = async () => {
-      const response = await axios.get(
-        `http://localhost:8080/inventory/${params.id}`
+    try {
+      const getInventoryInfo = async () => {
+        const response = await axios.get(
+          `http://localhost:8080/inventory/${params.id}`
+        );
+        setFieldDetails(response.data[0]);
+      };
+      getInventoryInfo();
+    } catch (error) {
+      alert(
+        `Error accessing the server, please try again later. Error code ${error}`
       );
-      setFieldDetails(response.data[0]);
-    };
-    getInventoryInfo();
+    }
   }, []);
 
   console.log(fieldDetails);

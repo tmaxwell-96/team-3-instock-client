@@ -1,5 +1,7 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
+@use "../../styles/partials/colors" as *;
+
 .component__box {
   width: 100%;
 }
@@ -35,7 +37,7 @@
     width: 100%;
     padding: 0.7rem;
     border-radius: 20px;
-    background-color: #2e66e5;
+    background-color: $colour-primary-InstockIndigo;
     display: inline-block;
     border: none;
     border-radius: 20px;
@@ -54,7 +56,7 @@
   &__sort {
     margin-left: 0.25rem;
     &:hover {
-      background-color: #bdc5d5;
+      background-color: $colour-secondary-Cloud;
       border-radius: 20px;
     }
   }

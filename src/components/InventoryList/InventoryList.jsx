@@ -13,24 +13,36 @@ const InventoryList = () => {
   const [searchKeyword, setSearchKeyword] = useState("");
 
   const getInventory = async () => {
-    const response = await axios.get("http://localhost:8080/inventory");
-    setInventoryList(response.data);
+    try {
+      const response = await axios.get("http://localhost:8080/inventory");
+      setInventoryList(response.data);
+    } catch (error) {
+      alert(
+        `There was an issue communicating with the server, please try again later. Error : ${error}`
+      );
+    }
   };
   useEffect(() => {
     getInventory();
   }, []);
 
   useEffect(() => {
-    const searchData = async () => {
-      const response = await axios.get(
-        `http://localhost:8080/search/inventories?searchTerm=${searchKeyword}`
+    try {
+      const searchData = async () => {
+        const response = await axios.get(
+          `http://localhost:8080/search/inventories?searchTerm=${searchKeyword}`
+        );
+        setInventoryList(response.data);
+      };
+      if (searchKeyword.length > 3) {
+        searchData();
+      } else {
+        getInventory();
+      }
+    } catch (error) {
+      alert(
+        `There was an issue communicating with the server, please try again later. Error : ${error}`
       );
-      setInventoryList(response.data);
-    };
-    if (searchKeyword.length > 3) {
-      searchData();
-    } else {
-      getInventory();
     }
   }, [searchKeyword]);
 
@@ -40,8 +52,14 @@ const InventoryList = () => {
 
   //Delete Inventory Function
   const deleteInventory = async (event) => {
-    await axios.delete(`http://localhost:8080/inventory/${event}`);
-    getInventory();
+    try {
+      await axios.delete(`http://localhost:8080/inventory/${event}`);
+      getInventory();
+    } catch (error) {
+      alert(
+        `There was an issue communicating with the server, please try again later. Error : ${error}`
+      );
+    }
   };
 
   return (

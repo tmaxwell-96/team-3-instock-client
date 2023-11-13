@@ -12,10 +12,16 @@ const WarehouseDetail = () => {
   const params = useParams();
 
   const getWarehouseDetail = async () => {
-    const response = await axios.get(
-      `http://localhost:8080/warehouses/${params.id}`
-    );
-    setWarehouseDetail(response.data);
+    try {
+      const response = await axios.get(
+        `http://localhost:8080/warehouses/${params.id}`
+      );
+      setWarehouseDetail(response.data);
+    } catch (error) {
+      alert(
+        `Error accessing the server, please try again later. Error code ${error}`
+      );
+    }
   };
   useEffect(() => {
     getWarehouseDetail();

@@ -1,5 +1,6 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/colors" as *;
 
 .modal {
   background-color: white;
@@ -64,13 +65,13 @@
   }
 
   &__delete {
-    background-color: #c94515;
+    background-color: $colour-supporting-Red;
     color: white;
   }
 
   &__cancel {
     background-color: white;
-    border: 1px solid #bdc5d5;
+    border: 1px solid $colour-secondary-Cloud;
 
     @include tablet {
       margin-right: 1rem;

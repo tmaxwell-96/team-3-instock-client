@@ -11,10 +11,16 @@ const InventoryItemDetail = () => {
 
   useEffect(() => {
     const getInventoryItem = async () => {
-      const response = await axios.get(
-        `http://localhost:8080/inventory/${params.id}`
-      );
-      setInventoryDetails(response.data[0]);
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/inventory/${params.id}`
+        );
+        setInventoryDetails(response.data[0]);
+      } catch (error) {
+        alert(
+          `Error accessing the server, please try again later. Error code ${error}`
+        );
+      }
     };
     getInventoryItem();
   }, [params.id]);
