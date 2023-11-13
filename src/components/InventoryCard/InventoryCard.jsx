@@ -30,7 +30,10 @@ const InventoryCard = ({ item, deleteInventory }) => {
                   <span className="component__detail">INVENTORY ITEM</span>
                 </div>
 
-                <Link to={`/inventory/${item.id}`}>
+                <Link
+                  className="warehouse-inventory-card__txt warehouse-inventory-card__txt--link "
+                  to={`/inventory/${item.id}`}
+                >
                   <div className="warehouse-inventory-card__txt">
                     <span className="warehouse-inventory-card__detail">
                       {item.item_name}

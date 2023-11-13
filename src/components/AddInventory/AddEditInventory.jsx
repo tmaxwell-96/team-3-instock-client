@@ -1,11 +1,11 @@
-import "./AddInventory.scss";
+import "./AddEditInventory.scss";
 import { useEffect, useState } from "react";
 import backArrow from "../../assets/Icons/arrow_back-24px.svg";
 import error from "../../assets/Icons/error-24px.svg";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
-const AddInventory = () => {
+const AddEditInventory = () => {
   //Check if edit or add
   const { id } = useParams();
   const isEditMode = !!id;
@@ -41,7 +41,7 @@ const AddInventory = () => {
 
   const handleQuantityChange = (event) => {
     const inputQuantity = event.target.value;
-    setQuantity(inputQuantity || 0);
+    setQuantity(inputQuantity === "" ? "" : Number(inputQuantity));
     setSubmitted(false);
   };
 
@@ -402,7 +402,7 @@ const AddInventory = () => {
             <button className="add-inventory__cancel">Cancel</button>
           </Link>
           <button onClick={handleSubmit} className="add-inventory__submit">
-            + Add Item
+            {isEditMode ? `Save Item` : `+ Add Item`}
           </button>
         </div>
       </div>
@@ -410,4 +410,4 @@ const AddInventory = () => {
   );
 };
 
-export default AddInventory;
+export default AddEditInventory;

@@ -67,11 +67,18 @@
   &__delete {
     background-color: $colour-supporting-Red;
     color: white;
+    &:hover {
+      background-color: $colour-background-Graphite;
+    }
   }
 
   &__cancel {
     background-color: white;
     border: 1px solid $colour-secondary-Cloud;
+    &:hover {
+      color: $colour-primary-InstockIndigo;
+      border: 1px solid $colour-primary-InstockIndigo;
+    }
 
     @include tablet {
       margin-right: 1rem;

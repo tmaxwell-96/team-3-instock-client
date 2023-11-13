@@ -6,7 +6,6 @@ import search from "../../assets/Icons/search-24px.svg";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { unstable_renderSubtreeIntoContainer } from "react-dom";
 
 const InventoryList = () => {
   const [inventoryList, setInventoryList] = useState([]);
@@ -76,7 +75,7 @@ const InventoryList = () => {
           />
           <Link to={`/inventory/add`}>
             <button className="component-list__button">
-              + Add New Warehouse
+              + Add New Inventory
             </button>
           </Link>
         </div>
