@@ -12,8 +12,14 @@ const WarehouseList = () => {
   const [searchKeyword, setSearchKeyword] = useState("");
 
   const getWarehouses = async () => {
-    const response = await axios.get("http://localhost:8080/warehouses");
-    setWarehouseList(response.data);
+    try {
+      const response = await axios.get("http://localhost:8080/warehouses");
+      setWarehouseList(response.data);
+    } catch (error) {
+      alert(
+        `Error accessing the server, please try again later. Error code ${error}`
+      );
+    }
   };
 
   useEffect(() => {
@@ -22,10 +28,16 @@ const WarehouseList = () => {
 
   useEffect(() => {
     const searchData = async () => {
-      const response = await axios.get(
-        `http://localhost:8080/search/warehouses?searchTerm=${searchKeyword}`
-      );
-      setWarehouseList(response.data);
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/search/warehouses?searchTerm=${searchKeyword}`
+        );
+        setWarehouseList(response.data);
+      } catch (error) {
+        alert(
+          `Error accessing the server, please try again later. Error code ${error}`
+        );
+      }
     };
 
     searchData();

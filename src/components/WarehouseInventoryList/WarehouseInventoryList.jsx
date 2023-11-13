@@ -12,10 +12,14 @@ function WarehouseInventoryList() {
   const params = useParams();
 
   const getInventoryList = async () => {
-    const response = await axios.get(
-      `http://localhost:8080/inventory/warehouses/${params.id}/inventories`
-    );
-    setInventoryList(response.data);
+    try {
+      const response = await axios.get(
+        `http://localhost:8080/inventory/warehouses/${params.id}/inventories`
+      );
+      setInventoryList(response.data);
+    } catch (error) {
+      alert(`This warehouse doesn't have inventory.`);
+    }
   };
 
   useEffect(() => {

@@ -80,18 +80,24 @@ const AddInventory = () => {
   const [inventoryList, setInventoryList] = useState([]);
 
   const getInventory = async () => {
-    const response = await axios.get("http://localhost:8080/inventory");
-    const allCategories = response.data.map((inventoryItem) => {
-      return inventoryItem.category;
-    });
+    try {
+      const response = await axios.get("http://localhost:8080/inventory");
+      const allCategories = response.data.map((inventoryItem) => {
+        return inventoryItem.category;
+      });
 
-    const uniqueCategories = [];
-    allCategories.forEach((uniqueCategory) => {
-      if (uniqueCategories.indexOf(uniqueCategory) === -1) {
-        uniqueCategories.push(uniqueCategory);
-      }
-    });
-    setInventoryList(uniqueCategories);
+      const uniqueCategories = [];
+      allCategories.forEach((uniqueCategory) => {
+        if (uniqueCategories.indexOf(uniqueCategory) === -1) {
+          uniqueCategories.push(uniqueCategory);
+        }
+      });
+      setInventoryList(uniqueCategories);
+    } catch (error) {
+      alert(
+        `Error accessing the server, please try again later. Error code ${error}`
+      );
+    }
   };
 
   useEffect(() => {
@@ -102,16 +108,26 @@ const AddInventory = () => {
   const [warehouseList, setWarehouseList] = useState([]);
 
   useEffect(() => {
-    const getWarehouses = async () => {
-      const response = await axios.get("http://localhost:8080/warehouses");
-      setWarehouseList(response.data);
-    };
-    getWarehouses();
+    try {
+      const getWarehouses = async () => {
+        const response = await axios.get("http://localhost:8080/warehouses");
+        setWarehouseList(response.data);
+      };
+      getWarehouses();
+    } catch (error) {
+      alert(
+        `Error accessing the server, please try again later. Error code ${error}`
+      );
+    }
   }, []);
 
   //Get inventory by id
 
   useEffect(() => {
+    try {
+    } catch (error) {
+      alert("Error accessing the server, please try again later");
+    }
     if (isEditMode) {
       const getInventoryById = async () => {
         const response = await axios.get(
@@ -135,16 +151,22 @@ const AddInventory = () => {
       status: status,
       quantity: Number(quantity),
     };
-    if (isEditMode) {
-      const changeInventory = async (changedInv) => {
-        await axios.put(`http://localhost:8080/inventory/${id}`, changedInv);
-      };
-      changeInventory(newInventory);
-    } else {
-      const postInventory = async (newInv) => {
-        await axios.post("http://localhost:8080/inventory", newInv);
-      };
-      postInventory(newInventory);
+    try {
+      if (isEditMode) {
+        const changeInventory = async (changedInv) => {
+          await axios.put(`http://localhost:8080/inventory/${id}`, changedInv);
+        };
+        changeInventory(newInventory);
+      } else {
+        const postInventory = async (newInv) => {
+          await axios.post("http://localhost:8080/inventory", newInv);
+        };
+        postInventory(newInventory);
+      }
+    } catch (error) {
+      alert(
+        `Error accessing the server, please try again later. Error code ${error}`
+      );
     }
   };
 
