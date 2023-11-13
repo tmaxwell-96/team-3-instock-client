@@ -2,9 +2,11 @@
 @use "../../styles/partials/variables" as *;
 
 .warehouse-inventory-card {
+  width: 100%;
   padding: 1rem;
+
   @include tablet {
-    max-width: 90%;
+    max-width: 100%;
     // width: 90%;
     padding: 1rem;
     display: flex;
@@ -19,7 +21,14 @@
       display: flex;
     }
   }
-
+  &__detail {
+    @include tablet {
+      // margin-right: 2rem;
+    }
+    &--QTY {
+      margin-right: 3rem;
+    }
+  }
   &__container-left {
     // height: 130px;
     display: flex;
@@ -49,6 +58,7 @@
     padding-bottom: 1rem;
     @include tablet {
       width: 120px;
+      margin-left: 2rem;
     }
   }
 

@@ -89,7 +89,7 @@ const WarehouseInventoryListCard = ({ item, deleteInventory }) => {
               </span>
 
               <div className="warehouse-inventory-card__txt">
-                <span className="warehouse-inventory-card__detail">
+                <span className="warehouse-inventory-card__detail warehouse-inventory-card__detail--QTY">
                   {" "}
                   {item.quantity}
                 </span>

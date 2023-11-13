@@ -17,11 +17,13 @@ h2 {
   display: flex;
   justify-content: center;
   flex-direction: column;
-
   align-self: center;
 
   @include desktop {
-    // width: 100%
+    // width: 100%;
+  }
+  &__main {
+    width: 100%;
   }
 
   &__container {

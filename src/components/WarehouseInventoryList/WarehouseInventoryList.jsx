@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import sort from "../../assets/Icons/sort-24px.svg";
+import filterIcon from "../../assets/Icons/sort-24px.svg";
 
 import "./WarehouseInventoryList.scss";
 import axios from "axios";
@@ -9,6 +10,8 @@ import WarehouseInventoryListCard from "../WarehouseInventoryListCard/WarehouseI
 
 function WarehouseInventoryList() {
   const [inventoryList, setInventoryList] = useState([]);
+  const [warehouseList, setWarehouseList] = useState([]);
+
   const params = useParams();
 
   const getInventoryList = async () => {
@@ -18,6 +21,57 @@ function WarehouseInventoryList() {
     setInventoryList(response.data);
   };
 
+  const sortByName = () => {
+    const nameSort = [...inventoryList].sort((a, b) => {
+      if (a.item_name < b.item_name) {
+        return -1;
+      }
+      if (a.item_name > b.item_name) {
+        return 1;
+      }
+      return 0;
+    });
+    setInventoryList(nameSort);
+  };
+  const sortByCategory = () => {
+    const categorySort = [...inventoryList].sort((a, b) => {
+      if (a.status < b.status) {
+        return -1;
+      }
+      if (a.status > b.status) {
+        return 1;
+      }
+      return 0;
+    });
+    setInventoryList(categorySort);
+  };
+
+  const sortByStatus = () => {
+    const statusSort = [...inventoryList].sort((a, b) => {
+      if (a.quantity < b.quantity) {
+        return -1;
+      }
+      if (a.quantity > b.quantity) {
+        return 1;
+      }
+      return 0;
+    });
+    setInventoryList(statusSort);
+  };
+
+  const sortByquantity = () => {
+    const quantitySort = [...inventoryList].sort((a, b) => {
+      if (a.contact_email < b.contact_email) {
+        return -1;
+      }
+      if (a.contact_email > b.contact_email) {
+        return 1;
+      }
+      return 0;
+    });
+    setInventoryList(quantitySort);
+  };
+
   useEffect(() => {
     getInventoryList();
   }, [params.id]);
@@ -25,28 +79,51 @@ function WarehouseInventoryList() {
     <>
       <div className="warehouse-inventory">
         <div className="warehouse-inventory__main">
-          <ul className="component__box component__box--row">
-            <li className="component__subheader component__subheader--row">
-              <span className="component__detail">INVENTORY ITEM</span>
-              <img src={sort} alt="sort-icon" />
-            </li>
-            <li className="component__subheader component__subheader--row">
-              <span className="component__detail"> CATEGORY</span>
-              <img src={sort} alt="sort-icon" />
-            </li>
-            <li className="component__subheader component__subheader--row">
-              <span className="component__detail"> STATUS</span>
-              <img src={sort} alt="sort-icon" />
-            </li>
-            <li className="component__subheader component__subheader--row">
-              <span className="component__detail"> QUANTITY</span>
-              <img src={sort} alt="sort-icon" />
-            </li>
-            <li className="component__subheader component__subheader--row">
-              <span className="component__detail"> ACTIONS</span>
-              <img src={sort} alt="sort-icon" />
-            </li>
-          </ul>
+          <div className="warehouse-list__columns">
+            <div className="warehouse-list__column warehouse-list__column--warehouse">
+              <p className="warehouse-list__text">INVENTORY ITEM</p>
+              <img
+                className="warehouse-list__sort"
+                src={filterIcon}
+                alt="sort icon"
+                onClick={sortByName}
+              />
+            </div>
+
+            <div className="warehouse-list__column warehouse-list__column--address">
+              <p className="warehouse-list__text">CATEGORY</p>
+              <img
+                className="warehouse-list__sort"
+                src={filterIcon}
+                alt="sort icon"
+                onClick={sortByCategory}
+              />
+            </div>
+
+            <div className="warehouse-list__column warehouse-list__column--name">
+              <p className="warehouse-list__text">STATUS</p>
+              <img
+                className="warehouse-list__sort"
+                src={filterIcon}
+                alt="sort icon"
+                onClick={sortByStatus}
+              />
+            </div>
+
+            <div className="warehouse-list__column warehouse-list__column--info">
+              <p className="warehouse-list__text">QTY</p>
+              <img
+                className="warehouse-list__sort"
+                src={filterIcon}
+                alt="sort icon"
+                onClick={sortByquantity}
+              />
+            </div>
+
+            <div className="warehouse-list__column warehouse-list__column--actions">
+              <p className="warehouse-list__actions">ACTIONS</p>
+            </div>
+          </div>
           <ul className="warehouse-inventory__wrapper">
             {inventoryList.map((item, index) => {
               return <WarehouseInventoryListCard key={index} item={item} />;
