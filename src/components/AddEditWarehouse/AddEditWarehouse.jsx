@@ -35,7 +35,7 @@ const AddEditWarehouse = () => {
   const validateForm = () => {
     const newFormErrors = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const phoneRegex = /^\+\d{1,2} \(\d{3}\) \d{3}-\d{4}$/;
+    const phoneRegex = /^\d{3}-\d{3}-\d{4}$/;
     if (formData.warehouse_name.trim() === "") {
       newFormErrors.warehouse_name = "Warehouse name is required";
     } else if (formData.address.trim() === "") {
@@ -49,7 +49,7 @@ const AddEditWarehouse = () => {
     } else if (formData.contact_position.trim() === "") {
       newFormErrors.contact_position = "Contact position is required";
     } else if (!phoneRegex.test(formData.contact_phone)) {
-      newFormErrors.contact_phone = "Contact phone is invalid";
+      newFormErrors.contact_phone = "Contact phone is invalid (ex: 222-222-2222)";
     } else if (!emailRegex.test(formData.contact_email)) {
       newFormErrors.contact_email = "Contact email is invalid";
     }

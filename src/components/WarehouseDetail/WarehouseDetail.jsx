@@ -43,14 +43,15 @@ const WarehouseDetail = () => {
               {warehouseDetail.warehouse_name}
             </h3>
           </div>
-          <div className="warehouse-detail__edit-wrapper">
+            <Link className="warehouse-detail__edit-wrapper" to={`/edit/${params.id}`}>
             <img
               className="warehouse-detail__edit"
               src={editWhite}
               alt="edit"
             />
             <p className="warehouse-detail__edit-text">Edit</p>
-          </div>
+            
+            </Link>
         </div>
         <div className="warehouse-detail__contact-wrapper">
           <div className="warehouse-detail__address-container">
