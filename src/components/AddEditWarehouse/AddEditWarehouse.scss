@@ -1,69 +1,163 @@
-.header-pannel{
-    border-bottom: 1px solid silver;
-}
-.header-title{
-    margin: 1.8rem 0;
-}
-.sub-header{
-    margin: 0;
-    padding: 0;
-}
+@use "./../../styles/partials/mixins" as *;
+@use "./../../styles/partials/colors" as *;
+@use "./../../styles/partials/buttons" as *;
 
-.body-pannel{
+.warehouse {
+  padding: 1rem;
+
+  @include tablet {
+    padding: 0 1.5rem;
+  }
+  @include desktop {
+    padding: 0 1.5rem;
+  }
+
+  &__header {
+    border-bottom: 1px solid $colour-secondary-Cloud;
+    height: 80px;
+  }
+  &__arrow-link {
     display: flex;
+    text-decoration: none;
+    color: $colour-primary-InstockBlack;
     justify-content: center;
-    
-    
-}
-.warehouse-details{
-    width: 50%;
-    padding: 2rem;
-}
-.contact-details{
-    width: 50%;
-    padding: 2rem;
-    border-left: 1px solid silver;
-}
+    width: 100%;
+    margin: 1rem 0;
 
-.lbl{
-    padding: 0;
+    @include tablet {
+      justify-content: left;
+    }
+  }
+  &__header-title {
+    display: inline-block;
+    width: 100%;
     margin: 0;
-    text-align: left;
-    font-weight: 400;
-    margin-bottom: 4px;
-}
-h2{
-    text-align: left; 
-   
-}
+    padding: 0;
+    font-weight: 600;
+    @include tablet {
+      margin: 1rem 0;
+    }
+    @include desktop {
+      margin: 1rem 0;
+    }
+  }
+  &__body {
+    display: flex;
+    flex-direction: column;
 
-.input-fld{
+    @include tablet {
+      flex-direction: row;
+    }
+  }
+  &__details {
+    @include tablet {
+      flex-direction: row;
+      border-bottom: none;
+      width: 50%;
+    }
+  }
+  &__sub-header {
+    width: 180px;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 28px;
+    margin: 0;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 0;
+  }
+  &__lbl {
+    font-size: 13px;
+    line-height: 20px;
+    font-weight: 600;
+  }
+  &__form-input {
     height: 38px;
     border-radius: 20px;
     width: 100%;
     margin-bottom: 1rem;
-    border: 1px solid gray;
+    border: 1px solid $colour-secondary-Cloud;
+
     padding-left: 1rem;
-    
-    
-}
 
-.footer-pannel{
-    height: 67px;
-    background-color: #bdc5d5; 
-}
-.btn-cancel{
-    border-radius: 20px;
-    border: 1px solid silver;
-    height: 38px;
-    width: 80px;
-}
-.btn-add{
-    border-radius: 20px;
-    border: 1px solid silver;
-    height: 38px;
-    width: 120px;
-    background-color: #2e66e5;
-    color: white;
+    &--invalid {
+      border-color: $colour-supporting-Red;
+    }
+    &:active {
+      border-color: $colour-primary-InstockIndigo;
+    }
+    &:focus {
+      border-color: $colour-secondary-Cloud;
+    }
 
+    @include tablet {
+      width: 100%;
+    }
+
+    @include desktop {
+      width: 100%;
+    }
+  }
+  &__error-container {
+    display: flex;
+  }
+  &__error-message {
+    color: $colour-supporting-Red;
+  }
+  &__button-pannel {
+    padding: 1rem;
+    background-color: $colour-background-LightGrey;
+    display: flex;
+
+    @include tablet {
+      flex-direction: row;
+      justify-content: right;
+    }
+  }
+
+  &__btn-add {
+    @include button-styles;
+    border: none;
+    font-weight: 400;
+    background: $colour-primary-InstockIndigo;
+    width: 139px;
+    height: 36px;
+    &:hover {
+      background: $colour-background-Graphite;
+    }
+
+    @include tablet {
+      height: 38px;
+    }
+  }
+  &__btn-cancel {
+    @include button-styles;
+    border: 1px solid $colour-secondary-Cloud;
+    background: #fff;
+    color: $colour-secondary-Slate;
+    font-weight: 400;
+    width: auto;
+    height: 36px;
+    @include tablet {
+      height: 38px;
+    }
+
+    &:hover {
+      background: #fff;
+      color: $colour-primary-InstockIndigo;
+    }
+  }
+  &__vertical-line {
+    border-bottom: 1px solid $colour-secondary-Cloud;
+    @include tablet {
+      margin: 1rem 1rem;
+      height: 340px;
+      border-right: 1px solid $colour-secondary-Cloud;
+    }
+    @include desktop {
+      margin: 1rem 1rem;
+      height: 340px;
+      border-right: 1px solid $colour-secondary-Cloud;
+    }
+  }
 }

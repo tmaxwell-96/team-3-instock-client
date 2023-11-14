@@ -1,20 +1,23 @@
-import "./AddInventory.scss";
+import "./AddEditInventory.scss";
 import { useEffect, useState } from "react";
 import backArrow from "../../assets/Icons/arrow_back-24px.svg";
 import error from "../../assets/Icons/error-24px.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
-const AddInventory = () => {
+const AddEditInventory = () => {
+  //Check if edit or add
+  const { id } = useParams();
+  const isEditMode = !!id;
   //State variables for field changes
   const [itemName, setItemName] = useState("");
   const [category, setCategory] = useState();
   const [itemDescription, setItemDescription] = useState("");
   const [status, setStatus] = useState("");
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState("");
   const [warehouse, setWarehouse] = useState();
-  //Will add form validation sson
   const [submitted, setSubmitted] = useState(false);
+  const [inventoryDetails, setInventoryDetails] = useState({});
 
   //Handle change functions
 
@@ -33,12 +36,19 @@ const AddInventory = () => {
   };
 
   const handleStatusChange = (event) => {
-    setStatus(event.target.value);
+    const selectedStatus = event.target.value;
+    setStatus(selectedStatus);
+
+    if (selectedStatus === "Out of Stock") {
+      setQuantity(0);
+    }
+
     setSubmitted(false);
   };
 
   const handleQuantityChange = (event) => {
-    setQuantity(event.target.value);
+    const inputQuantity = event.target.value;
+    setQuantity(inputQuantity === "" ? "" : Number(inputQuantity));
     setSubmitted(false);
   };
 
@@ -53,7 +63,7 @@ const AddInventory = () => {
       !category ||
       !itemDescription ||
       !status ||
-      !quantity ||
+      (status === "instock" && !quantity) ||
       !warehouse
     ) {
       return false;
@@ -62,22 +72,39 @@ const AddInventory = () => {
     }
   };
 
+  useEffect(() => {
+    if (isEditMode) {
+      setItemName(inventoryDetails.item_name || "");
+      setCategory(inventoryDetails.category || "");
+      setItemDescription(inventoryDetails.description || "");
+      setStatus(inventoryDetails.status || "");
+      setQuantity(inventoryDetails.quantity || "");
+      setWarehouse(inventoryDetails.warehouse_id || "");
+    }
+  }, [isEditMode, inventoryDetails]);
+
   //Get category information
   const [inventoryList, setInventoryList] = useState([]);
 
   const getInventory = async () => {
-    const response = await axios.get("http://localhost:8080/inventory");
-    const allCategories = response.data.map((inventoryItem) => {
-      return inventoryItem.category;
-    });
+    try {
+      const response = await axios.get("http://localhost:8080/inventory");
+      const allCategories = response.data.map((inventoryItem) => {
+        return inventoryItem.category;
+      });
 
-    const uniqueCategories = [];
-    allCategories.forEach((uniqueCategory) => {
-      if (uniqueCategories.indexOf(uniqueCategory) === -1) {
-        uniqueCategories.push(uniqueCategory);
-      }
-    });
-    setInventoryList(uniqueCategories);
+      const uniqueCategories = [];
+      allCategories.forEach((uniqueCategory) => {
+        if (uniqueCategories.indexOf(uniqueCategory) === -1) {
+          uniqueCategories.push(uniqueCategory);
+        }
+      });
+      setInventoryList(uniqueCategories);
+    } catch (error) {
+      alert(
+        `Error accessing the server, please try again later. Error code ${error}`
+      );
+    }
   };
 
   useEffect(() => {
@@ -88,12 +115,37 @@ const AddInventory = () => {
   const [warehouseList, setWarehouseList] = useState([]);
 
   useEffect(() => {
-    const getWarehouses = async () => {
-      const response = await axios.get("http://localhost:8080/warehouses");
-      setWarehouseList(response.data);
-    };
-    getWarehouses();
+    try {
+      const getWarehouses = async () => {
+        const response = await axios.get("http://localhost:8080/warehouses");
+        setWarehouseList(response.data);
+      };
+      getWarehouses();
+    } catch (error) {
+      alert(
+        `Error accessing the server, please try again later. Error code ${error}`
+      );
+    }
   }, []);
+
+  //Get inventory by id
+
+  useEffect(() => {
+    try {
+    } catch (error) {
+      alert("Error accessing the server, please try again later");
+    }
+    if (isEditMode) {
+      const getInventoryById = async () => {
+        const response = await axios.get(
+          `http://localhost:8080/inventory/${id}`
+        );
+        setInventoryDetails(response.data[0]);
+        setStatus(response.data[0].status);
+      };
+      getInventoryById();
+    }
+  }, [id, isEditMode]);
 
   //Create new object function
 
@@ -104,14 +156,29 @@ const AddInventory = () => {
       description: itemDescription,
       category: category,
       status: status,
-      quantity: quantity,
+      quantity: Number(quantity),
     };
-
-    const postInventory = async (newInv) => {
-      await axios.post("http://localhost:8080/inventory", newInv);
-    };
-    postInventory(newInventory);
+    try {
+      if (isEditMode) {
+        const changeInventory = async (changedInv) => {
+          await axios.put(`http://localhost:8080/inventory/${id}`, changedInv);
+        };
+        changeInventory(newInventory);
+      } else {
+        const postInventory = async (newInv) => {
+          await axios.post("http://localhost:8080/inventory", newInv);
+        };
+        postInventory(newInventory);
+      }
+    } catch (error) {
+      alert(
+        `Error accessing the server, please try again later. Error code ${error}`
+      );
+    }
   };
+
+  if (isEditMode) {
+  }
 
   //Handle Submit Function
   const navigate = useNavigate();
@@ -142,17 +209,22 @@ const AddInventory = () => {
           <img src={backArrow} alt="back arrow" />
         </Link>
 
-        <h2 className="add-inventory__title">Add new inventory item</h2>
+        <h2 className="add-inventory__title">
+          {isEditMode ? `Edit Inventory Item` : `Add new inventory item`}
+        </h2>
       </header>
       <form className="add-inventory__form">
         <section className="add-inventory__details-container">
+          <p className="add-inventory__subheader"> Item Details </p>
           <p className="add-inventory__label">Item Name</p>
           <input
             className={`add-inventory__input ${
               submitted && !itemName ? "add-inventory--error" : ""
             }`}
             type="text"
-            placeholder="Item Name"
+            placeholder={
+              isEditMode ? `${inventoryDetails.item_name}` : `Item Name`
+            }
             onChange={handleNameChange}
             value={itemName}
           />
@@ -172,13 +244,17 @@ const AddInventory = () => {
               submitted && !itemDescription ? "add-inventory--error" : ""
             } `}
             name=""
-            placeholder="Please enter a brief item description"
+            placeholder={
+              isEditMode
+                ? `${inventoryDetails.description}`
+                : `Please enter a brief item description`
+            }
             onChange={handleDescrptionChange}
             value={itemDescription}
           ></textarea>
           <div
             className={`add-inventory__error-details ${
-              submitted && !itemName
+              submitted && !itemDescription
                 ? "add-inventory__error-details--hidden"
                 : ""
             }`}
@@ -195,9 +271,10 @@ const AddInventory = () => {
             value={category}
             name=""
             id=""
-            placeholder="Please select"
           >
-            <option value="">Please Select</option>
+            <option value="">
+              {isEditMode ? `${inventoryDetails.category}` : `Please select`}
+            </option>
             {inventoryList.map((uniqueCategory, index) => {
               return (
                 <option key={index} value={uniqueCategory}>
@@ -218,16 +295,19 @@ const AddInventory = () => {
           </div>
         </section>
         <section className="add-availability-container">
+          <p className="add-inventory__subheader"> Item Availability </p>
           <div className="add-inventory__radio-container">
+            <p className="add-inventory__subheader2"> Status </p>
             <input
               className={`add-inventory__radio ${
                 submitted && !status ? "add-inventory--error" : ""
               }`}
               onChange={handleStatusChange}
-              value="instock"
+              value="In Stock"
               name="status"
               type="radio"
               id="instock"
+              checked={status === "In Stock"}
             />{" "}
             <label className="add-inventory__radio-label" htmlFor="inStock">
               In Stock
@@ -237,10 +317,11 @@ const AddInventory = () => {
                 submitted && !status ? "add-inventory--error" : ""
               }`}
               onChange={handleStatusChange}
-              value="outstock"
+              value="Out of Stock"
               type="radio"
               name="status"
               id="outstock"
+              checked={status === "Out of Stock"}
             />{" "}
             <label className="add-inventory__radio-label" htmlFor="outstock">
               Out of Stock
@@ -266,13 +347,14 @@ const AddInventory = () => {
           <input
             onChange={handleQuantityChange}
             value={quantity}
-            name="quanity"
+            name="quantity"
             className={`add-inventory__input ${
-              status === "outstock" ? "add-inventory__input--hidden" : ""
+              status === "Out of Stock" ? "add-inventory__input--hidden" : ""
             } ${submitted && !quantity ? "add-inventory--error" : ""}`}
             type="text"
-            placeholder="0"
+            placeholder={isEditMode ? `${inventoryDetails.quantity}` : `0`}
           />
+
           <div
             className={`add-inventory__error-details ${
               submitted && !quantity
@@ -283,6 +365,7 @@ const AddInventory = () => {
             <img src={error} alt="error icon" />
             <p>This field is required</p>
           </div>
+
           <p className="add-inventory__label" htmlFor="warehouse">
             Warehouse
           </p>
@@ -295,7 +378,11 @@ const AddInventory = () => {
               submitted && !warehouse ? "add-inventory--error" : ""
             }`}
           >
-            <option value="">Please Select</option>
+            <option value="">
+              {isEditMode
+                ? `${inventoryDetails.warehouse_name}`
+                : `Please Select`}
+            </option>
             {warehouseList.map((name) => {
               return (
                 <option key={name.id} value={name.id}>
@@ -314,16 +401,20 @@ const AddInventory = () => {
             <img src={error} alt="error icon" />
             <p>This field is required</p>
           </div>
-          <div className="add-inventory__buttons">
-            <button className="add-inventory__cancel">Cancel</button>
-            <button onClick={handleSubmit} className="add-inventory__submit">
-              + Add Item
-            </button>
-          </div>
         </section>
       </form>
+      <div className="add-inventory__buttons">
+        <div className="add-inventory__buttonbox">
+          <Link to="/inventory">
+            <button className="add-inventory__cancel">Cancel</button>
+          </Link>
+          <button onClick={handleSubmit} className="add-inventory__submit">
+            {isEditMode ? `Save Item` : `+ Add Item`}
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default AddInventory;
+export default AddEditInventory;

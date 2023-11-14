@@ -1,43 +1,65 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
+@use "../../styles/partials/colors" as *;
+
+.component__box {
+  width: 100%;
+}
 
 .component-list {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+
+  @include tablet {
     display: flex;
-    flex-direction: column;
-    margin: 1rem;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  &__header {
+    font-size: 1.75rem;
+    font-weight: 600;
+  }
+
+  &__search {
+    width: 100%;
+    padding: 0.7rem;
+    border-radius: 20px;
+    margin-bottom: 10px;
 
     @include tablet {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+      width: 185px;
+      height: 38px;
     }
+  }
 
-    &__search {
-        width: 100%;
-        padding: .7rem;
-        border-radius: 20px;
-        margin-bottom: 10px;
-
-        @include tablet {
-            width: 185px;
-            height: 38px;
-        }
-
-    }
-
-    &__button {
-        width: 100%;
-        padding: .7rem;
-        border-radius: 20px;
-
-        @include tablet {
-
-            width: 10rem;
-            height: 38px;
-            margin-left: 1rem;
-        }
-
-    }
-
+  &__button {
+    width: 100%;
+    padding: 0.7rem;
     border-radius: 20px;
+    background-color: $colour-primary-InstockIndigo;
+    display: inline-block;
+    border: none;
+    border-radius: 20px;
+    padding: 0.5rem;
+    color: white;
+    margin: 1rem 0;
+    width: 100%;
+
+    @include tablet {
+      width: 10rem;
+      height: 38px;
+      margin-left: 1rem;
+    }
+  }
+
+  &__sort {
+    margin-left: 0.25rem;
+    &:hover {
+      background-color: $colour-secondary-Cloud;
+      border-radius: 20px;
+    }
+  }
+
+  border-radius: 20px;
 }

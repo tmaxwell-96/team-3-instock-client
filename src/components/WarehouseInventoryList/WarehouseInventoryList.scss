@@ -1,5 +1,6 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/colors" as *;
 
 * {
   box-sizing: border-box;
@@ -18,10 +19,6 @@ h2 {
   justify-content: center;
   flex-direction: column;
   align-self: center;
-
-  @include desktop {
-    max-width: 80%;
-  }
 
   &__container {
     display: flex;
@@ -87,7 +84,6 @@ h2 {
         min-width: 3rem;
         margin-right: 1rem;
         min-width: 150px;
-        // align-items: center;
       }
 
       @include desktop {

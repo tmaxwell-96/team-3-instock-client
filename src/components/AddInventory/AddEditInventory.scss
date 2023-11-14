@@ -1,0 +1,214 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/colors" as *;
+@use "../../styles/partials/buttons" as *;
+
+* {
+  margin: 0;
+}
+
+.add-inventory {
+  margin: 1rem;
+  height: 100%;
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid $colour-secondary-Cloud;
+    padding-bottom: 1rem;
+  }
+
+  &__form {
+    @include tablet {
+      display: flex;
+      height: 45%;
+    }
+  }
+
+  &__title {
+    margin-left: 1rem;
+  }
+
+  &__subheader {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+
+  &__subheader2 {
+    margin-top: 1rem;
+    margin-bottom: 0.2rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  &__input {
+    padding: 0.2rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    border: 2px solid;
+    border-radius: 4px;
+    color: $colour-secondary-Slate;
+    font-size: 13.5px;
+    border-radius: 20px;
+    border: 1px solid var(--Cloud, $colour-secondary-Cloud);
+    background: var(--White, #fff);
+    margin-top: 0.3rem;
+    width: 90%;
+    &--hidden {
+      display: none;
+    }
+  }
+
+  &__details-container {
+    margin-bottom: 1rem;
+    border-bottom: 1px solid $colour-secondary-Cloud;
+    padding-bottom: 1rem;
+
+    @include tablet {
+      width: 50%;
+      border: none;
+    }
+  }
+
+  &__label {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    &--hidden {
+      display: none;
+    }
+  }
+
+  &__radio__container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__radio-label {
+    margin-right: 1rem;
+    font-size: 0.8rem;
+    color: $colour-secondary-Slate;
+  }
+
+  &__buttons {
+    margin-top: 3%;
+    background: rgba(247, 248, 249, 0.7);
+
+    min-height: 68px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @include tablet {
+      justify-content: flex-end;
+      padding-right: 1.5rem;
+    }
+
+    &__buttonbox {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+  }
+
+  &__error-details {
+    display: none;
+
+    &--hidden {
+      display: flex;
+    }
+  }
+
+  &__cancel {
+    display: inline-flex;
+    padding: 8px 28px;
+    align-items: center;
+    gap: 10px;
+    border-radius: 20px;
+    font-family: "Titillium-Web";
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+    color: #fff;
+    margin: 0.5rem;
+
+    border: 1px solid $colour-secondary-Cloud;
+    background: #fff;
+    color: $colour-secondary-Slate;
+
+    &:hover {
+      background: #fff;
+      color: $colour-primary-InstockIndigo;
+    }
+  }
+
+  &__submit {
+    display: inline-flex;
+    padding: 8px 16px;
+    align-items: center;
+    gap: 10px;
+    border-radius: 20px;
+    font-family: "Titillium-Web";
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+    color: #fff;
+    margin: 0.5rem;
+
+    border: none;
+    background: $colour-primary-InstockIndigo;
+
+    &:hover {
+      background: $colour-background-Graphite;
+    }
+
+    @include tablet {
+      padding: 8px 33px;
+    }
+  }
+
+  &__select {
+    padding: 0.2rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    border-radius: 20px;
+    border: 1px solid var(--Cloud, $colour-secondary-Cloud);
+    background: var(--White, #fff);
+    color: $colour-secondary-Slate;
+    font-size: 13.5px;
+    margin-top: 0.3rem;
+    width: 90%;
+  }
+
+  &__description {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    border: 1px solid var(--Cloud, $colour-secondary-Cloud);
+    background: var(--White, #fff);
+    height: 5rem;
+    color: $colour-secondary-Slate;
+    font-size: 13.5px;
+    margin-top: 0.3rem;
+    width: 90%;
+  }
+  &--error {
+    border: 1px solid $colour-supporting-Red;
+  }
+}
+
+.add-availability-container {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+
+  @include tablet {
+    width: 50%;
+    border-left: 1px solid $colour-secondary-Cloud;
+    padding-left: 2rem;
+  }
+}

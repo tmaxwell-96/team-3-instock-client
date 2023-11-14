@@ -1,13 +1,15 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
+@use "../../styles/partials/colors" as *;
 
 .warehouse-inventory-card {
+  width: 100%;
   padding: 1rem;
+
   @include tablet {
-    width: 100%;
+    max-width: 100%;
     padding: 1rem;
     display: flex;
-    // flex-direction: row;
     justify-content: space-between;
   }
 
@@ -17,33 +19,45 @@
     @include tablet {
       width: 100%;
       display: flex;
-      //   justify-content: space-around;
     }
   }
-
-  &__container-left,
-  &__container-right {
+  &__detail {
+    @include tablet {
+    }
+    &--QTY {
+      margin-right: 3rem;
+    }
+  }
+  &__container-left {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     @include tablet {
-      width: 100%;
+      width: 70%;
       flex-direction: row;
-      justify-content: space-around;
+      justify-content: space-between;
+      padding: 0;
     }
-  }
-
-  &__container-left {
-    height: 140px;
   }
 
   &__container-right {
     padding-left: 3rem;
+    @include tablet {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      padding: 0;
+    }
   }
 
   &__item-container,
   &__category-container {
     padding-bottom: 1rem;
+    @include tablet {
+      width: 120px;
+      margin-left: 2rem;
+    }
   }
 
   &__txt {
@@ -52,7 +66,7 @@
   }
 
   &__label {
-    color: #5c667e;
+    color: $colour-secondary-Slate;
     font-weight: 500;
   }
 
@@ -78,11 +92,11 @@
     margin: 0;
 
     &--instock {
-      color: #158463;
+      color: $colour-supporting-Green;
     }
 
     &--outstock {
-      color: #c94515;
+      color: $colour-supporting-Red;
     }
   }
 
@@ -93,7 +107,7 @@
     @include tablet {
       display: flex;
       flex-direction: row;
-      align-items: start;
+      align-items: flex-start;
       padding: 0;
     }
   }

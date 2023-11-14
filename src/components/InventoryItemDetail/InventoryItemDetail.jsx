@@ -11,10 +11,16 @@ const InventoryItemDetail = () => {
 
   useEffect(() => {
     const getInventoryItem = async () => {
-      const response = await axios.get(
-        `http://localhost:8080/inventory/${params.id}`
-      );
-      setInventoryDetails(response.data[0]);
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/inventory/${params.id}`
+        );
+        setInventoryDetails(response.data[0]);
+      } catch (error) {
+        alert(
+          `Error accessing the server, please try again later. Error code ${error}`
+        );
+      }
     };
     getInventoryItem();
   }, [params.id]);
@@ -28,10 +34,13 @@ const InventoryItemDetail = () => {
         </Link>
 
         <h2 className="item-detail__item">{inventoryDetails.item_name}</h2>
-        <div className="item-detail__edit-wrapper">
+        <Link
+          className="item-detail__edit-wrapper"
+          to={`/inventory/edit/${params.id}`}
+        >
           <img className="item-detail__edit" src={editWhite} alt="edit" />
           <p className="item-detail__edit-text">Edit</p>
-        </div>
+        </Link>
       </div>
       <div className="item-detail__content">
         <div className="item-detail__content-item">

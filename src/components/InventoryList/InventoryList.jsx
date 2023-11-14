@@ -1,37 +1,46 @@
 import "./InventoryList.scss";
 import sort from "../../assets/Icons/sort-24px.svg";
-
 import InventoryCard from "../InventoryCard/InventoryCard";
-import search from "../../assets/Icons/search-24px.svg";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { unstable_renderSubtreeIntoContainer } from "react-dom";
 
 const InventoryList = () => {
   const [inventoryList, setInventoryList] = useState([]);
   const [searchKeyword, setSearchKeyword] = useState("");
+  const [isAscending, setIsAscending] = useState(true);
 
   const getInventory = async () => {
-    const response = await axios.get("http://localhost:8080/inventory");
-    setInventoryList(response.data);
-    console.log(response.data);
+    try {
+      const response = await axios.get("http://localhost:8080/inventory");
+      setInventoryList(response.data);
+    } catch (error) {
+      alert(
+        `There was an issue communicating with the server, please try again later. Error : ${error}`
+      );
+    }
   };
   useEffect(() => {
     getInventory();
   }, []);
 
   useEffect(() => {
-    const searchData = async () => {
-      const response = await axios.get(
-        `http://localhost:8080/search/inventories?searchTerm=${searchKeyword}`
+    try {
+      const searchData = async () => {
+        const response = await axios.get(
+          `http://localhost:8080/search/inventories?searchTerm=${searchKeyword}`
+        );
+        setInventoryList(response.data);
+      };
+      if (searchKeyword.length > 3) {
+        searchData();
+      } else {
+        getInventory();
+      }
+    } catch (error) {
+      alert(
+        `There was an issue communicating with the server, please try again later. Error : ${error}`
       );
-      setInventoryList(response.data);
-    };
-    if (searchKeyword.length > 3) {
-      searchData();
-    } else {
-      getInventory();
     }
   }, [searchKeyword]);
 
@@ -41,9 +50,23 @@ const InventoryList = () => {
 
   //Delete Inventory Function
   const deleteInventory = async (event) => {
-    await axios.delete(`http://localhost:8080/inventory/${event}`);
-    getInventory();
+    try {
+      await axios.delete(`http://localhost:8080/inventory/${event}`);
+      getInventory();
+    } catch (error) {
+      alert(
+        `There was an issue communicating with the server, please try again later. Error : ${error}`
+      );
+    }
   };
+
+  //sort inventory list
+  const handleClick = async (columnName, sortOrder) =>{
+    setIsAscending(!isAscending);
+    console.log('Sort Order:', isAscending ? 'asc' : 'desc');
+    const sortData = await axios.get(`http://localhost:8080/inventory/sortInventory/sort?sort_by=${columnName}&order_by=${sortOrder}`);
+    setInventoryList(sortData.data);
+  }
 
   return (
     <>
@@ -58,8 +81,8 @@ const InventoryList = () => {
             onChange={handleSearch}
           />
           <Link to={`/inventory/add`}>
-            <button className="inventory-list__button">
-              + Add New inventory
+            <button className="component-list__button">
+              + Add New Inventory
             </button>
           </Link>
         </div>
@@ -68,27 +91,41 @@ const InventoryList = () => {
         <ul className="component__box component__box--row">
           <li className="component__subheader component__subheader--row">
             <span className="component__detail">INVENTORY ITEM</span>
-            <img src={sort} alt="sort-icon" />
+            <img 
+              className="component-list__sort" 
+              onClick={() => handleClick('item_name', isAscending ? 'asc' : 'desc')}
+              src={sort} alt="sort-icon" />
           </li>
           <li className="component__subheader component__subheader--row">
             <span className="component__detail"> CATEGORY</span>
-            <img src={sort} alt="sort-icon" />
+            <img  className="component-list__sort" 
+                  onClick={() => handleClick('item_name', isAscending ? 'asc' : 'desc')}
+                  src={sort} alt="sort-icon" />
           </li>
           <li className="component__subheader component__subheader--row">
             <span className="component__detail"> STATUS</span>
-            <img src={sort} alt="sort-icon" />
+            <img 
+              className="component-list__sort" 
+              onClick={() => handleClick('item_name', isAscending ? 'asc' : 'desc')}
+              src={sort} alt="sort-icon" />
           </li>
           <li className="component__subheader component__subheader--row">
             <span className="component__detail"> QUANTITY</span>
-            <img src={sort} alt="sort-icon" />
+            <img 
+              className="component-list__sort" 
+              onClick={() => handleClick('item_name', isAscending ? 'asc' : 'desc')}
+              src={sort} alt="sort-icon" />
           </li>
           <li className="component__subheader component__subheader--row">
             <span className="component__detail"> WAREHOUSE</span>
-            <img src={sort} alt="sort-icon" />
+            <img 
+              className="component-list__sort" 
+              onClick={() => handleClick('item_name', isAscending ? 'asc' : 'desc')}
+              src={sort} alt="sort-icon" />
           </li>
           <li className="component__subheader component__subheader--row">
             <span className="component__detail"> ACTIONS</span>
-            <img src={sort} alt="sort-icon" />
+           
           </li>
         </ul>
         <ul className="inventory-list__wrapper">

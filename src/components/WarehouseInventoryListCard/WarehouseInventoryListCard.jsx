@@ -3,25 +3,20 @@ import deleteIcon from "../../assets/Icons/delete_outline-24px.svg";
 import editIcon from "../../assets/Icons/edit-24px.svg";
 import chevronIcon from "../../assets/Icons/chevron_right-24px.svg";
 import { Link } from "react-router-dom";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import Modal from "react-modal";
-
-const deleteModal = document.getElementById("deleteModal");
 
 Modal.setAppElement("#root");
 
 const WarehouseInventoryListCard = ({ item, deleteInventory }) => {
   //Modal warehouse-inventory-card
-  // let subtitle;
   const [modalIsOpen, setIsOpen] = useState(false);
 
   function openModal() {
     setIsOpen(true);
   }
 
-  function afterOpenModal() {
-    // subtitle.style.color = "black";
-  }
+  function afterOpenModal() {}
 
   function closeModal() {
     setIsOpen(false);
@@ -31,13 +26,15 @@ const WarehouseInventoryListCard = ({ item, deleteInventory }) => {
     <>
       <section className="warehouse-inventory-card">
         <div className="warehouse-inventory-card__wrapper">
-          {/* !-- This is the part that should be rendered by javascript according to each Item --> */}
           <div className="warehouse-inventory-card__container-left">
             <div className="warehouse-inventory-card__item-container">
               <span className="warehouse-inventory-card__detail, warehouse-inventory-card__detail--mobile">
                 INVENTORY ITEM
               </span>
-              <Link to={`/inventory/${item.id}`}>
+              <Link
+                className="warehouse-inventory-card__txt--link"
+                to={`/inventory/${item.id}`}
+              >
                 <div className="warehouse-inventory-card__txt">
                   <span className="warehouse-inventory-card__detail">
                     {item.item_name}
@@ -89,7 +86,7 @@ const WarehouseInventoryListCard = ({ item, deleteInventory }) => {
               </span>
 
               <div className="warehouse-inventory-card__txt">
-                <span className="warehouse-inventory-card__detail">
+                <span className="warehouse-inventory-card__detail warehouse-inventory-card__detail--QTY">
                   {" "}
                   {item.quantity}
                 </span>

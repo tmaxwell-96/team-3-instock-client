@@ -1,5 +1,6 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
+@use "../../styles/partials/colors" as *;
 
 .warehouse-detail {
   display: flex;
@@ -12,7 +13,7 @@
     display: flex;
     align-items: center;
     padding: 2rem 1rem;
-    border-bottom: 1px solid #bdc5d5;
+    border-bottom: 1px solid $colour-secondary-Cloud;
   }
   &__container-left {
     display: flex;
@@ -28,14 +29,15 @@
     align-items: center;
     min-width: 2.25rem;
     min-height: 2.25rem;
-    background-color: #2e66e5;
+    background-color: $colour-primary-InstockIndigo;
     border-radius: 1.25rem;
+    text-decoration: none;
     @include tablet {
       padding: 0.5rem 1rem;
     }
   }
   &__edit {
-    background-color: #2e66e5;
+    background-color: $colour-primary-InstockIndigo;
     @include tablet {
       margin-right: 0.5rem;
     }
@@ -54,19 +56,28 @@
       display: flex;
       justify-content: space-between;
     }
+    @include desktop {
+      justify-content: start;
+    }
   }
   &__info-container {
     display: flex;
+    @include desktop {
+      width: 50%;
+    }
   }
   &__preson-container {
     @include tablet {
       padding-left: 3rem;
-      border-left: 1px solid #bdc5d5;
+      border-left: 1px solid $colour-secondary-Cloud;
     }
   }
 
   &__address-container {
     padding-bottom: 2rem;
+    @include desktop {
+      width: 40%;
+    }
   }
   &__inquiry-container {
     padding: 0 3rem;

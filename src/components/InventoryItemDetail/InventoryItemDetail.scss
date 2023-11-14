@@ -1,5 +1,6 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
+@use "../../styles/partials/colors" as *;
 
 .item-detail {
   &__header {
@@ -8,7 +9,7 @@
     align-items: center;
     justify-content: flex-start;
     width: 100%;
-    border-bottom: 1px solid #bdc5d5;
+    border-bottom: 1px solid $colour-secondary-Cloud;
     @include tablet {
       padding: 1rem 2rem;
     }
@@ -33,13 +34,17 @@
     }
   }
   &__edit-wrapper {
+    &:hover {
+      background-color: $colour-background-Graphite;
+    }
+    text-decoration: none;
     margin-left: auto;
     display: flex;
     justify-content: center;
     align-items: center;
     min-width: 2.25rem;
     min-height: 2.25rem;
-    background-color: #2e66e5;
+    background-color: $colour-primary-InstockIndigo;
     border-radius: 1.25rem;
     @include tablet {
       padding: 0.5rem 1rem;
@@ -81,7 +86,7 @@
     justify-content: space-between;
     @include tablet {
       min-width: 50%;
-      border-left: 1px solid #bdc5d5;
+      border-left: 1px solid $colour-secondary-Cloud;
       padding-left: 3rem;
       justify-content: flex-start;
     }
@@ -91,7 +96,7 @@
   }
 
   &__label {
-    color: #5c667e;
+    color: $colour-secondary-Slate;
     font-weight: 500;
   }
 
@@ -114,11 +119,11 @@
     margin-top: 0.5rem;
     width: auto;
     &--instock {
-      color: #158463;
+      color: $colour-supporting-Green;
       margin: 0;
     }
     &--outstock {
-      color: #c94515;
+      color: $colour-supporting-Red;
       margin: 0;
     }
   }
