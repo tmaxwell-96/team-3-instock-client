@@ -8,6 +8,7 @@ import axios from "axios";
 const InventoryList = () => {
   const [inventoryList, setInventoryList] = useState([]);
   const [searchKeyword, setSearchKeyword] = useState("");
+  const [isAscending, setIsAscending] = useState(true);
 
   const getInventory = async () => {
     try {
@@ -59,6 +60,14 @@ const InventoryList = () => {
     }
   };
 
+  //sort inventory list
+  const handleClick = async (columnName, sortOrder) =>{
+    setIsAscending(!isAscending);
+    console.log('Sort Order:', isAscending ? 'asc' : 'desc');
+    const sortData = await axios.get(`http://localhost:8080/inventory/sortInventory/sort?sort_by=${columnName}&order_by=${sortOrder}`);
+    setInventoryList(sortData.data);
+  }
+
   return (
     <>
       <div className="component-list">
@@ -82,27 +91,41 @@ const InventoryList = () => {
         <ul className="component__box component__box--row">
           <li className="component__subheader component__subheader--row">
             <span className="component__detail">INVENTORY ITEM</span>
-            <img src={sort} alt="sort-icon" />
+            <img 
+              className="component-list__sort" 
+              onClick={() => handleClick('item_name', isAscending ? 'asc' : 'desc')}
+              src={sort} alt="sort-icon" />
           </li>
           <li className="component__subheader component__subheader--row">
             <span className="component__detail"> CATEGORY</span>
-            <img src={sort} alt="sort-icon" />
+            <img  className="component-list__sort" 
+                  onClick={() => handleClick('item_name', isAscending ? 'asc' : 'desc')}
+                  src={sort} alt="sort-icon" />
           </li>
           <li className="component__subheader component__subheader--row">
             <span className="component__detail"> STATUS</span>
-            <img src={sort} alt="sort-icon" />
+            <img 
+              className="component-list__sort" 
+              onClick={() => handleClick('item_name', isAscending ? 'asc' : 'desc')}
+              src={sort} alt="sort-icon" />
           </li>
           <li className="component__subheader component__subheader--row">
             <span className="component__detail"> QUANTITY</span>
-            <img src={sort} alt="sort-icon" />
+            <img 
+              className="component-list__sort" 
+              onClick={() => handleClick('item_name', isAscending ? 'asc' : 'desc')}
+              src={sort} alt="sort-icon" />
           </li>
           <li className="component__subheader component__subheader--row">
             <span className="component__detail"> WAREHOUSE</span>
-            <img src={sort} alt="sort-icon" />
+            <img 
+              className="component-list__sort" 
+              onClick={() => handleClick('item_name', isAscending ? 'asc' : 'desc')}
+              src={sort} alt="sort-icon" />
           </li>
           <li className="component__subheader component__subheader--row">
             <span className="component__detail"> ACTIONS</span>
-            <img src={sort} alt="sort-icon" />
+           
           </li>
         </ul>
         <ul className="inventory-list__wrapper">
